@@ -2,8 +2,6 @@ package com.car.webapp.domain.utente;
 
 import java.util.Date;
 
-import com.car.webapp.domain.ruolo.Ruolo;
-
 public class Utente {
 
 	private Long idUtente;
@@ -13,17 +11,14 @@ public class Utente {
 	private String password;
 	private Date dataDiNascita;
 	
-	private Ruolo ruolo;
-	
 	public Utente() {}
 
-	public Utente(String nome, String cognome, String username, String password, Date dataDiNascita, Ruolo ruolo) {
+	public Utente(String nome, String cognome, String username, String password, Date dataDiNascita) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.username = username;
 		this.password = password;
 		this.dataDiNascita = dataDiNascita;
-		this.setRuolo(new Ruolo(ruolo.getFk_idUtente(), ruolo.getNomeRuolo()));
 	}
 
 
@@ -32,6 +27,13 @@ public class Utente {
 	 */
 	public Long getIdUtente() {
 		return idUtente;
+	}
+	
+	/**
+	 * @return the idUtente
+	 */
+	public void setIdUtente(Long idUtente) {
+		this.idUtente = idUtente;
 	}
 
 	/**
@@ -102,14 +104,6 @@ public class Utente {
 	 */
 	public void setDataDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
-	}
-
-	public Ruolo getRuolo() {
-		return ruolo;
-	}
-
-	public void setRuolo(Ruolo ruolo) {
-		this.ruolo = ruolo;
 	}
 	
 	
