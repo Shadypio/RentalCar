@@ -30,7 +30,7 @@
   		</button>
   		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
   		
-  			 <a class="navbar-brand" href="<spring:url value="/webstore/lastart"/>">Alpha Shop</a>
+  			 <a class="navbar-brand" href="<spring:url value="/webstore/lastart"/>">RentalCar</a>
   			     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       				<li class="nav-item active">
         				<a class="nav-link" href="#">
@@ -40,7 +40,7 @@
         				</a>
       				</li>
       				<li class="nav-item">
-        				<a class="nav-link" href="<spring:url value="/articoli/" /> ">
+        				<a class="nav-link" href="#">
         					<span class="oi oi-box" title="box" aria-hidden="true"></span>
         					Prodotti
         				</a>
@@ -66,34 +66,7 @@
       				</li>
     			</ul>
     			
-    			<!-- Search Box -->
-    			<c:choose>
-    				<c:when test = "${IsArticoli}">
-    					<form:form class="form-inline my-2 my-lg-0" id="search" role="search" method="GET" action="/alphashop/articoli/search">
-		      				<input type="text" onClick="this.select();"  class="form-control mr-sm-2" name="filter" value="${filter}" placeholder="Cerca Articoli">
-		      				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerca</button>
-		    			</form:form>
-    				</c:when>
-    			</c:choose>
     			
-    			<!-- dropdown menu -->
-    			<div class="dropdown">
-    				<button class="btn btn-default dropdown-toggle thumbnail"
-    					type="button"
-    					id="dropdownMenu1"
-    					data-toggle="dropdown"
-    					aria-haspopup="true" 
-    					aria-expanded="true">
-    					<img class="img-circle" src="<c:url value="/static/images/offline_user.png" />">
-    					<span class="caret"></span>
-    				</button>
-    				<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    					<a class="dropdown-item" href="#">Accedi</a>
-    					<a class="dropdown-item" href="#">Registrati</a>
-    					<div class="dropdown-divider"></div>
-    					<a class="dropdown-item disabled" href="#">Log out</a>
-    				</div>
-    			</div>
   		</div>
     </nav> 
     
