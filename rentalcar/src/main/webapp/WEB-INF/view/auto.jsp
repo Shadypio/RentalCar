@@ -17,10 +17,9 @@
     <section class="container">
 		<div class="row">
 		<div class = "col-md-6 col-sm-6">
-			<h3 class="page-title">Risultati Ricerca: <small>Trovati ${numUtenti} Utenti</small></h3>
+			<h3 class="page-title">Risultati Ricerca: <small>Trovate ${numAuto} Auto</small></h3>
 		</div>
 		<div class="col-md-6 col-sm-6">
-			<a href="<spring:url value="/utente/aggiungi" /> "  style="margin-left: 20px;" class="btn btn-success float-right">Nuovo Utente</a>
 			<div id="rep" class="datafilter">
 				<label>
 					Pagine: 
@@ -33,37 +32,34 @@
 				</label>
 			</div>
 		</div>
-			<table id="utenti" class="table table-striped table-bordered">
+			<table id="auto" class="table table-striped table-bordered">
 				<thead>
 		            <tr>
-		            	<th>Nome</th>
-		                <th>Cognome</th>
-		                <th>Username</th>
-		                <th>Data di nascita</th>
+		            	<th>Targa</th>
+		                <th>Marca</th>
+		                <th>Modello</th>
+		                <th>Categoria</th>
+		                <th>Anno Immatricolazione</th>
 		            </tr>
 	        	</thead>
 	        	<tfoot>
 	        	</tfoot>
 	        	<tbody>
-	        		<c:forEach items="${Utenti}" var="utente">
+	        		<c:forEach items="${Auto}" var="auto">
 						<tr>
-							<td>${utente.nome}</td>
-							<td>${utente.cognome}</td>
-							<td>${utente.username}</td>
-							<td>${utente.dataDiNascita}</td>
+							<td>${auto.targa}</td>
+							<td>${auto.marca}</td>
+							<td>${auto.modello}</td>
+							<td>${auto.categoria}</td>
+							<td><!-- aggiungi anno corretto -->2000</td>
 							<td>
-								<a href=" <spring:url value="/utente/infoutente/${utente.idUtente}" /> " class="btn btn-primary">
+								<a href=" <spring:url value="/auto/infoauto/${auto.targa}" /> " class="btn btn-primary">
 									<span class="oi oi-plus"/></span> Dettaglio 
 	      						</a> 
       						</td>
       						<td>
-								<a href="<spring:url value="/utente/modifica/${utente.idUtente}" /> " class="btn btn-warning table-buttons">
-								<span class="oi oi-pencil"></span> Modifica 
-      							</a> 
-      						</td>
-      						<td>
-								<a href="<spring:url value="/utente/elimina/${utente.idUtente}" /> " class="btn btn-danger table-buttons">
-								<span class="oi oi-trash"/></span> Elimina 
+								<a href="<spring:url value="/auto/prenota/${auto.targa}" /> " class="btn btn-warning table-buttons">
+								<span class="oi oi-pencil"></span> Prenota Ora 
       							</a> 
       						</td>
 						</tr>

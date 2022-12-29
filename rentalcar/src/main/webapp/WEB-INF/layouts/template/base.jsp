@@ -30,7 +30,7 @@
   		</button>
   		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
   		
-  			 <a class="navbar-brand" href="<spring:url value="/webstore/lastart"/>">RentalCar</a>
+  			 <a class="navbar-brand" href="<spring:url value="/"/>">RentalCar</a>
   			     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       				<li class="nav-item active">
         				<a class="nav-link" href="#">
@@ -40,15 +40,15 @@
         				</a>
       				</li>
       				<li class="nav-item">
-        				<a class="nav-link" href="#">
+        				<a class="nav-link" href="<spring:url value="/auto/"/>">
         					<span class="oi oi-box" title="box" aria-hidden="true"></span>
         					Prodotti
         				</a>
       				</li>
       				<li class="nav-item">
-        				<a class="nav-link" href="#">
+        				<a class="nav-link" href="<spring:url value="/utente/"/>">
         					<span class="oi oi-bullhorn" title="bullhorn" aria-hidden="true"></span>
-        					Promozioni
+        					Utenti
         				</a>
       				</li>
       				<li class="nav-item">
