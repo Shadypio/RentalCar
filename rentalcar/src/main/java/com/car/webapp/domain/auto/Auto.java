@@ -1,13 +1,11 @@
 package com.car.webapp.domain.auto;
 
-import java.time.Year;
-
 public class Auto {
 
 	private String targa;
 	private String marca;
 	private String modello;
-	private Year anno;
+	private int anno;
 	private String categoria;
 	private Long fk_idAdmin;
 	private Long fk_idPrenotazione;
@@ -15,7 +13,7 @@ public class Auto {
 	public Auto() {}
 	
 	
-	public Auto(String targa, String marca, String modello, Year anno, String categoria, Long fk_idAdmin) {
+	public Auto(String targa, String marca, String modello, int anno, String categoria, Long fk_idAdmin) {
 		this.targa = targa;
 		this.marca = marca;
 		this.modello = modello;
@@ -25,7 +23,7 @@ public class Auto {
 		this.fk_idPrenotazione = null;
 	}
 	
-	public Auto(String targa, String marca, String modello, Year anno, String categoria, Long fk_idAdmin,
+	public Auto(String targa, String marca, String modello, int anno, String categoria, Long fk_idAdmin,
 			Long fk_idPrenotazione) {
 		this.targa = targa;
 		this.marca = marca;
@@ -75,13 +73,13 @@ public class Auto {
 	/**
 	 * @return the anno
 	 */
-	public Year getAnno() {
+	public int getAnno() {
 		return anno;
 	}
 	/**
 	 * @param anno the anno to set
 	 */
-	public void setAnno(Year anno) {
+	public void setAnno(int anno) {
 		this.anno = anno;
 	}
 	/**

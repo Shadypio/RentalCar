@@ -20,7 +20,7 @@ public class AutoMapper implements RowMapper<Auto>{
 			auto.setTarga(rs.getString("targa"));
 			auto.setMarca(rs.getString("marca"));
 			auto.setModello(rs.getString("modello"));
-			// data
+			auto.setAnno(rs.getInt("anno"));
 			auto.setCategoria(rs.getString("categoria"));
 			auto.setFk_idAdmin(rs.getLong("fk_idAdmin"));
 			auto.setFk_idPrenotazione(rs.getLong("idPrenotazione"));

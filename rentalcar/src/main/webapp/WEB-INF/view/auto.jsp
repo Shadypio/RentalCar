@@ -51,7 +51,7 @@
 							<td>${auto.marca}</td>
 							<td>${auto.modello}</td>
 							<td>${auto.categoria}</td>
-							<td><!-- aggiungi anno corretto -->2000</td>
+							<td>${auto.anno}</td>
 							<td>
 								<a href=" <spring:url value="/auto/infoauto/${auto.targa}" /> " class="btn btn-primary">
 									<span class="oi oi-plus"/></span> Dettaglio 
@@ -60,6 +60,11 @@
       						<td>
 								<a href="<spring:url value="/auto/prenota/${auto.targa}" /> " class="btn btn-warning table-buttons">
 								<span class="oi oi-pencil"></span> Prenota Ora 
+      							</a> 
+      						</td>
+      						<td>
+								<a href="<spring:url value="/auto/elimina/${auto.targa}" /> " class="btn btn-danger table-buttons">
+								<span class="oi oi-trash"/></span> Elimina 
       							</a> 
       						</td>
 						</tr>
