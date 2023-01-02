@@ -1,15 +1,59 @@
 package com.car.webapp.domain.utente;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Utente {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.car.webapp.domain.ruolo.Ruolo;
+
+@Entity
+@Table(name = "utente")
+public class Utente implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4426740859863822276L;
+
+	@Id
+	@Column(name = "idUtente")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUtente;
+	
+	@Column(name = "nome")
 	private String nome;
+	
+	@Column(name = "cognome")
 	private String cognome;
+	
+	@Column(name = "username")
 	private String username;
+	
+	@Column(name = "password")
 	private String password;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dataDiNascita")
 	private Date dataDiNascita;
+	
+	/*
+	 * con LAZY viene caricato solo all'occorrenza, con EAGER sempre: 
+	 * scelta di prestazioni
+	 */
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_idRuolo")
+	private Ruolo ruolo;
 	
 	public Utente() {}
 
@@ -104,6 +148,14 @@ public class Utente {
 	 */
 	public void setDataDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
+	}
+
+	public Ruolo getRuolo() {
+		return ruolo;
+	}
+
+	public void setRuolo(Ruolo ruolo) {
+		this.ruolo = ruolo;
 	}
 	
 	

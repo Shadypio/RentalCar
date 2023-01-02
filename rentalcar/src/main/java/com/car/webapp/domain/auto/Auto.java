@@ -1,19 +1,50 @@
 package com.car.webapp.domain.auto;
 
-public class Auto {
+import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.car.webapp.domain.prenotazione.Prenotazione;
+import com.car.webapp.domain.utente.Utente;
+
+@Entity
+@Table(name = "auto")
+public class Auto implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5851587320379712785L;
+	
+	@Id
+	@Column(name = "targa")
 	private String targa;
+	
+	@Column(name = "marca")
 	private String marca;
+	
+	@Column(name = "modello")
 	private String modello;
+	
+	@Column(name = "anno")
 	private int anno;
+	
+	@Column(name = "categoria")
 	private String categoria;
-	private Long fk_idAdmin;
-	private Long fk_idPrenotazione;
+	
+	@Column(name = "fk_idAdmin")
+	private Utente fk_idAdmin;
+	
+	@Column(name = "fk_idPrenotazione")
+	private Prenotazione fk_idPrenotazione;
 	
 	public Auto() {}
 	
 	
-	public Auto(String targa, String marca, String modello, int anno, String categoria, Long fk_idAdmin) {
+	public Auto(String targa, String marca, String modello, int anno, String categoria, Utente fk_idAdmin) {
 		this.targa = targa;
 		this.marca = marca;
 		this.modello = modello;
@@ -23,8 +54,8 @@ public class Auto {
 		this.fk_idPrenotazione = null;
 	}
 	
-	public Auto(String targa, String marca, String modello, int anno, String categoria, Long fk_idAdmin,
-			Long fk_idPrenotazione) {
+	public Auto(String targa, String marca, String modello, int anno, String categoria, Utente fk_idAdmin,
+			Prenotazione fk_idPrenotazione) {
 		this.targa = targa;
 		this.marca = marca;
 		this.modello = modello;
@@ -97,25 +128,25 @@ public class Auto {
 	/**
 	 * @return the fk_idAdmin
 	 */
-	public Long getFk_idAdmin() {
+	public Utente getFk_idAdmin() {
 		return fk_idAdmin;
 	}
 	/**
 	 * @param fk_idAdmin the fk_idAdmin to set
 	 */
-	public void setFk_idAdmin(Long fk_idAdmin) {
+	public void setFk_idAdmin(Utente fk_idAdmin) {
 		this.fk_idAdmin = fk_idAdmin;
 	}
 	/**
 	 * @return the fk_idPrenotazione
 	 */
-	public Long getFk_idPrenotazione() {
+	public Prenotazione getFk_idPrenotazione() {
 		return fk_idPrenotazione;
 	}
 	/**
 	 * @param fk_idPrenotazione the fk_idPrenotazione to set
 	 */
-	public void setFk_idPrenotazione(Long fk_idPrenotazione) {
+	public void setFk_idPrenotazione(Prenotazione fk_idPrenotazione) {
 		this.fk_idPrenotazione = fk_idPrenotazione;
 	}
 	

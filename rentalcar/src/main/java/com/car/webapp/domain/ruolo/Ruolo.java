@@ -1,11 +1,28 @@
 package com.car.webapp.domain.ruolo;
 
-public class Ruolo {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ruolo")
+public class Ruolo implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5969735811189521060L;
+	
 
 	private Long fk_idUtente;
+	
+
 	private String nomeRuolo;
 	
-	private Ruolo() {}
+	public Ruolo() {}
 	
 	
 	public Ruolo(Long fk_idUtente, String ruolo) {

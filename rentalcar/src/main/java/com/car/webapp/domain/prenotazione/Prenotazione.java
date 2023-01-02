@@ -1,18 +1,48 @@
 package com.car.webapp.domain.prenotazione;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Prenotazione {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.car.webapp.domain.auto.Auto;
+import com.car.webapp.domain.utente.Utente;
+
+@Entity
+@Table(name = "prenotazione")
+public class Prenotazione implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3896030548583216394L;
+	
+	@Id
+	@Column(name = "idPrenotazione")
 	private Long idPrenotazione;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dataInizio")
 	private Date dataInizio;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dataFine")
 	private Date dataFine;
-	private String fk_targaAuto;
-	private String fk_idUtente;
 	
-	private Prenotazione() {}
+	@Column(name = "fk_targaAuto")
+	private Auto fk_targaAuto;
 	
-	public Prenotazione(Long idPrenotazione, Date dataInizio, Date dataFine, String fk_targaAuto, String fk_idUtente) {
+	@Column(name = "fk_idUtente")
+	private Utente fk_idUtente;
+	
+	public Prenotazione() {}
+	
+	public Prenotazione(Long idPrenotazione, Date dataInizio, Date dataFine, Auto fk_targaAuto, Utente fk_idUtente) {
 		this.idPrenotazione = idPrenotazione;
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
@@ -60,25 +90,25 @@ public class Prenotazione {
 	/**
 	 * @return the fk_targaAuto
 	 */
-	public String getFk_targaAuto() {
+	public Auto getFk_targaAuto() {
 		return fk_targaAuto;
 	}
 	/**
 	 * @param fk_targaAuto the fk_targaAuto to set
 	 */
-	public void setFk_targaAuto(String fk_targaAuto) {
+	public void setFk_targaAuto(Auto fk_targaAuto) {
 		this.fk_targaAuto = fk_targaAuto;
 	}
 	/**
 	 * @return the fk_idUtente
 	 */
-	public String getFk_idUtente() {
+	public Utente getFk_idUtente() {
 		return fk_idUtente;
 	}
 	/**
 	 * @param fk_idUtente the fk_idUtente to set
 	 */
-	public void setFk_idUtente(String fk_idUtente) {
+	public void setFk_idUtente(Utente fk_idUtente) {
 		this.fk_idUtente = fk_idUtente;
 	}
 	
