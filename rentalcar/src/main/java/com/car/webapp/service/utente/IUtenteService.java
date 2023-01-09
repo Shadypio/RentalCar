@@ -7,8 +7,12 @@ import com.car.webapp.domain.utente.Utente;
 public interface IUtenteService {
 
 	List <Utente> getAllUtenti();
+	
+	Utente selUtenteById(Long id);
 
 	void insUtente(Utente utente);
+	
+	void modificaUtente(Utente utente);
 
-	void delUtente(Long idUtente);
+	void delUtente(Utente Utente);
 }

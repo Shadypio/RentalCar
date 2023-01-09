@@ -2,36 +2,54 @@ package com.car.webapp.service.utente;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.car.webapp.dao.IUtenteDao;
 import com.car.webapp.domain.utente.Utente;
-import com.car.webapp.repository.utente.IUtenteRepository;
 
-@Service
+@Service("utenteSerivce")
+@Transactional
 public class UtenteServiceImpl implements IUtenteService {
-	
-	@Autowired 
-	IUtenteRepository utenteRepository;
 
+	@Autowired
+	private IUtenteDao utenteRepository;
+	
 	@Override
 	public List<Utente> getAllUtenti() {
 		
-		return utenteRepository.getAllUtenti();
+		return utenteRepository.selTutti();
+	}
+
+	@Override
+	public Utente selUtenteById(Long id) {
+		 
+		return utenteRepository.selById(id);
 	}
 
 	@Override
 	public void insUtente(Utente utente) {
 		
-		utenteRepository.insUtente(utente);
-
+		utenteRepository.salva(utente);
+		
 	}
 
 	@Override
-	public void delUtente(Long idUtente) {
+	public void modificaUtente(Utente utente) {
 		
-		utenteRepository.delUtente(idUtente);
-
+		utenteRepository.aggiorna(utente);
+		
 	}
+
+	@Override
+	public void delUtente(Utente utente) {
+		
+		utenteRepository.elimina(utente);
+		
+	}
+	
+	
 
 }
