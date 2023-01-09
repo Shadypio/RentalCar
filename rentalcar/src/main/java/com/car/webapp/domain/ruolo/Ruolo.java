@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,35 +17,23 @@ public class Ruolo implements Serializable{
 	 */
 	private static final long serialVersionUID = 5969735811189521060L;
 	
-
-	private Long fk_idUtente;
+	@Id
+	@OneToOne(mappedBy = "ruolo")
+	private Long idRuolo;
 	
-
+	@Column(name = "tipoRuolo")
 	private String nomeRuolo;
 	
 	public Ruolo() {}
 	
 	
-	public Ruolo(Long fk_idUtente, String ruolo) {
+	public Ruolo(Long idRuolo, String nomeRuolo) {
 		super();
-		this.fk_idUtente = fk_idUtente;
-		this.nomeRuolo = ruolo;
+		this.setIdRuolo(idRuolo);
+		this.nomeRuolo = nomeRuolo;
 	}
 
 
-	/**
-	 * @return the fk_idUtente
-	 */
-	public Long getFk_idUtente() {
-		return fk_idUtente;
-	}
-
-	/**
-	 * @param fk_idUtente the fk_idUtente to set
-	 */
-	public void setFk_idUtente(Long fk_idUtente) {
-		this.fk_idUtente = fk_idUtente;
-	}
 
 	/**
 	 * @return the nomeRuolo
@@ -58,6 +47,16 @@ public class Ruolo implements Serializable{
 	 */
 	public void setNomeRuolo(String nomeRuolo) {
 		this.nomeRuolo = nomeRuolo;
+	}
+
+
+	public Long getIdRuolo() {
+		return idRuolo;
+	}
+
+
+	public void setIdRuolo(Long idRuolo) {
+		this.idRuolo = idRuolo;
 	}
 	
 	

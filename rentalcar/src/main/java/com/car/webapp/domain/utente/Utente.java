@@ -47,12 +47,14 @@ public class Utente implements Serializable {
 	@Column(name = "dataDiNascita")
 	private Date dataDiNascita;
 	
+	
+	
 	/*
 	 * con LAZY viene caricato solo all'occorrenza, con EAGER sempre: 
 	 * scelta di prestazioni
 	 */
-	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_idRuolo")
+	@OneToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "fk_idRuolo", referencedColumnName = "idRuolo")
 	private Ruolo ruolo;
 	
 	public Utente() {}

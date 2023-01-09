@@ -5,10 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.car.webapp.domain.prenotazione.Prenotazione;
-import com.car.webapp.domain.utente.Utente;
 
 @Entity
 @Table(name = "auto")
@@ -20,6 +18,7 @@ public class Auto implements Serializable{
 	private static final long serialVersionUID = 5851587320379712785L;
 	
 	@Id
+	@OneToOne(mappedBy = "fk_targaAuto")
 	@Column(name = "targa")
 	private String targa;
 	
@@ -34,35 +33,17 @@ public class Auto implements Serializable{
 	
 	@Column(name = "categoria")
 	private String categoria;
-	
-	@Column(name = "fk_idAdmin")
-	private Utente fk_idAdmin;
-	
-	@Column(name = "fk_idPrenotazione")
-	private Prenotazione fk_idPrenotazione;
+
 	
 	public Auto() {}
 	
 	
-	public Auto(String targa, String marca, String modello, int anno, String categoria, Utente fk_idAdmin) {
+	public Auto(String targa, String marca, String modello, int anno, String categoria) {
 		this.targa = targa;
 		this.marca = marca;
 		this.modello = modello;
 		this.anno = anno;
 		this.categoria = categoria;
-		this.fk_idAdmin = fk_idAdmin;
-		this.fk_idPrenotazione = null;
-	}
-	
-	public Auto(String targa, String marca, String modello, int anno, String categoria, Utente fk_idAdmin,
-			Prenotazione fk_idPrenotazione) {
-		this.targa = targa;
-		this.marca = marca;
-		this.modello = modello;
-		this.anno = anno;
-		this.categoria = categoria;
-		this.fk_idAdmin = fk_idAdmin;
-		this.fk_idPrenotazione = fk_idPrenotazione;
 	}
 
 	/**
@@ -128,27 +109,8 @@ public class Auto implements Serializable{
 	/**
 	 * @return the fk_idAdmin
 	 */
-	public Utente getFk_idAdmin() {
-		return fk_idAdmin;
-	}
-	/**
-	 * @param fk_idAdmin the fk_idAdmin to set
-	 */
-	public void setFk_idAdmin(Utente fk_idAdmin) {
-		this.fk_idAdmin = fk_idAdmin;
-	}
-	/**
-	 * @return the fk_idPrenotazione
-	 */
-	public Prenotazione getFk_idPrenotazione() {
-		return fk_idPrenotazione;
-	}
-	/**
-	 * @param fk_idPrenotazione the fk_idPrenotazione to set
-	 */
-	public void setFk_idPrenotazione(Prenotazione fk_idPrenotazione) {
-		this.fk_idPrenotazione = fk_idPrenotazione;
-	}
+	
+	
 	
 	
 }

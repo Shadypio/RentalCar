@@ -22,8 +22,7 @@ public class AutoMapper implements RowMapper<Auto>{
 			auto.setModello(rs.getString("modello"));
 			auto.setAnno(rs.getInt("anno"));
 			auto.setCategoria(rs.getString("categoria"));
-			auto.setFk_idAdmin(rs.getLong("fk_idAdmin"));
-			auto.setFk_idPrenotazione(rs.getLong("idPrenotazione"));
+			//auto.setFk_idAdmin(rs.getLong("fk_idAdmin"));
 		}
 		
 
