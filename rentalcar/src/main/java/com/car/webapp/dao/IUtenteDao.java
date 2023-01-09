@@ -10,9 +10,9 @@ public interface IUtenteDao {
 	
 	Utente selById(Long id);
 
-	void salva(Utente cliente);
+	void salva(Utente utente);
 
-	void aggiorna(Utente cliente);
+	void aggiorna(Utente utente);
 
-	void elimina(Utente cliente);
+	void elimina(Utente utente);
 }
