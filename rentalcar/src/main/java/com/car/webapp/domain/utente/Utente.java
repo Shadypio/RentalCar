@@ -2,6 +2,7 @@ package com.car.webapp.domain.utente;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,11 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.car.webapp.domain.prenotazione.Prenotazione;
 import com.car.webapp.domain.ruolo.Ruolo;
 
 @Entity
@@ -29,6 +32,7 @@ public class Utente implements Serializable {
 	@Id
 	@Column(name = "idUtente")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@OneToMany(mappedBy = "fk_idUtente")
 	private Long idUtente;
 	
 	@Column(name = "nome")
@@ -47,7 +51,7 @@ public class Utente implements Serializable {
 	@Column(name = "dataDiNascita")
 	private Date dataDiNascita;
 	
-	
+	private Set<Prenotazione> prenotazioniEffettuate;
 	
 	/*
 	 * con LAZY viene caricato solo all'occorrenza, con EAGER sempre: 
@@ -158,6 +162,14 @@ public class Utente implements Serializable {
 
 	public void setRuolo(Ruolo ruolo) {
 		this.ruolo = ruolo;
+	}
+
+	public Set<Prenotazione> getPrenotazioniEffettuate() {
+		return prenotazioniEffettuate;
+	}
+
+	public void setPrenotazioniEffettuate(Set<Prenotazione> prenotazioniEffettuate) {
+		this.prenotazioniEffettuate = prenotazioniEffettuate;
 	}
 	
 	
