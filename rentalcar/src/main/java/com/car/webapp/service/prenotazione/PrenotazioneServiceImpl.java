@@ -51,7 +51,7 @@ public class PrenotazioneServiceImpl implements IPrenotazioneService {
 	}
 
 	@Override
-	public void delUtenteById(Long id) {
+	public void delPrenotazioneById(Long id) {
 		
 		prenotazioneRepository.eliminaById(id);
 		

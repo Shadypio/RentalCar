@@ -27,13 +27,28 @@
 	</definition>
 	
 	<definition name="infoAuto" extends="baseLayout">
-		<put-attribute name="titolo"  value="Auto disponibili" />
+		<put-attribute name="titolo"  value="Dettagli Auto" />
 		<put-attribute name="content" value="/WEB-INF/view/infoAuto.jsp" />  
 	</definition>
 	
 	<definition name="insAuto" extends="baseLayout">
 		<put-attribute name="titolo"  value="Inserimento nuova auto" />
 		<put-attribute name="content" value="/WEB-INF/view/insAuto.jsp" />  
+	</definition>
+	
+	<definition name="prenotazioni" extends="baseLayout">
+		<put-attribute name="titolo"  value="Prenotazioni disponibili" />
+		<put-attribute name="content" value="/WEB-INF/view/prenotazioni.jsp" />  
+	</definition>
+	
+	<definition name="infoPrenotazione" extends="baseLayout">
+		<put-attribute name="titolo"  value="Dettagli Prenotazione" />
+		<put-attribute name="content" value="/WEB-INF/view/infoPrenotazione.jsp" />  
+	</definition>
+	
+	<definition name="insPrenotazione" extends="baseLayout">
+		<put-attribute name="titolo"  value="Inserimento nuova prenotazione" />
+		<put-attribute name="content" value="/WEB-INF/view/insPrenotazione.jsp" />  
 	</definition>
 
 </tiles-definitions>
