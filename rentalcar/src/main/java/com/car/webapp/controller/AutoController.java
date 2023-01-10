@@ -38,7 +38,7 @@ public class AutoController {
 	}
 	
 	@GetMapping(value = "/elimina/{targa}")
-	public String DelArticolo(@PathVariable("targa") String targa, Model model)
+	public String delAuto(@PathVariable("targa") String targa, Model model)
 	{
 		try
 		{
@@ -53,6 +53,22 @@ public class AutoController {
 		}
 
 		return "redirect:/auto/";
+	}
+	
+	
+	
+	@GetMapping(value = "/infoauto/{targa}")
+	public String viewInfoAuto(@PathVariable("targa") String targa, Model model)
+	{
+		
+		Auto auto = autoService.getAutoFromTarga(targa).get(0);
+		
+		model.addAttribute("Titolo", "Dettagli Auto");
+		model.addAttribute("Titolo2", "Targa " + targa);
+		model.addAttribute("auto", auto);
+		model.addAttribute("isAuto", true);
+		
+		return "infoAuto";
 	}
 
 }

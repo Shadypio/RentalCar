@@ -8,6 +8,8 @@ public interface IAutoService {
 
 	List<Auto> getAllAuto();
 	
+	List<Auto> getAutoFromTarga(String targa);
+	
 	void insAuto(Auto auto);
 	
 	void delAuto(String targa);

@@ -34,4 +34,10 @@ public class AutoServiceImpl implements IAutoService {
 		
 	}
 
+	@Override
+	public List<Auto> getAutoFromTarga(String targa) {
+		
+		return autoRepository.getAutoFromTarga(targa);
+	}
+
 }

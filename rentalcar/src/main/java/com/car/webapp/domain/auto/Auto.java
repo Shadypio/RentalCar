@@ -1,12 +1,16 @@
 package com.car.webapp.domain.auto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.car.webapp.domain.prenotazione.Prenotazione;
 
 @Entity
 @Table(name = "auto")
@@ -18,7 +22,6 @@ public class Auto implements Serializable{
 	private static final long serialVersionUID = 5851587320379712785L;
 	
 	@Id
-	@OneToOne(mappedBy = "fk_targaAuto")
 	@Column(name = "targa")
 	private String targa;
 	
@@ -33,6 +36,9 @@ public class Auto implements Serializable{
 	
 	@Column(name = "categoria")
 	private String categoria;
+	
+	@OneToMany(mappedBy = "fk_targaAuto")
+	private Set<Prenotazione> prenotazioniAuto = new HashSet<Prenotazione>();
 
 	
 	public Auto() {}
@@ -109,6 +115,16 @@ public class Auto implements Serializable{
 	/**
 	 * @return the fk_idAdmin
 	 */
+
+
+	public Set<Prenotazione> getPrenotazioniAuto() {
+		return prenotazioniAuto;
+	}
+
+
+	public void setPrenotazioniAuto(Set<Prenotazione> prenotazioniAuto) {
+		this.prenotazioniAuto = prenotazioniAuto;
+	}
 	
 	
 	

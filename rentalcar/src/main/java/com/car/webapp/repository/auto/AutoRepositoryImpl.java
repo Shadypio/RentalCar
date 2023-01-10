@@ -37,4 +37,12 @@ public class AutoRepositoryImpl implements IAutoRepository {
 
 	}
 
+	@Override
+	public List<Auto> getAutoFromTarga(String targa) {
+		String sql = "SELECT * FROM cars_db.auto WHERE auto.targa = '" + targa + "'";
+		List<Auto> auto = jdbcTemplate.query(sql, new AutoMapper());
+		return auto;
+		
+	}
+
 }
