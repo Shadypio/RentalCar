@@ -33,7 +33,9 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 
 	@Override
 	public List<I> selTutti() {
-
+		
+		System.out.println("in astratta");
+		
 		CriteriaQuery<I> query = this.InitCriteria();
 
 		return this.entityManager.createQuery(
