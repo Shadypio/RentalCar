@@ -3,7 +3,6 @@ package com.car.webapp.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class AutoController {
 	private List<Auto> recordset;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String getUtenti(Model model) {
+	public String getAuto(Model model) {
 		
 		recordset = autoService.getAllAuto();
 		
@@ -94,7 +93,6 @@ public class AutoController {
 		return "insAuto";
 	}
 	
-	//@Transactional
 	@PostMapping(value = "/aggiungi")
 	public String gestInsAuto(@Valid @ModelAttribute("auto") Auto nuovaAuto, BindingResult result, Model model, 
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {

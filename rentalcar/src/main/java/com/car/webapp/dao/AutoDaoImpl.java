@@ -60,7 +60,6 @@ public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 	}
 
 	@Override
-	// @Transactional
 	public void salva(Auto auto) {
 		
 		super.inserisci(auto);

@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 import com.car.webapp.dao.IAutoDao;
 import com.car.webapp.domain.auto.Auto;
 
-@Service
+@Service("autoService")
+@Transactional
 public class AutoServiceImpl implements IAutoService {
 
 	@Autowired
@@ -24,7 +25,6 @@ public class AutoServiceImpl implements IAutoService {
 
 	
 	@Override
-	@Transactional
 	public void insAuto(Auto auto) {
 		
 		autoRepository.salva(auto);
