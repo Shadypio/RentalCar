@@ -15,4 +15,6 @@ public interface IUtenteDao {
 	void aggiorna(Utente utente);
 
 	void elimina(Utente utente);
+	
+	void eliminaById(Long id);
 }

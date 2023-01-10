@@ -17,7 +17,8 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 	@Override
 	public List<Utente> selTutti() {
 		
-		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
+		
+		/*CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Utente> queryDefinition = queryBuilder.createQuery(Utente.class);
 		
 		Root<Utente> recordset = queryDefinition.from(Utente.class);
@@ -28,13 +29,15 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 		
 		entityManager.clear();
 		
-		return utentiTrovati;
+		return utentiTrovati;*/
+		
+		return super.selTutti();
 	}
 
 	@Override
 	public Utente selById(Long id) {
 		
-		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
+		/*CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Utente> queryDefinition = queryBuilder.createQuery(Utente.class);
 		
 		Root<Utente> recordset = queryDefinition.from(Utente.class);
@@ -46,12 +49,13 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 		
 		entityManager.clear();
 		
-		return utente;
+		return utente;*/
+		return super.selById(id);
 	}
 	
 	/**
 	 * Metodo con JPQL - La sintassi si riferisce alla classe Java
-	 * @param Comune
+	 * @param 
 	 * @return
 	 
 	@Override
@@ -88,6 +92,13 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 	public void elimina(Utente utente) {
 		
 		super.elimina(utente);
+		
+	}
+	
+	@Override
+	public void eliminaById(Long id) {
+		
+		super.eliminaById(id);
 		
 	}
 

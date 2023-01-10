@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.car.webapp.dao.IUtenteDao;
 import com.car.webapp.domain.utente.Utente;
 
-@Service("utenteSerivce")
+@Service("utenteService")
 @Transactional
 public class UtenteServiceImpl implements IUtenteService {
 
@@ -49,6 +49,15 @@ public class UtenteServiceImpl implements IUtenteService {
 		utenteRepository.elimina(utente);
 		
 	}
+
+	@Override
+	public void delUtenteById(Long id) {
+		
+		utenteRepository.eliminaById(id);
+		
+	}
+	
+	
 	
 	
 

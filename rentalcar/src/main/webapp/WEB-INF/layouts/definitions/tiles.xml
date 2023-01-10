@@ -25,5 +25,10 @@
 		<put-attribute name="titolo"  value="Auto disponibili" />
 		<put-attribute name="content" value="/WEB-INF/view/auto.jsp" />  
 	</definition>
+	
+	<definition name="infoAuto" extends="baseLayout">
+		<put-attribute name="titolo"  value="Auto disponibili" />
+		<put-attribute name="content" value="/WEB-INF/view/infoAuto.jsp" />  
+	</definition>
 
 </tiles-definitions>

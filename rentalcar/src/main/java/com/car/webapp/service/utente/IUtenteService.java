@@ -15,4 +15,6 @@ public interface IUtenteService {
 	void modificaUtente(Utente utente);
 
 	void delUtente(Utente Utente);
+	
+	void delUtenteById(Long id);
 }
