@@ -2,6 +2,8 @@ package com.car.webapp.service.auto;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,9 @@ public class AutoServiceImpl implements IAutoService {
 		return autoRepository.selTutti();
 	}
 
+	
 	@Override
+	@Transactional
 	public void insAuto(Auto auto) {
 		
 		autoRepository.salva(auto);

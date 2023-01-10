@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -59,6 +60,7 @@ public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 	}
 
 	@Override
+	// @Transactional
 	public void salva(Auto auto) {
 		
 		super.inserisci(auto);

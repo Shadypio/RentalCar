@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.car.webapp.domain.prenotazione.Prenotazione;
 
@@ -23,18 +26,24 @@ public class Auto implements Serializable{
 	
 	@Id
 	@Column(name = "targa")
+	@NotNull(message = "{NotNull.Auto.targa.validation}")
+	@Size(min=7, max=7, message = "{Size.Auto.targa.validation}")
 	private String targa;
 	
 	@Column(name = "marca")
+	@Size(min=1, max=45, message = "{Size.Auto.targa.validation}")
 	private String marca;
 	
 	@Column(name = "modello")
+	@Size(min=1, max=45, message = "{Size.Auto.modello.validation}")
 	private String modello;
 	
 	@Column(name = "anno")
+	@Digits(integer=4, message="{Digits.Auto.anno.validation}", fraction = 0)
 	private int anno;
 	
 	@Column(name = "categoria")
+	@Size(min=1, max=45, message = "{Size.Auto.categoria.validation}")
 	private String categoria;
 	
 	@OneToMany(mappedBy = "fk_targaAuto")
@@ -125,6 +134,18 @@ public class Auto implements Serializable{
 	public void setPrenotazioniAuto(Set<Prenotazione> prenotazioniAuto) {
 		this.prenotazioniAuto = prenotazioniAuto;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Auto [targa=" + targa + ", marca=" + marca + ", modello=" + modello + ", anno=" + anno + ", categoria="
+				+ categoria + ", prenotazioniAuto=" + prenotazioniAuto + "]";
+	}
+
+
+	
+	
+	
 	
 	
 	

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.transaction.Transactional;
 
 public abstract class AbstractDao<I extends Serializable, Id extends Serializable> implements GenericRepository<I, Id> {
 
@@ -53,6 +54,7 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 	}
 
 	@Override
+	@Transactional
 	public void inserisci(I entity)
 	{
 		this.entityManager.persist(entity);
