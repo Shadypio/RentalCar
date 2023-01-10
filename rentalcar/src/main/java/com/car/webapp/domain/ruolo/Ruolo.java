@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -18,7 +20,8 @@ public class Ruolo implements Serializable{
 	private static final long serialVersionUID = 5969735811189521060L;
 	
 	@Id
-	@OneToOne(mappedBy = "ruolo")
+	@Column(name = "idRuolo")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idRuolo;
 	
 	@Column(name = "tipoRuolo")

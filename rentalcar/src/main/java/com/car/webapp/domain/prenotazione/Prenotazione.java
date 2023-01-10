@@ -5,11 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,11 +37,12 @@ public class Prenotazione implements Serializable {
 	private Date dataFine;
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_idUtente", referencedColumnName = "idUtente")
+	//@JoinColumn(name = "fk_idUtente", referencedColumnName = "idUtente")
 	private Utente fk_idUtente;
 	
-	@OneToOne(optional = false, fetch = FetchType.EAGER)
-	@JoinColumn(name = "fk_targaAuto", referencedColumnName = "targa")
+	// @OneToOne(optional = false, fetch = FetchType.EAGER)
+	@ManyToOne
+	//@JoinColumn(name = "fk_targaAuto", referencedColumnName = "targa")
 	private Auto fk_targaAuto;
 
 	

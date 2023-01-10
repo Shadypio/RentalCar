@@ -2,6 +2,7 @@ package com.car.webapp.domain.utente;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -32,7 +33,6 @@ public class Utente implements Serializable {
 	@Id
 	@Column(name = "idUtente")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToMany(mappedBy = "fk_idUtente")
 	private Long idUtente;
 	
 	@Column(name = "nome")
@@ -51,7 +51,8 @@ public class Utente implements Serializable {
 	@Column(name = "dataDiNascita")
 	private Date dataDiNascita;
 	
-	private Set<Prenotazione> prenotazioniEffettuate;
+	//@OneToMany(mappedBy = "fk_idUtente")
+	//private Set<Prenotazione> prenotazioniEffettuate = new HashSet<Prenotazione>();
 	
 	/*
 	 * con LAZY viene caricato solo all'occorrenza, con EAGER sempre: 
@@ -164,13 +165,14 @@ public class Utente implements Serializable {
 		this.ruolo = ruolo;
 	}
 
+	/*
 	public Set<Prenotazione> getPrenotazioniEffettuate() {
 		return prenotazioniEffettuate;
 	}
 
 	public void setPrenotazioniEffettuate(Set<Prenotazione> prenotazioniEffettuate) {
 		this.prenotazioniEffettuate = prenotazioniEffettuate;
-	}
+	} */
 	
 	
 }
