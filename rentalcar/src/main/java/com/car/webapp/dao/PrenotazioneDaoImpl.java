@@ -23,25 +23,29 @@ public class PrenotazioneDaoImpl extends AbstractDao<Prenotazione, Long> impleme
 
 	@Override
 	public void salva(Prenotazione prenotazione) {
-		// TODO Auto-generated method stub
+		
+		super.inserisci(prenotazione);
 
 	}
 
 	@Override
 	public void aggiorna(Prenotazione prenotazione) {
-		// TODO Auto-generated method stub
+		
+		super.aggiorna(prenotazione);
 
 	}
 
 	@Override
-	public void alimina(Prenotazione prenotazione) {
-		// TODO Auto-generated method stub
+	public void elimina(Prenotazione prenotazione) {
+		
+		super.elimina(prenotazione);
 
 	}
 
 	@Override
 	public void eliminaById(Long id) {
-		// TODO Auto-generated method stub
+		
+		super.eliminaById(id);
 
 	}
 
