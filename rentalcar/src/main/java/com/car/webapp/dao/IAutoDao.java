@@ -8,11 +8,13 @@ public interface IAutoDao {
 
 	List<Auto> selTutti();
 	
-	Auto selById(String targa);
+	Auto selByTarga(String targa);
 
 	void salva(Auto auto);
 
 	void aggiorna(Auto auto);
 
 	void elimina(Auto auto);
+	
+	void eliminaById(String targa);
 }

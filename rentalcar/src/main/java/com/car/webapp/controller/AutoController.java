@@ -61,7 +61,7 @@ public class AutoController {
 	public String viewInfoAuto(@PathVariable("targa") String targa, Model model)
 	{
 		
-		Auto auto = autoService.getAutoFromTarga(targa).get(0);
+		Auto auto = autoService.getAutoFromTarga(targa);
 		
 		model.addAttribute("Titolo", "Dettagli Auto");
 		model.addAttribute("Titolo2", "Targa " + targa);

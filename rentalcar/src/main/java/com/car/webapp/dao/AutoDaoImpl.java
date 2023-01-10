@@ -16,6 +16,7 @@ public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 	@Override
 	public List<Auto> selTutti() {
 		
+		/*
 		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Auto> queryDefinition = queryBuilder.createQuery(Auto.class);
 		
@@ -28,12 +29,16 @@ public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 		entityManager.clear();
 		
 		return autoTrovate;
+		*/
+		
+		return super.selTutti();
 		
 		
 	}
 	
 	@Override
-	public Auto selById(String targa) {
+	public Auto selByTarga(String targa) {
+		
 		
 		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Auto> queryDefinition = queryBuilder.createQuery(Auto.class);
@@ -48,6 +53,8 @@ public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 		entityManager.clear();
 		
 		return auto;
+		
+		//return super.selById(targa);
 		
 	}
 
@@ -69,6 +76,13 @@ public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 	public void elimina(Auto auto) {
 		
 		super.elimina(auto);
+		
+	}
+	
+	@Override
+	public void eliminaById(String targa) {
+		
+		super.eliminaById(targa);
 		
 	}
 
