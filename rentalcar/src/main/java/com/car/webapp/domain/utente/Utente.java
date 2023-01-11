@@ -2,8 +2,6 @@ package com.car.webapp.domain.utente;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -51,9 +48,6 @@ public class Utente implements Serializable {
 	@Column(name = "dataDiNascita")
 	private Date dataDiNascita;
 	
-	//@OneToMany(mappedBy = "fk_idUtente")
-	//private Set<Prenotazione> prenotazioniEffettuate = new HashSet<Prenotazione>();
-	
 	/*
 	 * con LAZY viene caricato solo all'occorrenza, con EAGER sempre: 
 	 * scelta di prestazioni
@@ -61,6 +55,12 @@ public class Utente implements Serializable {
 	@OneToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_idRuolo", referencedColumnName = "idRuolo")
 	private Ruolo ruolo;
+	
+	@OneToOne(optional = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_idPrenotazione", referencedColumnName = "idPrenotazione")
+	private Prenotazione prenotazioneEffettuata;
+	
+	
 	
 	public Utente() {}
 
@@ -70,6 +70,7 @@ public class Utente implements Serializable {
 		this.username = username;
 		this.password = password;
 		this.dataDiNascita = dataDiNascita;
+		this.setPrenotazioneEffettuata(null);
 	}
 
 
@@ -165,14 +166,13 @@ public class Utente implements Serializable {
 		this.ruolo = ruolo;
 	}
 
-	/*
-	public Set<Prenotazione> getPrenotazioniEffettuate() {
-		return prenotazioniEffettuate;
+	public Prenotazione getPrenotazioneEffettuata() {
+		return prenotazioneEffettuata;
 	}
 
-	public void setPrenotazioniEffettuate(Set<Prenotazione> prenotazioniEffettuate) {
-		this.prenotazioniEffettuate = prenotazioniEffettuate;
-	} */
+	public void setPrenotazioneEffettuata(Prenotazione prenotazioneEffettuata) {
+		this.prenotazioneEffettuata = prenotazioneEffettuata;
+	}
 	
 	
 }

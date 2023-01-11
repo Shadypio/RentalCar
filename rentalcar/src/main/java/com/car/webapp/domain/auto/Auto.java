@@ -1,13 +1,13 @@
 package com.car.webapp.domain.auto;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -46,8 +46,9 @@ public class Auto implements Serializable{
 	@Size(min=1, max=45, message = "{Size.Auto.categoria.validation}")
 	private String categoria;
 	
-	@OneToMany(mappedBy = "fk_targaAuto")
-	private Set<Prenotazione> prenotazioniAuto = new HashSet<Prenotazione>();
+	@OneToOne(optional = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_idPrenotazione", referencedColumnName = "idPrenotazione")
+	private Prenotazione prenotazione;
 
 	
 	public Auto() {}
@@ -59,6 +60,7 @@ public class Auto implements Serializable{
 		this.modello = modello;
 		this.anno = anno;
 		this.categoria = categoria;
+		this.prenotazione = null;
 	}
 
 	/**
@@ -126,20 +128,13 @@ public class Auto implements Serializable{
 	 */
 
 
-	public Set<Prenotazione> getPrenotazioniAuto() {
-		return prenotazioniAuto;
+	public Prenotazione getPrenotazione() {
+		return prenotazione;
 	}
 
 
-	public void setPrenotazioniAuto(Set<Prenotazione> prenotazioniAuto) {
-		this.prenotazioniAuto = prenotazioniAuto;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Auto [targa=" + targa + ", marca=" + marca + ", modello=" + modello + ", anno=" + anno + ", categoria="
-				+ categoria + ", prenotazioniAuto=" + prenotazioniAuto + "]";
+	public void setPrenotazione(Prenotazione prenotazione) {
+		this.prenotazione = prenotazione;
 	}
 
 
