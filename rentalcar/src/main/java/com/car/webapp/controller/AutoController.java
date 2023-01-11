@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,8 @@ public class AutoController {
 	
 	private List<Auto> recordset;
 	
+	private static final Logger logger = LoggerFactory.getLogger(AutoController.class);
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAuto(Model model) {
 		
@@ -51,7 +55,11 @@ public class AutoController {
 		{
 			if (targa.length() > 0)
 			{
-				autoService.delAuto(targa);
+				// autoService.delAutoById(targa);
+				
+				Auto auto = autoService.getAutoFromTarga(targa);
+				System.out.println(auto.toString());
+				autoService.delAuto(auto);
 			}
 		} 
 		catch (Exception ex)

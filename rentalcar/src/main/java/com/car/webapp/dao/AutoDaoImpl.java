@@ -83,7 +83,20 @@ public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 	@Override
 	public void eliminaById(String targa) {
 		
-		super.eliminaById(targa);
+		// super.eliminaById(targa);
+		
+		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Auto> queryDefinition = queryBuilder.createQuery(Auto.class);
+
+		this.entityManager.createQuery(
+				queryDefinition.where(
+						builder.equal(
+								queryDefinition.from(this.entityClass)
+								.get("targa"), targa)
+						)).executeUpdate();
+
+		entityManager.flush();
+		entityManager.clear();
 		
 	}
 

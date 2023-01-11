@@ -16,5 +16,5 @@ public interface IAutoService {
 	
 	void delAutoById(String targa);
 	
-	void delAuto(String targa);
+	void delAuto(Auto auto);
 }

@@ -32,13 +32,6 @@ public class AutoServiceImpl implements IAutoService {
 	}
 
 	@Override
-	public void delAuto(String targa) {
-		
-		autoRepository.elimina(autoRepository.selByTarga(targa));
-		
-	}
-
-	@Override
 	public Auto getAutoFromTarga(String targa) {
 		
 		return autoRepository.selByTarga(targa);
@@ -55,6 +48,14 @@ public class AutoServiceImpl implements IAutoService {
 	public void delAutoById(String targa) {
 		
 		autoRepository.eliminaById(targa);
+		
+	}
+
+
+	@Override
+	public void delAuto(Auto auto) {
+		
+		autoRepository.elimina(auto);
 		
 	}
 

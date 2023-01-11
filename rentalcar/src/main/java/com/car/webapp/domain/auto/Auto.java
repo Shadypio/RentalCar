@@ -138,6 +138,13 @@ public class Auto implements Serializable{
 	}
 
 
+	@Override
+	public String toString() {
+		return "Auto [targa=" + targa + ", marca=" + marca + ", modello=" + modello + ", anno=" + anno + ", categoria="
+				+ categoria + ", prenotazione=" + prenotazione + "]";
+	}
+
+
 	
 	
 	
