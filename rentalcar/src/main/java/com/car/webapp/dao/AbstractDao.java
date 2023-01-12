@@ -54,7 +54,7 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 	}
 
 	@Override
-	@Transactional
+	//@Transactional
 	public void inserisci(I entity)
 	{
 		this.entityManager.persist(entity);
@@ -71,7 +71,7 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 	@Override
 	public void elimina(I entity)
 	{
-
+		
 		this.entityManager.remove(this.entityManager.contains(entity) ? entity : this.entityManager.merge(entity));
 		flushAndClear();
 
