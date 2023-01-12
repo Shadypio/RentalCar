@@ -130,11 +130,10 @@ public class UtenteController {
 		{
 			if (idUtente != null)
 			{
-				/*
+				
 				Utente utenteDaEliminare = utenteService.selUtenteById(idUtente);
-				System.out.println(utenteDaEliminare.getUsername());
-				utenteService.delUtente(utenteDaEliminare);*/
-				utenteService.delUtenteById(idUtente);
+				utenteService.delUtente(utenteDaEliminare);
+				//utenteService.delUtenteById(idUtente);
 			}
 		} 
 		catch (Exception ex)
@@ -143,6 +142,29 @@ public class UtenteController {
 		}
 
 		return "redirect:/utente/";
+	}
+	
+	@GetMapping(value = "/infoutente/{idUtente}")
+	public String viewInfoUtente(@PathVariable("idUtente") Long idUtente, Model model)
+	{
+		
+		try
+		{
+			if (idUtente != null)
+			{
+				Utente utente = utenteService.selUtenteById(idUtente);
+				model.addAttribute("Titolo", "Dettagli Utente");
+				model.addAttribute("Titolo2", "Utente " + utente.getUsername());
+				model.addAttribute("utente", utente);
+				model.addAttribute("isUtente", true);
+			}
+		} 
+		catch (Exception ex)
+		{
+			throw new RuntimeException("Errore info utente", ex);
+		}
+
+		return "infoUtente";
 	}
 
 }

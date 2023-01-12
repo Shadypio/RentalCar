@@ -37,7 +37,7 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 	@Override
 	public Utente selById(Long id) {
 		
-		/*CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
+		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Utente> queryDefinition = queryBuilder.createQuery(Utente.class);
 		
 		Root<Utente> recordset = queryDefinition.from(Utente.class);
@@ -49,8 +49,8 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 		
 		entityManager.clear();
 		
-		return utente;*/
-		return super.selById(id);
+		return utente;
+		// return super.selById(id);
 	}
 	
 	/**

@@ -15,6 +15,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.car.webapp.domain.prenotazione.Prenotazione;
 import com.car.webapp.domain.ruolo.Ruolo;
 
@@ -28,7 +31,7 @@ public class Utente implements Serializable {
 	private static final long serialVersionUID = -4426740859863822276L;
 
 	@Id
-	@Column(name = "idUtente")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUtente;
 	
@@ -53,25 +56,18 @@ public class Utente implements Serializable {
 	 * scelta di prestazioni
 	 */
 	@OneToOne(optional = false, fetch = FetchType.EAGER)
-	@JoinColumn(name = "fk_idRuolo", referencedColumnName = "idRuolo")
+	@JoinColumn(name = "fk_idRuolo", referencedColumnName = "id")
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	private Ruolo ruolo;
 	
 	@OneToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "fk_idPrenotazione", referencedColumnName = "idPrenotazione")
+	@JoinColumn(name = "fk_idPrenotazione", referencedColumnName = "id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Prenotazione prenotazioneEffettuata;
 	
 	
 	
 	public Utente() {}
-
-	public Utente(String nome, String cognome, String username, String password, Date dataDiNascita) {
-		this.nome = nome;
-		this.cognome = cognome;
-		this.username = username;
-		this.password = password;
-		this.dataDiNascita = dataDiNascita;
-		this.setPrenotazioneEffettuata(null);
-	}
 
 
 	/**
