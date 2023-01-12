@@ -45,13 +45,18 @@
 	        	<tbody>
 	        		<c:forEach items="${Prenotazioni}" var="prenotazione">
 						<tr>
-							<td>${prenotazione.id}</td>
+							<td>${prenotazione.idPrenotazione}</td>
 							<td>${prenotazione.dataInizio}</td>
 							<td>${prenotazione.dataFine}</td>
 							<td>
-								<a href=" <spring:url value="/prenotazioni/infoprenotazione/${prenotazione.id}" /> " class="btn btn-primary">
+								<a href=" <spring:url value="/prenotazione/infoprenotazione/${prenotazione.idPrenotazione}" /> " class="btn btn-primary">
 									<span class="oi oi-plus"/></span> Dettaglio 
 	      						</a> 
+      						</td>
+      						<td>
+								<a href="<spring:url value="/prenotazione/elimina/${prenotazione.idPrenotazione}" /> " class="btn btn-danger table-buttons">
+								<span class="oi oi-trash"/></span> Elimina 
+      							</a> 
       						</td>
 						</tr>
 					</c:forEach>

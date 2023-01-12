@@ -27,9 +27,9 @@ public class PrenotazioneController {
 		
 		recordset = prenotazioneService.getAllPrenotazioni();
 		
-		for(Prenotazione p: recordset) {
-			System.out.println(p.toString());
-		}
+//		for(Prenotazione p: recordset) {
+//			System.out.println(p.toString());
+//		}
 		
 		model.addAttribute("Titolo", "Ricerca Prenotazioni");
 		model.addAttribute("Titolo2", "Ricerca tutte le prenotazioni");
@@ -41,14 +41,15 @@ public class PrenotazioneController {
 		return "prenotazioni";
 	}
 	
-	@GetMapping(value = "/elimina/{id}")
-	public String delPrenotazione(@PathVariable("id") Long id, Model model)
+	@GetMapping(value = "/elimina/{idPrenotazione}")
+	public String delPrenotazione(@PathVariable("idPrenotazione") Long id, Model model)
 	{
 		try
 		{
 			if (id != null)
 			{
-				prenotazioneService.delPrenotazioneById(id);
+				Prenotazione p = prenotazioneService.selPrenotazioneById(id);
+				System.out.println("data pren" + p.getDataInizio());
 			}
 		} 
 		catch (Exception ex)
@@ -59,11 +60,12 @@ public class PrenotazioneController {
 		return "redirect:/prenotazioni/";
 	}
 	
-	@GetMapping(value = "/infoprenotazione/{id}")
-	public String viewInfoPrenotazione(@PathVariable("id") Long id, Model model)
+	@GetMapping(value = "/infoprenotazione/{idPrenotazione}")
+	public String viewInfoPrenotazione(@PathVariable("idPrenotazione") Long id, Model model)
 	{
 		
 		Prenotazione prenotazione = prenotazioneService.selPrenotazioneById(id);
+		
 		
 		model.addAttribute("Titolo", "Dettagli Prenotazione");
 		model.addAttribute("prenotazione", prenotazione);

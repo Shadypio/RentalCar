@@ -8,9 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.car.webapp.domain.auto.Auto;
+import com.car.webapp.domain.utente.Utente;
 
 @Entity
 @Table(name = "prenotazione")
@@ -22,7 +26,7 @@ public class Prenotazione implements Serializable {
 	private static final long serialVersionUID = -3896030548583216394L;
 	
 	@Id
-	@Column(name = "idPrenotazione")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPrenotazione;
 	
@@ -34,13 +38,13 @@ public class Prenotazione implements Serializable {
 	@Column(name = "dataFine")
 	private Date dataFine;
 	
-	public Prenotazione() {}
+	@OneToOne(mappedBy = "prenotazione")
+	private Auto auto;
 	
-	public Prenotazione(Long idPrenotazione, Date dataInizio, Date dataFine) {
-		this.idPrenotazione = idPrenotazione;
-		this.dataInizio = dataInizio;
-		this.dataFine = dataFine;
-	}
+	@OneToOne(mappedBy = "prenotazioneEffettuata")
+	private Utente utente;
+	
+	public Prenotazione() {}
 
 
 	/**
@@ -78,6 +82,14 @@ public class Prenotazione implements Serializable {
 	 */
 	public void setDataFine(Date dataFine) {
 		this.dataFine = dataFine;
+	}
+	
+	public Utente getUtente() {
+		return this.utente;
+	}
+	
+	public Auto getAuto() {
+		return this.auto;
 	}
 
 	@Override

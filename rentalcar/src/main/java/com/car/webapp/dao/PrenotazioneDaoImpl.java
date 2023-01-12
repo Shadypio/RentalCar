@@ -2,9 +2,14 @@ package com.car.webapp.dao;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.springframework.stereotype.Repository;
 
 import com.car.webapp.domain.prenotazione.Prenotazione;
+import com.car.webapp.domain.utente.Utente;
 
 @Repository
 public class PrenotazioneDaoImpl extends AbstractDao<Prenotazione, Long> implements IPrenotazioneDao {
@@ -12,13 +17,40 @@ public class PrenotazioneDaoImpl extends AbstractDao<Prenotazione, Long> impleme
 	@Override
 	public List<Prenotazione> selTutti() {
 		
+//		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
+//		CriteriaQuery<Prenotazione> queryDefinition = queryBuilder.createQuery(Prenotazione.class);
+//		
+//		Root<Prenotazione> recordset = queryDefinition.from(Prenotazione.class);
+//		
+//		queryDefinition.select(recordset);
+//		
+//		List<Prenotazione> prenotazioniTrovate = entityManager.createQuery(queryDefinition).getResultList();
+//		
+//		entityManager.clear();
+//		
+//		return prenotazioniTrovate;
+		
 		return super.selTutti();
 	}
 
 	@Override
 	public Prenotazione selById(Long id) {
 		
-		return super.selById(id);
+		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Prenotazione> queryDefinition = queryBuilder.createQuery(Prenotazione.class);
+		
+		Root<Prenotazione> recordset = queryDefinition.from(Prenotazione.class);
+		
+		queryDefinition.select(recordset)
+			.where(queryBuilder.equal(recordset.get("idPrenotazione"), id));
+		
+		Prenotazione prenotazione = entityManager.createQuery(queryDefinition).getSingleResult();
+		
+		entityManager.clear();
+		
+		return prenotazione;
+		
+		// return super.selById(id);
 	}
 
 	@Override

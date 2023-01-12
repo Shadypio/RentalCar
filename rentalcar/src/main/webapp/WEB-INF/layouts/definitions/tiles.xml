@@ -21,6 +21,11 @@
 		<put-attribute name="content" value="/WEB-INF/view/utenti.jsp" />  
 	</definition>
 	
+	<definition name="infoUtente" extends="baseLayout">
+		<put-attribute name="titolo"  value="Dettagli Utente" />
+		<put-attribute name="content" value="/WEB-INF/view/infoUtente.jsp" />  
+	</definition>
+	
 	<definition name="auto" extends="baseLayout">
 		<put-attribute name="titolo"  value="Auto disponibili" />
 		<put-attribute name="content" value="/WEB-INF/view/auto.jsp" />  
