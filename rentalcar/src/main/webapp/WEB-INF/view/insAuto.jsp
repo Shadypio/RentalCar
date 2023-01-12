@@ -43,7 +43,7 @@
 					</div>
 				</c:if>
 				
-				<!-- Form Dati Cliente -->
+				<!-- Form Dati Auto -->
 				<div class="tab-pane fade show active" id="dati" role="tabpanel" aria-labelledby="dati-tab">
 					<form:form  method="POST" modelAttribute="auto">
 					<form:errors path="*" cssClass="alert alert-danger" element="div"/> 

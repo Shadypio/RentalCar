@@ -13,6 +13,9 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.car.webapp.domain.prenotazione.Prenotazione;
 
 @Entity
@@ -47,21 +50,14 @@ public class Auto implements Serializable{
 	private String categoria;
 	
 	@OneToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "fk_idPrenotazione", referencedColumnName = "idPrenotazione")
+	@JoinColumn(name = "fk_idPrenotazione", referencedColumnName = "id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Prenotazione prenotazione;
 
 	
 	public Auto() {}
 	
-	
-	public Auto(String targa, String marca, String modello, int anno, String categoria) {
-		this.targa = targa;
-		this.marca = marca;
-		this.modello = modello;
-		this.anno = anno;
-		this.categoria = categoria;
-		this.prenotazione = null;
-	}
+
 
 	/**
 	 * @return the targa

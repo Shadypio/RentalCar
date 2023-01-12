@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.car.webapp.domain.auto.Auto;
+import com.car.webapp.domain.prenotazione.Prenotazione;
 import com.car.webapp.service.auto.IAutoService;
+import com.car.webapp.service.prenotazione.IPrenotazioneService;
 
 @Controller
 @RequestMapping("/auto")
@@ -28,6 +30,9 @@ public class AutoController {
 	
 	@Autowired
 	private IAutoService autoService;
+	
+	@Autowired
+	private IPrenotazioneService prenotazioneService;
 	
 	private List<Auto> recordset;
 	
@@ -55,10 +60,8 @@ public class AutoController {
 		{
 			if (targa.length() > 0)
 			{
-				// autoService.delAutoById(targa);
 				
 				Auto auto = autoService.getAutoFromTarga(targa);
-				System.out.println(auto.toString());
 				autoService.delAuto(auto);
 			}
 		} 
@@ -116,6 +119,21 @@ public class AutoController {
 		redirectAttributes.addFlashAttribute("saved", true);
 		
 		return "redirect:/auto/infoauto/" + nuovaAuto.getTarga();
+	}
+	
+	@GetMapping(value = "/prenota/{targa}")
+	public String prenotaAuto(@PathVariable("targa") String targa, Model model) {
+		
+		Auto auto = autoService.getAutoFromTarga(targa);
+		Prenotazione prenotazione = new Prenotazione();
+		
+		model.addAttribute("Titolo", "Prenotazione auto " + targa);
+		model.addAttribute("prenotazione", prenotazione);
+		model.addAttribute("edit", false);
+		model.addAttribute("saved", false);
+		
+		
+		return "insPrenotazione";
 	}
 
 }

@@ -20,6 +20,7 @@
 			<h3 class="page-title">Risultati Ricerca: <small>Trovate ${numAuto} Auto</small></h3>
 		</div>
 		<div class="col-md-6 col-sm-6">
+		<a href="<spring:url value="/auto/aggiungi" /> "  style="margin-left: 20px;" class="btn btn-success float-right">Nuova Auto</a>
 			<div id="rep" class="datafilter">
 				<label>
 					Pagine: 
@@ -40,6 +41,7 @@
 		                <th>Modello</th>
 		                <th>Categoria</th>
 		                <th>Anno Immatricolazione</th>
+		                <th>Prenotata</th>
 		            </tr>
 	        	</thead>
 	        	<tfoot>
@@ -52,15 +54,24 @@
 							<td>${auto.modello}</td>
 							<td>${auto.categoria}</td>
 							<td>${auto.anno}</td>
+							<c:if test = "${auto.prenotazione != null}">
+         						<td>Sì</td>
+      						</c:if>
+      						<c:if test = "${auto.prenotazione == null}">
+         						<td>No</td>
+      						</c:if>
+							
 							<td>
 								<a href=" <spring:url value="/auto/infoauto/${auto.targa}" /> " class="btn btn-primary">
 									<span class="oi oi-plus"/></span> Dettaglio 
 	      						</a> 
       						</td>
       						<td>
+      						<c:if test = "${auto.prenotazione == null}">
 								<a href="<spring:url value="/auto/prenota/${auto.targa}" /> " class="btn btn-warning table-buttons">
 								<span class="oi oi-pencil"></span> Prenota Ora 
-      							</a> 
+      							</a>
+      						</c:if> 
       						</td>
       						<td>
 								<a href="<spring:url value="/auto/elimina/${auto.targa}" /> " class="btn btn-danger table-buttons">
