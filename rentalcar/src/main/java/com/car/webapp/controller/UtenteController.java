@@ -45,10 +45,6 @@ public class UtenteController {
 
 		logger.info("Otteniamo tutti gli utenti");
 		mainRecordset = utenteService.getAllUtenti();
-		
-		for(Utente u : mainRecordset) {
-			System.out.println(u.getUsername());
-		}
 
 		/*
 		 * 
@@ -76,6 +72,7 @@ public class UtenteController {
 		model.addAttribute("Titolo", "Ricerca Utenti");
 		model.addAttribute("Titolo2", "Ricerca tutti gli utenti");
 		model.addAttribute("Utenti", mainRecordset);
+		model.addAttribute("numUtenti", mainRecordset.size());
 		model.addAttribute("isUtente", true);
 		return "utenti";
 	}
