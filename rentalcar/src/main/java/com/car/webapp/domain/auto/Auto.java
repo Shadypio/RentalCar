@@ -49,9 +49,7 @@ public class Auto implements Serializable{
 	@Size(min=1, max=45, message = "{Size.Auto.categoria.validation}")
 	private String categoria;
 	
-	@OneToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "fk_idPrenotazione", referencedColumnName = "id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToOne(mappedBy = "autoPrenotata")
 	private Prenotazione prenotazione;
 
 	

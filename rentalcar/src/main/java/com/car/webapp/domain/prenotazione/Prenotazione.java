@@ -5,13 +5,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.car.webapp.domain.auto.Auto;
 import com.car.webapp.domain.utente.Utente;
@@ -38,11 +43,15 @@ public class Prenotazione implements Serializable {
 	@Column(name = "dataFine")
 	private Date dataFine;
 	
-	@OneToOne(mappedBy = "prenotazione")
-	private Auto auto;
+	@OneToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "utenteRiferito", referencedColumnName = "id")
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
+	private Utente utenteRiferito;
 	
-	@OneToOne(mappedBy = "prenotazioneEffettuata")
-	private Utente utente;
+	@OneToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "targaAuto", referencedColumnName = "targa")
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
+	private Auto autoPrenotata;
 	
 	public Prenotazione() {}
 
@@ -83,20 +92,23 @@ public class Prenotazione implements Serializable {
 	public void setDataFine(Date dataFine) {
 		this.dataFine = dataFine;
 	}
-	
-	public Utente getUtente() {
-		return this.utente;
+
+	public Utente getUtenteRiferito() {
+		return this.utenteRiferito;
 	}
 	
-	public Auto getAuto() {
-		return this.auto;
+	public Auto getAutoPrenotata() {
+		return this.autoPrenotata;
 	}
+
 
 	@Override
 	public String toString() {
 		return "Prenotazione [idPrenotazione=" + idPrenotazione + ", dataInizio=" + dataInizio + ", dataFine="
-				+ dataFine + "]";
+				+ dataFine + ", utenteRiferito=" + utenteRiferito.getUsername() + ", autoPrenotata=" + autoPrenotata.getTarga() + "]";
 	}
+
+	
 	
 	
 	

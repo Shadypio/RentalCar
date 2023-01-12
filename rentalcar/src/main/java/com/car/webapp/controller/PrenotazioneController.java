@@ -65,7 +65,7 @@ public class PrenotazioneController {
 	{
 		
 		Prenotazione prenotazione = prenotazioneService.selPrenotazioneById(id);
-		
+		System.out.println("prenotazione to string " + prenotazione.toString());
 		
 		model.addAttribute("Titolo", "Dettagli Prenotazione");
 		model.addAttribute("prenotazione", prenotazione);

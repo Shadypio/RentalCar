@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-12">
               <h2>${Titolo}</h2>
-              <p>${prenotazione.auto.marca} ${prenotazione.auto.modello} - ${prenotazione.auto.categoria} (${prenotazione.auto.anno})</p>
+              <p>${prenotazione.autoPrenotata.marca} ${prenotazione.autoPrenotata.modello} - ${prenotazione.autoPrenotata.categoria} (${prenotazione.autoPrenotata.anno})</p>
             </div>
         </div>
     </div>
@@ -21,8 +21,8 @@
  		 		<li class="list-group-item">Id: <span class="info-art">${prenotazione.idPrenotazione}</span></li>
  		 		<li class="list-group-item">Data Inizio: <span class="info-art">${prenotazione.dataInizio}</span></li>
  		 		<li class="list-group-item">Data fine: <span class="info-art">${prenotazione.dataFine}</span></li>
- 		 		<li class="list-group-item">Prenotato da: <span class="info-art">${prenotazione.utente.username}</span></li>
- 		 		<li class="list-group-item">Targa Auto: <span class="info-art">${prenotazione.auto.targa}</span></li>
+ 		 		<li class="list-group-item">Prenotato da: <span class="info-art">${prenotazione.utenteRiferito.username}</span></li>
+ 		 		<li class="list-group-item">Targa Auto: <span class="info-art">${prenotazione.autoPrenotata.targa}</span></li>
   			</ul>
 		</div>
 	</div>
