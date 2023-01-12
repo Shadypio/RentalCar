@@ -38,8 +38,6 @@
 		            	<th>Numero Prenotazione</th>
 		                <th>Data Inizio</th>
 		                <th>Data Fine</th>
-		                <th>Utente</th>
-		                <th>Auto</th>
 		            </tr>
 	        	</thead>
 	        	<tfoot>
@@ -50,8 +48,6 @@
 							<td>${prenotazione.id}</td>
 							<td>${prenotazione.dataInizio}</td>
 							<td>${prenotazione.dataFine}</td>
-							<td>${prenotazione.fk_idUtente.username}</td>
-							<td>${prenotazione.fk_targaAuto.targa}</td>
 							<td>
 								<a href=" <spring:url value="/prenotazioni/infoprenotazione/${prenotazione.id}" /> " class="btn btn-primary">
 									<span class="oi oi-plus"/></span> Dettaglio 

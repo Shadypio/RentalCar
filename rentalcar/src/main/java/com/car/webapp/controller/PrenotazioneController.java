@@ -27,6 +27,10 @@ public class PrenotazioneController {
 		
 		recordset = prenotazioneService.getAllPrenotazioni();
 		
+		for(Prenotazione p: recordset) {
+			System.out.println(p.toString());
+		}
+		
 		model.addAttribute("Titolo", "Ricerca Prenotazioni");
 		model.addAttribute("Titolo2", "Ricerca tutte le prenotazioni");
 		model.addAttribute("Prenotazioni", recordset);

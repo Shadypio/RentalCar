@@ -5,15 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import com.car.webapp.domain.auto.Auto;
-import com.car.webapp.domain.utente.Utente;
 
 @Entity
 @Table(name = "prenotazione")
@@ -26,6 +23,7 @@ public class Prenotazione implements Serializable {
 	
 	@Id
 	@Column(name = "idPrenotazione")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPrenotazione;
 	
 	@Temporal(TemporalType.DATE)
@@ -36,24 +34,12 @@ public class Prenotazione implements Serializable {
 	@Column(name = "dataFine")
 	private Date dataFine;
 	
-	@OneToOne
-	//@JoinColumn(name = "fk_idUtente", referencedColumnName = "idUtente")
-	private Utente fk_idUtente;
-	
-	// @OneToOne(optional = false, fetch = FetchType.EAGER)
-	@ManyToOne
-	//@JoinColumn(name = "fk_targaAuto", referencedColumnName = "targa")
-	private Auto fk_targaAuto;
-
-	
 	public Prenotazione() {}
 	
-	public Prenotazione(Long idPrenotazione, Date dataInizio, Date dataFine, Auto fk_targaAuto, Utente fk_idUtente) {
+	public Prenotazione(Long idPrenotazione, Date dataInizio, Date dataFine) {
 		this.idPrenotazione = idPrenotazione;
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
-		this.fk_targaAuto = fk_targaAuto;
-		this.fk_idUtente = fk_idUtente;
 	}
 
 
@@ -93,31 +79,12 @@ public class Prenotazione implements Serializable {
 	public void setDataFine(Date dataFine) {
 		this.dataFine = dataFine;
 	}
-	/**
-	 * @return the fk_targaAuto
-	 */
-	public Auto getFk_targaAuto() {
-		return fk_targaAuto;
+
+	@Override
+	public String toString() {
+		return "Prenotazione [idPrenotazione=" + idPrenotazione + ", dataInizio=" + dataInizio + ", dataFine="
+				+ dataFine + "]";
 	}
-	/**
-	 * @param fk_targaAuto the fk_targaAuto to set
-	 */
-	public void setFk_targaAuto(Auto fk_targaAuto) {
-		this.fk_targaAuto = fk_targaAuto;
-	}
-	/**
-	 * @return the fk_idUtente
-	 */
-	public Utente getFk_idUtente() {
-		return fk_idUtente;
-	}
-	/**
-	 * @param fk_idUtente the fk_idUtente to set
-	 */
-	public void setFk_idUtente(Utente fk_idUtente) {
-		this.fk_idUtente = fk_idUtente;
-	}
-	
 	
 	
 	
