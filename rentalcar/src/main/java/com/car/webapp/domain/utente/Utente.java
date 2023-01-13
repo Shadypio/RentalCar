@@ -62,7 +62,7 @@ public class Utente implements Serializable {
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	private Ruolo ruolo;
 	
-	@OneToOne(mappedBy = "utenteRiferito")
+	@OneToOne(mappedBy = "utenteRiferito", fetch = FetchType.LAZY)
 	private Prenotazione prenotazioneEffettuata;
 	
 	
@@ -169,6 +169,15 @@ public class Utente implements Serializable {
 	public void setPrenotazioneEffettuata(Prenotazione prenotazioneEffettuata) {
 		this.prenotazioneEffettuata = prenotazioneEffettuata;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Utente [idUtente=" + idUtente + ", nome=" + nome + ", cognome=" + cognome + ", username=" + username
+				+ ", password=" + password + ", dataDiNascita=" + dataDiNascita + ", ruolo=" + ruolo.getNomeRuolo() + "]";
+	}
+	
+	
 	
 	
 }

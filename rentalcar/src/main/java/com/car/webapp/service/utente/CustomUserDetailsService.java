@@ -25,6 +25,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		String[] usernameAndId = StringUtils.split(username, "@"); //username@id
 		
+		
+		
 		if(usernameAndId == null || usernameAndId.length != 2)
 			throw new UsernameNotFoundException("Inserisci username e id");
 		
@@ -32,7 +34,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 		String idUtenteString = usernameAndId[1];
 		Long idUtente = Long.parseLong(idUtenteString);
 		
+		System.out.println("sono nel metoso");
 		Utente utente = utenteService.selUtenteByUsernameId(usernameUtente, idUtente);
+		System.out.println("sono fuori dal");
+		System.out.println(utente.toString());
 		
 		if(utente == null) {
 			throw new UsernameNotFoundException("Utente non trovato");

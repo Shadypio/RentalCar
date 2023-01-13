@@ -77,15 +77,17 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 	public Utente selByUserId(String username, Long id) {
 		
 		Utente retVal;
-		String JPQL = "SELECT a FROM utente a WHERE a.username = :username AND a.id = :id";
+//		String JPQL = "SELECT a FROM utente a WHERE a.username = :username AND a.id = :id";
+//		System.out.println("nel dao");
+//		retVal = (Utente) entityManager.createQuery(JPQL)
+//				.setParameter("username", username)
+//				.setParameter("id", id)
+//				.getSingleResult();
+//		
+//		System.out.println("Utente Trovato " + retVal.toString());
 		
+		return this.selById(id);
 		
-		retVal = (Utente) entityManager.createQuery(JPQL)
-				.setParameter("username", username)
-				.setParameter("id", id)
-				.getSingleResult();
-		
-		return retVal;
 	}
 
 
