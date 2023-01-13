@@ -42,6 +42,51 @@
         					<span class="sr-only">(current)</span>
         				</a>		
   		</div>
+  		
+  		<!-- dropdown user menu -->
+    			<div class="dropdown">
+    			
+    				<button class="btn btn-default dropdown-toggle thumbnail"
+    					type="button"
+    					id="dropdownMenu1"
+    					data-toggle="dropdown"
+    					aria-haspopup="true" 
+    					aria-expanded="true">
+    					<img class="img-circle" src="<c:url value="/static/images/offline_user.png" />">
+    					<span class="caret"></span>
+    				</button>
+    				
+    				<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    				
+    					<c:choose>
+    						<c:when test="${User != null}">
+    							<a class="dropdown-item disabled" href="#"><spring:message code="base.dropdwn.menu1"/></a>
+    						</c:when>
+    						<c:otherwise>
+    							<a class="dropdown-item" href="<spring:url value="login/form" /> "><spring:message code="base.dropdwn.menu1"/></a>
+    						</c:otherwise>
+    					</c:choose>
+    					<div class="dropdown-divider"></div>
+    					
+    					<c:choose>
+    						<c:when test = "${Utente != null}">
+    							<form id="myHiddenFormId" action="/rentalcar/login/form?logout " method="post" style="display: none">
+									<input type="hidden" name="logout" value="${Utente}">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+								</form>
+								<a class="dropdown-item" href="" onclick="$('#myHiddenFormId').submit(); return false;" title="Logout"><spring:message code="base.dropdwn.menu3"/> ${Utente}</a>
+    						</c:when>
+    						<c:otherwise>
+    							<a class="dropdown-item disabled" href="#"><spring:message code="base.dropdwn.menu3"/></a>
+    						</c:otherwise>
+    					</c:choose>
+    					
+    					
+    				</div>
+    			</div>
+  		
+  		
+  		
     </nav> 
     
      <tiles:insertAttribute name="content" /> 
