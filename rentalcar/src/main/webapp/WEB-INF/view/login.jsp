@@ -38,7 +38,7 @@
                             <div class="input-group input-sm">
                               <div class="checkbox">
                                 <label class="mt-checkbox mt-checkbox-outline">
-                                	<input type="checkbox" id="rememberme" name="remember-me">Ricordami
+                                	<input type="checkbox" id="ricordami" name="ricordami">Ricordami
                                 </label>  
                               </div>
                             </div>

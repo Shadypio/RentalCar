@@ -1,17 +1,25 @@
 package com.car.webapp.config.security;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
 
@@ -19,12 +27,25 @@ import org.springframework.security.web.firewall.StrictHttpFirewall;
 @EnableWebSecurity
 public class SecurityConfig  extends WebSecurityConfigurerAdapter
 {
+	
+	@Autowired
+	@Qualifier("customUserDetailsService")
+	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	@Qualifier("persistentTokenRepository")
+	private PersistentTokenRepository persistentTokenRepository;
+	
+	@Autowired
+	DataSource dataSource;
+	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder()
 	{
 		return new BCryptPasswordEncoder();
 	};
 	
+	/*
 	@Bean
 	@Override
 	public UserDetailsService userDetailsService()
@@ -51,6 +72,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		return manager;
 
 	}
+	*/
 	
 	@Bean
 	public HttpFirewall allowUrlEncodedSlashHttpFirewall() 
@@ -75,22 +97,37 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 	@Override
 	public void configure(final AuthenticationManagerBuilder auth) throws Exception
 	{
-		auth
-			.userDetailsService(userDetailsService())
-			.passwordEncoder(passwordEncoder());
+//		auth
+//			.userDetailsService(userDetailsService())
+//			.passwordEncoder(passwordEncoder());
+		auth.authenticationProvider(authenticationProvider());
 	}
 	
-	private static final String[] ADMIN_CLIENTI_MATCHER =
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider()
+	{
+		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+		
+		authenticationProvider.setUserDetailsService(userDetailsService);
+		authenticationProvider.setPasswordEncoder(passwordEncoder());
+		
+		return authenticationProvider;
+	}
+	
+	private static final String[] ADMIN_UTENTI_MATCHER =
 	{
 			"/utente/aggiungi/**",
 			"/utente/modifica/**",
 			"/utente/elimina/**",
 			
+	};
+	
+	private static final String[] AUTO_MATCHER =
+		{
 			"/auto/aggiungi/**",
 			"/auto/modifica/**",
 			"/auto/elimina/**",
-			
-	};
+		};
 	
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception
@@ -100,10 +137,13 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		.antMatchers("/resources/**").permitAll()
 		.antMatchers("/login/**").permitAll()
 		.antMatchers("/").hasAnyRole("ANONYMOUS", "USER")
-		.antMatchers(ADMIN_CLIENTI_MATCHER).access("hasRole('ADMIN')")
+		.antMatchers(AUTO_MATCHER).access("hasRole('ADMIN')")
+		.antMatchers(ADMIN_UTENTI_MATCHER).access("hasRole('ADMIN')")
 		.antMatchers("/utente/**").hasRole("USER")
 		.antMatchers("/auto/**").hasRole("USER")
+		.antMatchers("/prenotazione/**").hasRole("USER")
 		.and()
+		.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 			.formLogin()
 				.loginPage("/login/form")
 				.loginProcessingUrl("/login")
@@ -119,5 +159,63 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		//.and().csrf().disable();
 				
 	}
+	
+	public AuthenticationFilter authenticationFilter() 
+			throws Exception 
+	{
+		
+		 AuthenticationFilter filter = new AuthenticationFilter();
+		 
+		 filter.setAuthenticationManager(authenticationManagerBean());
+		 filter.setAuthenticationFailureHandler(failureHandler());
+		 filter.setAuthenticationSuccessHandler(authenticationSuccessHandler());
+		 filter.setRememberMeServices(customRememberMeServices());
+		 
+		 return filter;
+		 
+	}
+	
+	public SimpleUrlAuthenticationFailureHandler failureHandler() 
+	{ 
+        return new SimpleUrlAuthenticationFailureHandler("/login/form?error"); 
+    } 
+	
+	@Bean
+	public SavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler() 
+	{
+        SavedRequestAwareAuthenticationSuccessHandler auth = new SavedRequestAwareAuthenticationSuccessHandler();
+		auth.setTargetUrlParameter("targetUrl");
+		
+		return auth;
+	}
+	
+	@Bean
+	public PersistentTokenBasedRememberMeServices customRememberMeServices()
+	{
+		String Key = "ricordamiKey";
+		
+		PersistentTokenBasedRememberMeServices rememberMeServices = 
+      			new CustomRememberMeServices(Key, userDetailsService, persistentTokenRepository);
+		
+		rememberMeServices.setCookieName("ricordami");
+      	rememberMeServices.setTokenValiditySeconds(60 * 60 * 4);
+      	rememberMeServices.setParameter("ricordami");
+      	rememberMeServices.setUseSecureCookie(false); //todo Abilitare con l'SSL
+      	
+      	return rememberMeServices;
+		
+		
+	}
+	
+	
+//	@Bean
+//    public PersistentTokenRepository persistentTokenRepository() 
+//	{
+//        JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
+//        tokenRepositoryImpl.setDataSource(dataSource);
+//        
+//        return tokenRepositoryImpl;
+//    }
+
 
 }
