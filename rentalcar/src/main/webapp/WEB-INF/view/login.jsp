@@ -28,8 +28,13 @@
                             </c:if>
                             
                             <div class="input-group input-sm">
-                                <label class="input-group-addon" for="userId"><i class="fa fa-user"></i></label>
-                                <input type="text" class="form-control" id="userId" name="userId" placeholder="Nome Utente" required>
+                                <label class="input-group-addon" for="id"><i class="fa fa-check-square"></i></label>
+                                <input type="text" class="form-control" id="id" name="id" placeholder="Id" required>
+                            </div>
+                            
+                            <div class="input-group input-sm">
+                                <label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Nome Utente" required>
                             </div>
                             <div class="input-group input-sm">
                                 <label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label> 

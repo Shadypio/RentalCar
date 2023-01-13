@@ -69,7 +69,7 @@
     					<div class="dropdown-divider"></div>
     					
     					<c:choose>
-    						<c:when test = "${Utente != null}">
+    						<c:when test = "${User != null}">
     							<form id="myHiddenFormId" action="/rentalcar/login/form?logout " method="post" style="display: none">
 									<input type="hidden" name="logout" value="${Utente}">
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
