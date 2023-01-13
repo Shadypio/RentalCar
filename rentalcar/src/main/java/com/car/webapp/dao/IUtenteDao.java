@@ -9,6 +9,8 @@ public interface IUtenteDao {
 	List<Utente> selTutti();
 	
 	Utente selById(Long id);
+	
+	Utente selByUserId(String username, Long id);
 
 	void salva(Utente utente);
 

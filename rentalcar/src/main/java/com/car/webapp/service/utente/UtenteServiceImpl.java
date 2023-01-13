@@ -56,6 +56,12 @@ public class UtenteServiceImpl implements IUtenteService {
 		utenteRepository.eliminaById(id);
 		
 	}
+
+	@Override
+	public Utente selUtenteByUsernameId(String username, Long id) {
+		
+		return utenteRepository.selByUserId(username, id);
+	}
 	
 	
 	

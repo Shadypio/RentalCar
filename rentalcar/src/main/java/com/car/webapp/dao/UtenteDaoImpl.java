@@ -72,6 +72,21 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 		return utente;
 	}
 	*/
+	
+	@Override
+	public Utente selByUserId(String username, Long id) {
+		
+		Utente retVal;
+		String JPQL = "SELECT a FROM utente a WHERE a.username = :username AND a.id = :id";
+		
+		
+		retVal = (Utente) entityManager.createQuery(JPQL)
+				.setParameter("username", username)
+				.setParameter("id", id)
+				.getSingleResult();
+		
+		return retVal;
+	}
 
 
 	@Override
@@ -101,5 +116,7 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 		super.eliminaById(id);
 		
 	}
+
+	
 
 }

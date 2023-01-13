@@ -9,6 +9,8 @@ public interface IUtenteService {
 	List <Utente> getAllUtenti();
 	
 	Utente selUtenteById(Long id);
+	
+	Utente selUtenteByUsernameId(String username, Long id);
 
 	void insUtente(Utente utente);
 	
