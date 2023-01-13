@@ -17,6 +17,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.car.webapp.domain.prenotazione.Prenotazione;
 import com.car.webapp.domain.ruolo.Ruolo;
@@ -49,6 +50,7 @@ public class Utente implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dataDiNascita")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataDiNascita;
 	
 	/*

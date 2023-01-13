@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.car.webapp.domain.utente.Utente;
+import com.car.webapp.service.ruolo.IRuoloService;
 import com.car.webapp.service.utente.IUtenteService;
 
 @Controller
@@ -31,6 +32,9 @@ public class UtenteController {
 
 	@Autowired
 	private IUtenteService utenteService;
+	
+	@Autowired
+	private IRuoloService ruoloService;
 	
 	// Codifica password
 	@Autowired
@@ -122,6 +126,9 @@ public class UtenteController {
 		if(result.hasErrors()) {
 			return "insUtente";
 		}
+		
+
+		nuovoUtente.setRuolo(ruoloService.selRuoloById((long) 1));
 		
 		System.out.println(nuovoUtente.toString());
 		

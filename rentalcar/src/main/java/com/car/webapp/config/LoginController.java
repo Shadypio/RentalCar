@@ -1,4 +1,4 @@
-package com.car.webapp.controller;
+package com.car.webapp.config;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

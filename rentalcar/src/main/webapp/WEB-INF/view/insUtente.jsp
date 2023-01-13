@@ -17,7 +17,7 @@
 		<div class="portlet-title tabbable-line">
 		 	 <div class="caption font-blue-madison">
             	<i class="icon-settings oi oi-person"></i>
-             	<span class="caption-subject bold uppercase"><spring:message code="insauto.form.titolo.label"/></span>
+             	<span class="caption-subject bold uppercase"><spring:message code="insutente.form.titolo.label"/></span>
             </div>
             
             
@@ -33,13 +33,13 @@
 				<!-- Visualizza l'alert -->
 				<c:if test="${saved}">
 					<div class="alert alert-success" role="alert">
-	  					<spring:message code="insauto.form.alert.label"/>
+	  					<spring:message code="insutente.form.alert.label"/>
 					</div>
 				</c:if>
 				
 				<c:if test="${error}">
 					<div class="alert alert-warning" role="alert">
-	  					<spring:message code="insauto.form.warning.label"/>
+	  					<spring:message code="insutente.form.warning.label"/>
 					</div>
 				</c:if>
 				
@@ -51,19 +51,19 @@
 					<div class="form-body">
 					
 						<div class="form-group">
-							<label for="nome"><spring:message code="insauto.form.targa.label"/></label>
+							<label for="nome"><spring:message code="insutente.form.nome.label"/></label>
 							<form:input id="nome" path="nome" type="text" class="form-control" placeholder="Nome"/>  
 							<form:errors path="nome" cssClass="text-danger"/>
 						</div>
 						
 						<div class="form-group">
-							<label for="cognome"><spring:message code="insauto.form.marca.label"/></label>
+							<label for="cognome"><spring:message code="insutente.form.cognome.label"/></label>
 							<form:input id="cognome" path="cognome" type="text" class="form-control" placeholder="Cognome"/>  
 							<form:errors path="cognome" cssClass="text-danger"/>
 						</div>
 						
 						<div class="form-group">
-							<label for="dataDiNascita"><spring:message code="insauto.form.categoria.label"/></label>
+							<label for="dataDiNascita"><spring:message code="insutente.form.datadinascita.label"/></label>
 							<form:input id="dataDiNascita" path="dataDiNascita" type="date" 
 							min="1950-01-01" max="2004-12-31"
 							class="form-control" placeholder="Data di nascita"/>  
@@ -71,14 +71,14 @@
 						</div>
 						
 						<div class="form-group">
-							<label for="username"><spring:message code="insauto.form.modello.label"/></label>
+							<label for="username"><spring:message code="insutente.form.username.label"/></label>
 							<form:input id="username" path="username" type="text" class="form-control" placeholder="Username"/>  
 							<form:errors path="username" cssClass="text-danger"/>
 						</div>
 						
 						<div class="form-group">
-							<label for="password"><spring:message code="insauto.form.categoria.label"/></label>
-							<form:input id="password" path="password" type="text" class="form-control" placeholder="Password"/>  
+							<label for="password"><spring:message code="insutente.form.password.label"/></label>
+							<form:input id="password" path="password" type="password" class="form-control" placeholder="Password"/>  
 							<form:errors path="password" cssClass="text-danger"/>
 						</div>
 						
@@ -89,7 +89,7 @@
 						<div class="form-actions">
 							<input type="submit" id="btnAdd" class="btn btn-green form-buttons" value = <spring:message code="insauto.form.btnAdd.label"/> />
 							
-							<a href="<spring:url value="/clienti/" /> " id="btnAbort" class="btn btn-default form-buttons" >
+							<a href="<spring:url value="/utente/" /> " id="btnAbort" class="btn btn-default form-buttons" >
 								<spring:message code="insauto.form.btnAbort.label"/>
 							</a>
 						</div>
