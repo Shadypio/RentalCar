@@ -8,8 +8,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.transaction.Transactional;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+
+
+@Transactional
 public abstract class AbstractDao<I extends Serializable, Id extends Serializable> implements GenericRepository<I, Id> {
 
 	@PersistenceContext
@@ -40,6 +45,8 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 
 		return this.entityManager.createQuery(
 				query.select(query.from(this.entityClass))).getResultList();
+		
+		
 	}
 
 	@Override
@@ -54,13 +61,13 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 	}
 
 	@Override
-	//@Transactional
 	public void inserisci(I entity)
 	{
 		this.entityManager.persist(entity);
 		flushAndClear();
 	}
 
+	
 	@Override
 	public void aggiorna(I entity)
 	{
@@ -68,6 +75,7 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 		flushAndClear();
 	}
 
+	
 	@Override
 	public void elimina(I entity)
 	{
@@ -91,6 +99,7 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 
 		flushAndClear();
 	}
+
 
 	private void flushAndClear() 
 	{

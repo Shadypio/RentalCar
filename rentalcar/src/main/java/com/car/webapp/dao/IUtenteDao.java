@@ -13,6 +13,8 @@ public interface IUtenteDao {
 	Utente selByUserId(String username, Long id);
 
 	void salva(Utente utente);
+	
+	void salvaAdminUser(String password);
 
 	void aggiorna(Utente utente);
 

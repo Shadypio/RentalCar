@@ -14,6 +14,8 @@ public interface IUtenteService {
 
 	void insUtente(Utente utente);
 	
+	void salvaAdminUser(String password);
+	
 	void modificaUtente(Utente utente);
 
 	void delUtente(Utente Utente);

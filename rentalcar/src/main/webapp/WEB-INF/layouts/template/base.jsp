@@ -71,10 +71,10 @@
     					<c:choose>
     						<c:when test = "${User != null}">
     							<form id="myHiddenFormId" action="/rentalcar/login/form?logout " method="post" style="display: none">
-									<input type="hidden" name="logout" value="${Utente}">
+									<input type="hidden" name="logout" value="${User}">
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 								</form>
-								<a class="dropdown-item" href="" onclick="$('#myHiddenFormId').submit(); return false;" title="Logout"><spring:message code="base.dropdwn.menu3"/> ${Utente}</a>
+								<a class="dropdown-item" href="" onclick="$('#myHiddenFormId').submit(); return false;" title="Logout"><spring:message code="base.dropdwn.menu3"/> ${User}</a>
     						</c:when>
     						<c:otherwise>
     							<a class="dropdown-item disabled" href="#"><spring:message code="base.dropdwn.menu3"/></a>

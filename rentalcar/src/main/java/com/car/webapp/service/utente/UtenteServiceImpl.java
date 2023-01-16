@@ -2,10 +2,11 @@ package com.car.webapp.service.utente;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.car.webapp.dao.IUtenteDao;
 import com.car.webapp.domain.utente.Utente;
@@ -61,6 +62,13 @@ public class UtenteServiceImpl implements IUtenteService {
 	public Utente selUtenteByUsernameId(String username, Long id) {
 		
 		return utenteRepository.selByUserId(username, id);
+	}
+
+	@Override
+	public void salvaAdminUser(String password) {
+		
+		utenteRepository.salvaAdminUser(password);
+		
 	}
 	
 	

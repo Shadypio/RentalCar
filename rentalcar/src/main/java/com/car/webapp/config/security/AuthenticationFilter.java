@@ -33,8 +33,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	     String password = obtainPassword(request);
 	     String id = request.getParameter("id");
 	     
-	     System.out.println(username + password + id);
-	     System.out.println("ciao");
 	     
 	     username = (username == null) ? "" : username;
 	     password = (password == null) ? "" : password;
@@ -42,7 +40,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	     
 	     String UserWithId = username.trim() + "@" + id;
 	     
-	     System.out.println(UserWithId);
 	        
 	     return new UsernamePasswordAuthenticationToken(UserWithId, password);  
 	         

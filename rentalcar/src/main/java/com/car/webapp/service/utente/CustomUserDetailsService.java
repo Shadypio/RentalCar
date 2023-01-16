@@ -34,10 +34,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		String idUtenteString = usernameAndId[1];
 		Long idUtente = Long.parseLong(idUtenteString);
 		
-		System.out.println("sono nel metoso");
 		Utente utente = utenteService.selUtenteByUsernameId(usernameUtente, idUtente);
-		System.out.println("sono fuori dal");
-		System.out.println(utente.toString());
+		System.out.println("Utente trovato: " + utente.toString());
 		
 		if(utente == null) {
 			throw new UsernameNotFoundException("Utente non trovato");
@@ -48,7 +46,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		builder = User.withUsername(utente.getUsername());
 		builder.disabled(utente.getRuolo().getIdRuolo() == 1 ? false : true);
 		builder.password(utente.getPassword());
-		
+		builder.authorities("ROLE_" + utente.getRuolo().getNomeRuolo());
 		
 		return builder.build();
 	

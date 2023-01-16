@@ -1,4 +1,4 @@
-package com.car.webapp.config;
+package com.car.webapp.controller;
 
 
 import javax.servlet.http.Cookie;
@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,21 +17,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.car.webapp.service.utente.IUtenteService;
+
 
 @Controller
 @RequestMapping("/login/form")
 public class LoginController 
 {
-private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
+	@Autowired
+	private IUtenteService utenteService;
+	
+	@Value("${app.admin.password}")
+	private String passwordAdmin;
 	
 	@Autowired
 	@Qualifier("persistentTokenRepository")
     private PersistentTokenRepository persistentTokenRepository;
 	
-	
 	@GetMapping
 	public String getLogin(Model model)
 	{
+		System.out.println("la pw admin è " + passwordAdmin);
+		utenteService.salvaAdminUser(passwordAdmin);
 		return "login";
 	}
 	

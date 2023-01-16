@@ -6,13 +6,20 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.car.webapp.domain.utente.Utente;
 
 @Repository
+@Transactional
 public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteDao {
 
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	// Criteria API
 	@Override
 	public List<Utente> selTutti() {
@@ -76,17 +83,7 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 	@Override
 	public Utente selByUserId(String username, Long id) {
 		
-		Utente retVal;
-//		String JPQL = "SELECT a FROM utente a WHERE a.username = :username AND a.id = :id";
-//		System.out.println("nel dao");
-//		retVal = (Utente) entityManager.createQuery(JPQL)
-//				.setParameter("username", username)
-//				.setParameter("id", id)
-//				.getSingleResult();
-//		
-//		System.out.println("Utente Trovato " + retVal.toString());
-		
-		return this.selById(id);
+		return selById(id);
 		
 	}
 
@@ -116,6 +113,29 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 	public void eliminaById(Long id) {
 		
 		super.eliminaById(id);
+		
+	}
+
+	/*
+	INSERT INTO `cars_db`.`utente` (`nome`, `cognome`, `username`, `password`, `dataDiNascita`, `fk_idRuolo`) VALUES 
+	('Mario', 'Rossi', 'mariorossi', 'PasswordRossi1.', '2000-06-12', 1);
+	*/
+
+	@Transactional 
+	@Override
+	public void salvaAdminUser(String password) {
+		
+		String encodedPassword = passwordEncoder.encode(password);
+		
+		String SQL = "INSERT INTO `cars_db`.`utente` (`nome`, "
+				+ "`cognome`, "
+				+ "`username`, "
+				+ "`password`, "
+				+ "`dataDiNascita`, "
+				+ "`fk_idRuolo`) VALUES \r\n"
+				+ "('Mario', 'Rossi', 'mariorossi', :password, '2000-06-12', 1);";
+		
+		entityManager.createNativeQuery(SQL).setParameter("password", encodedPassword).executeUpdate();
 		
 	}
 
