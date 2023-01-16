@@ -9,12 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
-
-
-@Transactional
 public abstract class AbstractDao<I extends Serializable, Id extends Serializable> implements GenericRepository<I, Id> {
 
 	@PersistenceContext

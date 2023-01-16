@@ -9,12 +9,10 @@ import javax.persistence.criteria.Root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.car.webapp.domain.utente.Utente;
 
 @Repository
-@Transactional
 public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteDao {
 
 	@Autowired
@@ -121,7 +119,6 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 	('Mario', 'Rossi', 'mariorossi', 'PasswordRossi1.', '2000-06-12', 1);
 	*/
 
-	@Transactional 
 	@Override
 	public void salvaAdminUser(String password) {
 		

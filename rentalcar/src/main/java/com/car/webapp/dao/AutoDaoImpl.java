@@ -1,7 +1,6 @@
 package com.car.webapp.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
