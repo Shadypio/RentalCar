@@ -12,8 +12,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -128,6 +131,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 			"/auto/elimina/**",
 		};
 	
+	
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception
 	{
@@ -135,12 +139,12 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		.authorizeRequests()
 		.antMatchers("/resources/**").permitAll()
 		.antMatchers("/login/**").permitAll()
-		.antMatchers("/").hasAnyRole("ANONYMOUS", "USER")
-		.antMatchers(AUTO_MATCHER).access("hasRole('ADMIN')")
-		.antMatchers(ADMIN_UTENTI_MATCHER).access("hasRole('ADMIN')")
-		.antMatchers("/utente/**").hasRole("USER")
-		.antMatchers("/auto/**").hasRole("USER")
-		.antMatchers("/prenotazione/**").hasRole("USER")
+//		.antMatchers("/").hasAnyRole("ANONYMOUS", "USER")
+//		.antMatchers(AUTO_MATCHER).access("hasRole('ADMIN')")
+//		.antMatchers(ADMIN_UTENTI_MATCHER).access("hasRole('ADMIN')")
+//		.antMatchers("/utente/**").hasRole("USER")
+//		.antMatchers("/auto/**").hasRole("USER")
+//		.antMatchers("/prenotazione/**").hasRole("USER")
 		.and()
 		.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 			.formLogin()
@@ -183,8 +187,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 	public SavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler() 
 	{
         SavedRequestAwareAuthenticationSuccessHandler auth = new SavedRequestAwareAuthenticationSuccessHandler();
-		auth.setTargetUrlParameter("targetUrl");
-		
+		//auth.setTargetUrlParameter("targetUrl");
+        auth.setTargetUrlParameter("index");
+        
 		return auth;
 	}
 	
