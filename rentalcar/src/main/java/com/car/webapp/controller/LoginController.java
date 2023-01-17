@@ -1,6 +1,8 @@
 package com.car.webapp.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.car.webapp.domain.utente.Utente;
 import com.car.webapp.service.utente.IUtenteService;
 
 
@@ -25,6 +28,8 @@ import com.car.webapp.service.utente.IUtenteService;
 public class LoginController 
 {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
+	private List<Utente> utenti;
 	
 	@Autowired
 	private IUtenteService utenteService;
@@ -39,8 +44,11 @@ public class LoginController
 	@GetMapping
 	public String getLogin(Model model)
 	{
-		System.out.println("la pw admin è " + passwordAdmin);
-		utenteService.salvaAdminUser(passwordAdmin);
+		
+		utenti = utenteService.getAllUtenti();
+		if (utenti.isEmpty())
+			utenteService.salvaAdminUser(passwordAdmin);
+		
 		return "login";
 	}
 	

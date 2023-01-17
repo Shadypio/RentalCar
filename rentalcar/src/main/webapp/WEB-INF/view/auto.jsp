@@ -68,7 +68,7 @@
       						</td>
       						<td>
       						<c:if test = "${auto.prenotazione == null}">
-								<a href="<spring:url value="/auto/prenota/${auto.targa}" /> " class="btn btn-warning table-buttons">
+								<a href="<spring:url value="/prenotazione/aggiungi/${auto.targa}" /> " class="btn btn-warning table-buttons">
 								<span class="oi oi-pencil"></span> Prenota Ora 
       							</a>
       						</c:if> 

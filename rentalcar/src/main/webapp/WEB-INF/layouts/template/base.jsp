@@ -63,7 +63,7 @@
     							<a class="dropdown-item disabled" href="#"><spring:message code="base.dropdwn.menu1"/></a>
     						</c:when>
     						<c:otherwise>
-    							<a class="dropdown-item" href="<spring:url value="login/form" /> "><spring:message code="base.dropdwn.menu1"/></a>
+    							<a class="dropdown-item" href="<spring:url value="/login/form" /> "><spring:message code="base.dropdwn.menu1"/></a>
     						</c:otherwise>
     					</c:choose>
     					<div class="dropdown-divider"></div>

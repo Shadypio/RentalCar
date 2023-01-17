@@ -2,15 +2,24 @@ package com.car.webapp.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.car.webapp.domain.auto.Auto;
 import com.car.webapp.domain.prenotazione.Prenotazione;
+import com.car.webapp.service.auto.IAutoService;
 import com.car.webapp.service.prenotazione.IPrenotazioneService;
 
 @Controller
@@ -19,6 +28,9 @@ public class PrenotazioneController {
 	
 	@Autowired
 	private IPrenotazioneService prenotazioneService;
+	
+	@Autowired
+	private IAutoService autoService;
 	
 	List<Prenotazione> recordset;
 	
@@ -75,18 +87,38 @@ public class PrenotazioneController {
 	}
 	
 	
-	@GetMapping(value = "/aggiungi")
-	public String insAuto(Model model) {
+	@GetMapping(value = "/aggiungi/{targa}")
+	public String prenotaAuto(@PathVariable("targa") String targa, Model model) {
 		
 		Prenotazione prenotazione = new Prenotazione();
+		Auto auto = autoService.getAutoFromTarga(targa);
 		
 		model.addAttribute("Titolo", "Inserimento Nuova Prenotazione");
 		model.addAttribute("prenotazione", prenotazione);
+		model.addAttribute("auto", auto);
 		model.addAttribute("edit", false);
 		model.addAttribute("saved", false);
 		
 		
 		return "insPrenotazione";
+	}
+	
+	@PostMapping(value = "/aggiungi")
+	public String gestInsPrenotazione(@Valid @ModelAttribute("prenotazione") Prenotazione nuovaPrenotazione, 
+			BindingResult result, Model model, 
+			RedirectAttributes redirectAttributes, HttpServletRequest request) {
+		
+		if(result.hasErrors()) {
+			return "insPrenotazione";
+		}
+		
+		System.out.println(nuovaPrenotazione.toString());
+		
+		prenotazioneService.insPrenotazione(nuovaPrenotazione);
+		
+		redirectAttributes.addFlashAttribute("saved", true);
+		
+		return "redirect:/prenotazione/infoprenotazione/" + nuovaPrenotazione.getIdPrenotazione();
 	}
 
 }

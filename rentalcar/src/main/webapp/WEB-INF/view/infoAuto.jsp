@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
 
 <div class="jumbotron jumbotron-billboard">
   <div class="img"></div>
@@ -24,8 +25,9 @@
  		 		<li class="list-group-item">Anno di Immatricolazione: <span class="info-art">${auto.anno}</span></li>
   			</ul>
   			<div class="card-body">
-    		<a href="#" class="card-link">Prenota</a>
-    		<a href="#" class="card-link">Annulla</a>
+  			
+  			<a href="<spring:url value="/prenotazione/aggiungi/${auto.targa}" /> " class="card-link">Prenota</a>
+    		<a href="javascript:history.back()" class="card-link">Annulla</a>
   			</div>
 		</div>
 	</div>
