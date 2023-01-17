@@ -1,5 +1,6 @@
 package com.car.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,6 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.car.webapp.domain.ruolo.Ruolo;
 import com.car.webapp.domain.utente.Utente;
 import com.car.webapp.service.ruolo.IRuoloService;
 import com.car.webapp.service.utente.IUtenteService;
@@ -110,8 +111,10 @@ public class UtenteController {
 	public String insUtente(Model model) {
 		
 		Utente utente = new Utente();
+		List<Ruolo> ruoli = ruoloService.selTutti();
 		
 		model.addAttribute("Titolo", "Inserimento Nuovo Utente");
+		model.addAttribute("ruoli", ruoli);
 		model.addAttribute("utente", utente);
 		model.addAttribute("edit", false);
 		model.addAttribute("saved", false);
@@ -121,17 +124,16 @@ public class UtenteController {
 	}
 	
 	@PostMapping(value = "/aggiungi")
-	public String gestInsUtente(@Valid @ModelAttribute("utente") Utente nuovoUtente, BindingResult result, Model model, 
+	public String gestInsUtente(@Valid @ModelAttribute("utente") Utente nuovoUtente,
+			@ModelAttribute("ruolo") Ruolo ruoloUtente, BindingResult result, Model model, 
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		
 		if(result.hasErrors()) {
 			return "insUtente";
 		}
+				
 		
-
-		nuovoUtente.setRuolo(ruoloService.selRuoloById((long) 1));
-		
-		System.out.println(nuovoUtente.toString());
+		System.out.println(nuovoUtente.toString() + ruoloUtente.toString());
 		
 		nuovoUtente.setPassword(passwordEncoder.encode(nuovoUtente.getPassword()));
 		

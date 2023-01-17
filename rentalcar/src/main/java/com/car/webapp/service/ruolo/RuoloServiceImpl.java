@@ -1,5 +1,7 @@
 package com.car.webapp.service.ruolo;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,12 @@ public class RuoloServiceImpl implements IRuoloService {
 	public Ruolo selRuoloById(Long id) {
 		
 		return ruoloRepository.selById(id);
+	}
+
+	@Override
+	public List<Ruolo> selTutti() {
+		
+		return ruoloRepository.selTutti();
 	}
 
 }

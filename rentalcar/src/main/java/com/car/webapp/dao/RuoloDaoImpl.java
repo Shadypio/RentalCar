@@ -1,5 +1,7 @@
 package com.car.webapp.dao;
 
+import java.util.List;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -7,7 +9,6 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 
 import com.car.webapp.domain.ruolo.Ruolo;
-import com.car.webapp.domain.utente.Utente;
 
 @Repository
 public class RuoloDaoImpl extends AbstractDao<Ruolo, Long> implements IRuoloDao {
@@ -29,5 +30,11 @@ public class RuoloDaoImpl extends AbstractDao<Ruolo, Long> implements IRuoloDao 
 		
 		return ruolo;
 		
+	}
+	
+	@Override
+	public List<Ruolo> selTutti() {
+		
+		return super.selTutti();
 	}
 }
