@@ -19,8 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.car.webapp.domain.auto.Auto;
 import com.car.webapp.domain.prenotazione.Prenotazione;
+import com.car.webapp.domain.utente.Utente;
 import com.car.webapp.service.auto.IAutoService;
 import com.car.webapp.service.prenotazione.IPrenotazioneService;
+import com.car.webapp.service.utente.IUtenteService;
 
 @Controller
 @RequestMapping("/prenotazione")
@@ -31,6 +33,9 @@ public class PrenotazioneController {
 	
 	@Autowired
 	private IAutoService autoService;
+	
+	@Autowired
+	private IUtenteService utenteService;
 	
 	List<Prenotazione> recordset;
 	
@@ -92,10 +97,13 @@ public class PrenotazioneController {
 		
 		Prenotazione prenotazione = new Prenotazione();
 		Auto auto = autoService.getAutoFromTarga(targa);
+		Utente utente = utenteService.selUtenteById((long) 2);
+		
 		
 		model.addAttribute("Titolo", "Inserimento Nuova Prenotazione");
 		model.addAttribute("prenotazione", prenotazione);
 		model.addAttribute("auto", auto);
+		model.addAttribute("utente", utente);
 		model.addAttribute("edit", false);
 		model.addAttribute("saved", false);
 		
@@ -103,7 +111,7 @@ public class PrenotazioneController {
 		return "insPrenotazione";
 	}
 	
-	@PostMapping(value = "/aggiungi")
+	@PostMapping(value = "/aggiungi/{targa}")
 	public String gestInsPrenotazione(@Valid @ModelAttribute("prenotazione") Prenotazione nuovaPrenotazione, 
 			BindingResult result, Model model, 
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {
@@ -112,7 +120,6 @@ public class PrenotazioneController {
 			return "insPrenotazione";
 		}
 		
-		System.out.println(nuovaPrenotazione.toString());
 		
 		prenotazioneService.insPrenotazione(nuovaPrenotazione);
 		

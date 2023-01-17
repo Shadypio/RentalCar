@@ -17,6 +17,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.car.webapp.domain.auto.Auto;
 import com.car.webapp.domain.utente.Utente;
@@ -37,10 +38,12 @@ public class Prenotazione implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dataInizio")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataInizio;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dataFine")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataFine;
 	
 	@OneToOne(optional = false, fetch = FetchType.EAGER)

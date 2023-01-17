@@ -9,6 +9,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h2>${Titolo}</h2>
+				<h4> ${auto.targa} - ${auto.marca} ${auto.modello} (${auto.anno})</h4>
 			</div>
 		</div>
 	</div>
@@ -18,7 +19,7 @@
 		<div class="portlet-title tabbable-line">
 		 	 <div class="caption font-blue-madison">
             	<i class="icon-settings oi oi-person"></i>
-             	<span class="caption-subject bold uppercase"><spring:message code="insprenotazione.form.titolo.label"/> ${auto.targa}</span>
+             	<span class="caption-subject bold uppercase"><spring:message code="insprenotazione.form.titolo.label"/></span>
             </div>         
          
          <section class = "locale-link-left"> 
@@ -69,7 +70,7 @@
 						<div class="form-actions">
 							<input type="submit" id="btnAdd" class="btn btn-green form-buttons" value = <spring:message code="insprenotazione.form.btnAdd.label"/> />
 							
-							<a href="<spring:url value="/clienti/" /> " id="btnAbort" class="btn btn-default form-buttons" >
+							<a href="javascript:history.back()" id="btnAbort" class="btn btn-default form-buttons" >
 								<spring:message code="insprenotazione.form.btnAbort.label"/>
 							</a>
 						</div>
