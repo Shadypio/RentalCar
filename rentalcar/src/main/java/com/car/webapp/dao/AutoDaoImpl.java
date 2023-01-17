@@ -98,6 +98,9 @@ public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 	public void elimina(Auto auto) {
 
 		super.elimina(auto);
+		
+//		Query query = (Query) entityManager.createQuery("DELETE FROM auto a WHERE a.targa = :targa");
+//		query.setParameter("targa", auto.getTarga()).executeUpdate();
 
 	}
 
@@ -118,6 +121,7 @@ public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 
 		entityManager.flush();
 		entityManager.clear();
+	
 
 	}
 		

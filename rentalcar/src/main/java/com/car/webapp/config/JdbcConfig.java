@@ -51,12 +51,13 @@ public class JdbcConfig {
 		return dataSource;
 	}
 	
+	/*
 	@Bean
 	public DataSourceTransactionManager transactionManager() {
 		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
 		transactionManager.setDataSource(dataSource());
 		
 		return transactionManager;
-	}
+	} */
 
 }

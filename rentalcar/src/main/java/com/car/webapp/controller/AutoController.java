@@ -60,14 +60,17 @@ public class AutoController {
 		{
 			if (targa.length() > 0)
 			{
-				
-				Auto auto = autoService.getAutoFromTarga(targa);
-				autoService.delAuto(auto);
+//				System.out.println("seleziono l'auto");
+//				Auto auto = autoService.getAutoFromTarga(targa);
+//				System.out.println("auto " + auto.toString());
+//				autoService.delAuto(auto);
+				autoService.delAuto(autoService.getAutoFromTarga(targa));
 			}
 		} 
 		catch (Exception ex)
 		{
 			throw new RuntimeException("Errore eliminazione auto", ex);
+			
 		}
 
 		return "redirect:/auto/";

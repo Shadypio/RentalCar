@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
@@ -50,6 +49,7 @@ public class Auto implements Serializable{
 	private String categoria;
 	
 	@OneToOne(mappedBy = "autoPrenotata")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Prenotazione prenotazione;
 
 	

@@ -63,6 +63,7 @@ public class Utente implements Serializable {
 	private Ruolo ruolo;
 	
 	@OneToOne(mappedBy = "utenteRiferito", fetch = FetchType.LAZY)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Prenotazione prenotazioneEffettuata;
 	
 	
