@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.car.webapp.config.security.SpringSecurityUserContext;
 import com.car.webapp.domain.auto.Auto;
 import com.car.webapp.domain.prenotazione.Prenotazione;
 import com.car.webapp.domain.utente.Utente;
@@ -71,8 +72,8 @@ public class PrenotazioneController {
 		{
 			if (id != null)
 			{
-				Prenotazione p = prenotazioneService.selPrenotazioneById(id);
-				prenotazioneService.delPrenotazione(p);
+				System.out.println(prenotazioneService.selPrenotazioneById(id));
+				prenotazioneService.delPrenotazione(prenotazioneService.selPrenotazioneById(id));
 			}
 		} 
 		catch (Exception ex)
@@ -88,7 +89,6 @@ public class PrenotazioneController {
 	{
 		
 		Prenotazione prenotazione = prenotazioneService.selPrenotazioneById(id);
-		System.out.println("prenotazione to string " + prenotazione.toString());
 		
 		model.addAttribute("Titolo", "Dettagli Prenotazione");
 		model.addAttribute("prenotazione", prenotazione);
@@ -112,7 +112,7 @@ public class PrenotazioneController {
 		model.addAttribute("utente", utenteRiferito);
 		model.addAttribute("edit", false);
 		model.addAttribute("saved", false);
-		// model.addAttribute("user", new SpringSecurityUserContext().getCurrentUser()); 
+		//model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 				
 		return "insPrenotazione";
 	}
@@ -129,10 +129,12 @@ public class PrenotazioneController {
 		if(result.hasErrors()) {
 			return "insPrenotazione";
 		}
+		
 		autoPrenotata = autoService.getAutoFromTarga(targa);
 		utenteRiferito = utenteService.getAllUtenti().get(0);
 		
-		
+		if(utenteRiferito.getPrenotazioneEffettuata() != null)
+			return "redirect:/auto/";
 		
 		nuovaPrenotazione.setAutoPrenotata(autoPrenotata);
 		nuovaPrenotazione.setUtenteRiferito(utenteRiferito);

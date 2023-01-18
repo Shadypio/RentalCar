@@ -2,18 +2,15 @@ package com.car.webapp.domain.auto;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import com.car.webapp.domain.prenotazione.Prenotazione;
 
@@ -48,8 +45,7 @@ public class Auto implements Serializable{
 	@Size(min=1, max=45, message = "{Size.Auto.categoria.validation}")
 	private String categoria;
 	
-	@OneToOne(mappedBy = "autoPrenotata")
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToOne(mappedBy = "autoPrenotata", cascade=CascadeType.ALL)
 	private Prenotazione prenotazione;
 
 	

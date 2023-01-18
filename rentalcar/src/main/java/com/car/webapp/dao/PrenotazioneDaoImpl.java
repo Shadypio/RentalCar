@@ -8,6 +8,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
+import com.car.webapp.domain.auto.Auto;
 import com.car.webapp.domain.prenotazione.Prenotazione;
 import com.car.webapp.domain.utente.Utente;
 
@@ -46,6 +47,7 @@ public class PrenotazioneDaoImpl extends AbstractDao<Prenotazione, Long> impleme
 		
 		Prenotazione prenotazione = entityManager.createQuery(queryDefinition).getSingleResult();
 		
+		entityManager.flush();
 		entityManager.clear();
 		
 		return prenotazione;
@@ -77,7 +79,20 @@ public class PrenotazioneDaoImpl extends AbstractDao<Prenotazione, Long> impleme
 	@Override
 	public void eliminaById(Long id) {
 		
-		super.eliminaById(id);
+		// super.eliminaById(id);
+		
+		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Prenotazione> queryDefinition = queryBuilder.createQuery(Prenotazione.class);
+
+		this.entityManager.createQuery(
+				queryDefinition.where(
+						builder.equal(
+								queryDefinition.from(this.entityClass)
+								.get("idPrenotazione"), id)
+						)).executeUpdate();
+
+		entityManager.flush();
+		entityManager.clear();
 
 	}
 
