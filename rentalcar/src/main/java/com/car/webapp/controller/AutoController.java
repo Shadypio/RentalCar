@@ -124,19 +124,5 @@ public class AutoController {
 		return "redirect:/auto/infoauto/" + nuovaAuto.getTarga();
 	}
 	
-	@GetMapping(value = "/prenota/{targa}")
-	public String prenotaAuto(@PathVariable("targa") String targa, Model model) {
-		
-		Auto auto = autoService.getAutoFromTarga(targa);
-		Prenotazione prenotazione = new Prenotazione();
-		
-		model.addAttribute("Titolo", "Prenotazione auto " + targa);
-		model.addAttribute("prenotazione", prenotazione);
-		model.addAttribute("edit", false);
-		model.addAttribute("saved", false);
-		
-		
-		return "insPrenotazione";
-	}
 
 }

@@ -3,6 +3,12 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+	<% LocalDate currentDate = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");%>
 <div class="jumbotron jumbotron-billboard">
 	<div class="img"></div>
 	<div class="container">
@@ -10,6 +16,7 @@
 			<div class="col-lg-12">
 				<h2>${Titolo}</h2>
 				<h4> ${auto.targa} - ${auto.marca} ${auto.modello} (${auto.anno})</h4>
+				<h4> ${utente.nome} ${utente.cognome} - ${utente.username}</h4>
 			</div>
 		</div>
 	</div>
@@ -21,7 +28,7 @@
             	<i class="icon-settings oi oi-person"></i>
              	<span class="caption-subject bold uppercase"><spring:message code="insprenotazione.form.titolo.label"/></span>
             </div>         
-         
+
          <section class = "locale-link-left"> 
             	<a href="?language=en"><img src="<c:url value="/img/US.png" />"></a> - 
             	<a href="?language=it"><img src="<c:url value="/img/IT.png" />"></a>                
@@ -54,14 +61,18 @@
 						<div class="form-group">
 							<label for="dataInizio"><spring:message code="insprenotazione.form.dataInizio.label"/></label>
 							<form:input id="dataInizio" path="dataInizio" type="date" 
-							min="1950-01-01" max="2004-12-31"
+							min='<%=""+currentDate.format(formatter)%>' 
+							max="2023-12-31"
 							class="form-control" placeholder="Data Inizio"/>  
 							<form:errors path="dataInizio" cssClass="text-danger"/>
 						</div>
 						
 						<div class="form-group">
 							<label for="dataFine"><spring:message code="insprenotazione.form.dataFine.label"/></label>
-							<form:input id="dataFine" path="dataFine" type="date" class="form-control" placeholder="Data Fine"/>  
+							<form:input id="dataFine" path="dataFine" type="date" 
+							min='<%=""+currentDate.format(formatter)%>' 
+							max="2023-12-31"
+							class="form-control" placeholder="Data Fine"/>  
 							<form:errors path="dataFine" cssClass="text-danger"/>
 						</div>
 						

@@ -35,7 +35,8 @@
 			<table id="auto" class="table table-striped table-bordered">
 				<thead>
 		            <tr>
-		            	<th>Numero Prenotazione</th>
+		            	<th>ID Prenotazione</th>
+		            	<th>Utente</th>
 		                <th>Data Inizio</th>
 		                <th>Data Fine</th>
 		            </tr>
@@ -46,6 +47,7 @@
 	        		<c:forEach items="${Prenotazioni}" var="prenotazione">
 						<tr>
 							<td>${prenotazione.idPrenotazione}</td>
+							<td>${prenotazione.utenteRiferito.username}</td>
 							<td>${prenotazione.dataInizio}</td>
 							<td>${prenotazione.dataFine}</td>
 							<td>

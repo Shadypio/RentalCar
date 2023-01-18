@@ -104,6 +104,21 @@ public class Prenotazione implements Serializable {
 		return this.autoPrenotata;
 	}
 
+	/**
+	 * @param utenteRiferito the utenteRiferito to set
+	 */
+	public void setUtenteRiferito(Utente utenteRiferito) {
+		this.utenteRiferito = utenteRiferito;
+	}
+
+
+	/**
+	 * @param autoPrenotata the autoPrenotata to set
+	 */
+	public void setAutoPrenotata(Auto autoPrenotata) {
+		this.autoPrenotata = autoPrenotata;
+	}
+
 
 	@Override
 	public String toString() {

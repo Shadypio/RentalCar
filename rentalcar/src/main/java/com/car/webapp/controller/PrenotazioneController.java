@@ -3,6 +3,7 @@ package com.car.webapp.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import com.car.webapp.service.auto.IAutoService;
 import com.car.webapp.service.prenotazione.IPrenotazioneService;
 import com.car.webapp.service.utente.IUtenteService;
 
+
 @Controller
 @RequestMapping("/prenotazione")
 public class PrenotazioneController {
@@ -36,6 +38,10 @@ public class PrenotazioneController {
 	
 	@Autowired
 	private IUtenteService utenteService;
+	
+	private Auto autoPrenotata = new Auto();
+	private Utente utenteRiferito = new Utente();
+	// private Utente utenteRiferito = new SpringSecurityUserContext().getCurrentUser()
 	
 	List<Prenotazione> recordset;
 	
@@ -66,7 +72,7 @@ public class PrenotazioneController {
 			if (id != null)
 			{
 				Prenotazione p = prenotazioneService.selPrenotazioneById(id);
-				System.out.println("data pren" + p.getDataInizio());
+				prenotazioneService.delPrenotazione(p);
 			}
 		} 
 		catch (Exception ex)
@@ -74,7 +80,7 @@ public class PrenotazioneController {
 			throw new RuntimeException("Errore eliminazione prenotazione", ex);
 		}
 
-		return "redirect:/prenotazioni/";
+		return "redirect:/prenotazione/";
 	}
 	
 	@GetMapping(value = "/infoprenotazione/{idPrenotazione}")
@@ -93,33 +99,43 @@ public class PrenotazioneController {
 	
 	
 	@GetMapping(value = "/aggiungi/{targa}")
-	public String prenotaAuto(@PathVariable("targa") String targa, Model model) {
+	public String prenotaAuto(@PathVariable("targa") String targa, Model model,
+			HttpSession session) {
 		
 		Prenotazione prenotazione = new Prenotazione();
-		Auto auto = autoService.getAutoFromTarga(targa);
-		Utente utente = utenteService.selUtenteById((long) 2);
-		
+		autoPrenotata = autoService.getAutoFromTarga(targa);
+		utenteRiferito = utenteService.getAllUtenti().get(0);
 		
 		model.addAttribute("Titolo", "Inserimento Nuova Prenotazione");
 		model.addAttribute("prenotazione", prenotazione);
-		model.addAttribute("auto", auto);
-		model.addAttribute("utente", utente);
+		model.addAttribute("auto", autoPrenotata);
+		model.addAttribute("utente", utenteRiferito);
 		model.addAttribute("edit", false);
 		model.addAttribute("saved", false);
-		
-		
+		// model.addAttribute("user", new SpringSecurityUserContext().getCurrentUser()); 
+				
 		return "insPrenotazione";
 	}
 	
 	@PostMapping(value = "/aggiungi/{targa}")
-	public String gestInsPrenotazione(@Valid @ModelAttribute("prenotazione") Prenotazione nuovaPrenotazione, 
-			BindingResult result, Model model, 
+	public String gestInsPrenotazione(@PathVariable("targa") String targa,
+			@ModelAttribute("prenotazione") Prenotazione nuovaPrenotazione, 
+			BindingResult result,
+			@ModelAttribute("utente") Utente utenteRiferito,
+			@ModelAttribute("auto") Auto autoPrenotata,
+			Model model, 
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		
 		if(result.hasErrors()) {
 			return "insPrenotazione";
 		}
+		autoPrenotata = autoService.getAutoFromTarga(targa);
+		utenteRiferito = utenteService.getAllUtenti().get(0);
 		
+		
+		
+		nuovaPrenotazione.setAutoPrenotata(autoPrenotata);
+		nuovaPrenotazione.setUtenteRiferito(utenteRiferito);
 		
 		prenotazioneService.insPrenotazione(nuovaPrenotazione);
 		

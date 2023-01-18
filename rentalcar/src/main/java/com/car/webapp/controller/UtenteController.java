@@ -44,6 +44,14 @@ public class UtenteController {
 
 	List<Utente> recordset;
 
+	@ModelAttribute("ruolo")
+	public Ruolo getRuolo()
+	{
+		return new Ruolo();
+	}
+
+
+	
 	// Equivalente a @GetMapping
 	@RequestMapping(method = RequestMethod.GET)
 	public String getUtenti(Model model) {
@@ -124,16 +132,20 @@ public class UtenteController {
 	}
 	
 	@PostMapping(value = "/aggiungi")
-	public String gestInsUtente(@Valid @ModelAttribute("utente") Utente nuovoUtente,
-			@ModelAttribute("ruolo") Ruolo ruoloUtente, BindingResult result, Model model, 
+	public String gestInsUtente(@ModelAttribute("utente") Utente nuovoUtente,
+			BindingResult result,
+			@ModelAttribute("ruolo") String ruoloUtenteString,
+			Model model, 
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		
 		if(result.hasErrors()) {
 			return "insUtente";
 		}
-				
 		
-		System.out.println(nuovoUtente.toString() + ruoloUtente.toString());
+		
+		
+		System.out.println("il ruolo è");
+		System.out.println(ruoloUtenteString);
 		
 		nuovoUtente.setPassword(passwordEncoder.encode(nuovoUtente.getPassword()));
 		
