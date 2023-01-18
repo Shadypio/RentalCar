@@ -3,6 +3,7 @@ package com.car.webapp.domain.utente;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -62,8 +63,7 @@ public class Utente implements Serializable {
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	private Ruolo ruolo;
 	
-	@OneToOne(mappedBy = "utenteRiferito", fetch = FetchType.LAZY)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToOne(mappedBy = "utenteRiferito", cascade=CascadeType.ALL)
 	private Prenotazione prenotazioneEffettuata;
 	
 	

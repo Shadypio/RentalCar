@@ -44,13 +44,6 @@ public class UtenteController {
 
 	List<Utente> recordset;
 
-	@ModelAttribute("ruolo")
-	public Ruolo getRuolo()
-	{
-		return new Ruolo();
-	}
-
-
 	
 	// Equivalente a @GetMapping
 	@RequestMapping(method = RequestMethod.GET)
@@ -79,8 +72,7 @@ public class UtenteController {
 			if (idUtente != null)
 			{
 				
-				Utente utenteDaEliminare = utenteService.selUtenteById(idUtente);
-				utenteService.delUtente(utenteDaEliminare);
+				utenteService.delUtente(utenteService.selUtenteById(idUtente));
 				//utenteService.delUtenteById(idUtente);
 			}
 		} 
@@ -134,7 +126,6 @@ public class UtenteController {
 	@PostMapping(value = "/aggiungi")
 	public String gestInsUtente(@ModelAttribute("utente") Utente nuovoUtente,
 			BindingResult result,
-			@ModelAttribute("ruolo") String ruoloUtenteString,
 			Model model, 
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		
@@ -142,10 +133,12 @@ public class UtenteController {
 			return "insUtente";
 		}
 		
+		System.out.println("il ruolo è ");
+		// System.out.println(ruoloSelezionato.getNomeRuolo());
 		
-		
-		System.out.println("il ruolo è");
-		System.out.println(ruoloUtenteString);
+		System.out.println(nuovoUtente.getNome() +
+				nuovoUtente.getCognome() +
+				nuovoUtente.getUsername());
 		
 		nuovoUtente.setPassword(passwordEncoder.encode(nuovoUtente.getPassword()));
 		
@@ -153,7 +146,7 @@ public class UtenteController {
 		
 		redirectAttributes.addFlashAttribute("saved", true);
 		
-		return "redirect:/utente/infoutente/" + nuovoUtente.getUsername();
+		return "redirect:/utente/infoutente/" + nuovoUtente.getIdUtente();
 	}
 
 }
