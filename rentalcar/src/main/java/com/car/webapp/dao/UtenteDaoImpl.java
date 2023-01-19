@@ -105,8 +105,8 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 			.setParameter("username", utente.getUsername())
 			.setParameter("password", passwordEncoder.encode(utente.getPassword()))
 			.setParameter("dataDiNascita", utente.getDataDiNascita())
-			.setParameter("fk_idRuolo", 2)
-			//.setParameter("fk_idRuolo", utente.getRuolo().getIdRuolo())
+			//.setParameter("fk_idRuolo", 2)
+			.setParameter("fk_idRuolo", utente.getRuolo().getIdRuolo())
 			.executeUpdate();
 		
 	}

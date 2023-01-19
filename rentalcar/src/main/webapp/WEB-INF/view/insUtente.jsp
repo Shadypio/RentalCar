@@ -98,11 +98,9 @@
 							<div class="form-group">
 								<label for="ruolo"><spring:message code="insutente.form.ruolo.label" /></label>
 								<div class="mt-radio-inline">
-									<select name="ruoloSelezionato" id="ruoloSelezionato">
-									 	<c:forEach items="${ruoli}" var="ruolo"> 
-								    		<option value="${ruolo.idRuolo}"> ${ruolo.idRuolo} - ${ruolo.nomeRuolo}</option>
-										</c:forEach>
-									</select>
+									<form:select name="ruolo" id="ruolo" path="ruolo.idRuolo"> 
+								    		<form:options items="${ruoli}" itemValue="idRuolo" itemLabel="nomeRuolo"/><br>		
+									</form:select>
 
 
 								</div>

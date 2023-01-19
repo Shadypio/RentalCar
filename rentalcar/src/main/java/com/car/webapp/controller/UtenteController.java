@@ -133,13 +133,6 @@ public class UtenteController {
 			return "insUtente";
 		}
 		
-		System.out.println("il ruolo è ");
-		// System.out.println(ruoloSelezionato.getNomeRuolo());
-		
-		System.out.println(nuovoUtente.getNome() +
-				nuovoUtente.getCognome() +
-				nuovoUtente.getUsername());
-		
 		nuovoUtente.setPassword(passwordEncoder.encode(nuovoUtente.getPassword()));
 		
 		utenteService.insUtente(nuovoUtente);
