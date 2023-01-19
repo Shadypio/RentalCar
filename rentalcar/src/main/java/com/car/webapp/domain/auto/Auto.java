@@ -45,7 +45,7 @@ public class Auto implements Serializable{
 	@Size(min=1, max=45, message = "{Size.Auto.categoria.validation}")
 	private String categoria;
 	
-	@OneToOne(mappedBy = "autoPrenotata", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy = "autoPrenotata", orphanRemoval = true)
 	private Prenotazione prenotazione;
 
 	

@@ -63,7 +63,7 @@ public class Utente implements Serializable {
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	private Ruolo ruolo;
 	
-	@OneToOne(mappedBy = "utenteRiferito", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy = "utenteRiferito", orphanRemoval = true)
 	private Prenotazione prenotazioneEffettuata;
 	
 	

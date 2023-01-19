@@ -146,7 +146,8 @@ public class UtenteController {
 		
 		redirectAttributes.addFlashAttribute("saved", true);
 		
-		return "redirect:/utente/infoutente/" + nuovoUtente.getIdUtente();
+		//return "redirect:/utente/infoutente/" + nuovoUtente.getIdUtente();
+		return "redirect:/utente/";
 	}
 
 }
