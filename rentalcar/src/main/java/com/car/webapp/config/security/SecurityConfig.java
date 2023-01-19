@@ -124,7 +124,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 			
 	};
 	
-	private static final String[] AUTO_MATCHER =
+	private static final String[] ADMIN_AUTO_MATCHER =
 		{
 			"/auto/aggiungi/**",
 			"/auto/modifica/**",
@@ -139,19 +139,21 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		.authorizeRequests()
 		.antMatchers("/resources/**").permitAll()
 		.antMatchers("/login/**").permitAll()
-//		.antMatchers("/").hasAnyRole("ANONYMOUS", "USER")
-//		.antMatchers(AUTO_MATCHER).access("hasRole('ADMIN')")
-//		.antMatchers(ADMIN_UTENTI_MATCHER).access("hasRole('ADMIN')")
-//		.antMatchers("/utente/**").hasRole("USER")
-//		.antMatchers("/auto/**").hasRole("USER")
-//		.antMatchers("/prenotazione/**").hasRole("USER")
+		.antMatchers("/").hasAnyRole("ANONYMOUS", "USER", "ADMIN")
+		.antMatchers(ADMIN_AUTO_MATCHER).hasAuthority("ROLE_ADMIN")
+		.antMatchers(ADMIN_UTENTI_MATCHER).hasAuthority("ROLE_ADMIN")
+		.antMatchers(ADMIN_AUTO_MATCHER).access("hasRole('ADMIN')")
+		.antMatchers(ADMIN_UTENTI_MATCHER).access("hasRole('ADMIN')")
+		.antMatchers("/utente/**").hasAnyRole("USER", "ADMIN")
+		.antMatchers("/auto/**").hasAnyRole("USER", "ADMIN")
+		.antMatchers("/prenotazione/**").hasAnyRole("USER", "ADMIN")
 		.and()
 		.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 			.formLogin()
 				.loginPage("/login/form")
 				.loginProcessingUrl("/login")
 				.failureUrl("/login/form?error")
-					.usernameParameter("userId")
+					.usernameParameter("username")
 					.passwordParameter("password")
 		.and()
 			.exceptionHandling()
@@ -187,8 +189,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 	public SavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler() 
 	{
         SavedRequestAwareAuthenticationSuccessHandler auth = new SavedRequestAwareAuthenticationSuccessHandler();
-		//auth.setTargetUrlParameter("targetUrl");
-        auth.setTargetUrlParameter("index");
+		auth.setTargetUrlParameter("targetUrl");
         
 		return auth;
 	}

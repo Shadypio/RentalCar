@@ -97,6 +97,7 @@ public class UtenteController {
 				model.addAttribute("Titolo2", "Utente " + utente.getUsername());
 				model.addAttribute("utente", utente);
 				model.addAttribute("isUtente", true);
+				System.out.println("utente selezionato\n" + utente.toString());
 			}
 		} 
 		catch (Exception ex)
@@ -133,14 +134,19 @@ public class UtenteController {
 			return "insUtente";
 		}
 		
+		System.out.println("non codificata: " + nuovoUtente.getPassword());
 		nuovoUtente.setPassword(passwordEncoder.encode(nuovoUtente.getPassword()));
+		System.out.println("codificata: " + nuovoUtente.getPassword());
 		
 		utenteService.insUtente(nuovoUtente);
+
+		System.out.println("utente nuovo creato");
+		System.out.println(nuovoUtente.toString());
 		
 		redirectAttributes.addFlashAttribute("saved", true);
 		
-		//return "redirect:/utente/infoutente/" + nuovoUtente.getIdUtente();
-		return "redirect:/utente/";
+		return "redirect:/utente/infoutente/" + nuovoUtente.getIdUtente();
+		// return "redirect:/utente/";
 	}
 
 }

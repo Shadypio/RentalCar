@@ -131,6 +131,7 @@ public class PrenotazioneController {
 		}
 		
 		autoPrenotata = autoService.getAutoFromTarga(targa);
+		// prendere utente loggato
 		utenteRiferito = utenteService.getAllUtenti().get(0);
 		
 		if(utenteRiferito.getPrenotazioneEffettuata() != null)
@@ -139,7 +140,12 @@ public class PrenotazioneController {
 		nuovaPrenotazione.setAutoPrenotata(autoPrenotata);
 		nuovaPrenotazione.setUtenteRiferito(utenteRiferito);
 		
+		
+		
 		prenotazioneService.insPrenotazione(nuovaPrenotazione);
+		
+		System.out.println("prenotazione inserita");
+		System.out.println(nuovaPrenotazione.toString());
 		
 		redirectAttributes.addFlashAttribute("saved", true);
 		

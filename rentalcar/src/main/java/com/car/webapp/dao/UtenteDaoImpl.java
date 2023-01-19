@@ -81,7 +81,7 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 	@Override
 	public Utente selByUserId(String username, Long id) {
 		
-		return selById(id);
+		return this.selById(id);
 		
 	}
 
@@ -89,25 +89,25 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 	@Override
 	public void salva(Utente utente) {
 		
-		// super.inserisci(utente);
+		super.inserisci(utente);
 		
-		String SQL = "INSERT INTO `cars_db`.`utente` (`nome`, "
-				+ "`cognome`, "
-				+ "`username`, "
-				+ "`password`, "
-				+ "`dataDiNascita`, "
-				+ "`fk_idRuolo`) VALUES \r\n"
-				+ "(:nome, :cognome, :username, :password, :dataDiNascita, :fk_idRuolo);";
-		
-		entityManager.createNativeQuery(SQL)
-			.setParameter("nome", utente.getNome())
-			.setParameter("cognome", utente.getCognome())
-			.setParameter("username", utente.getUsername())
-			.setParameter("password", passwordEncoder.encode(utente.getPassword()))
-			.setParameter("dataDiNascita", utente.getDataDiNascita())
-			//.setParameter("fk_idRuolo", 2)
-			.setParameter("fk_idRuolo", utente.getRuolo().getIdRuolo())
-			.executeUpdate();
+//		String SQL = "INSERT INTO `cars_db`.`utente` (`nome`, "
+//				+ "`cognome`, "
+//				+ "`username`, "
+//				+ "`password`, "
+//				+ "`dataDiNascita`, "
+//				+ "`fk_idRuolo`) VALUES \r\n"
+//				+ "(:nome, :cognome, :username, :password, :dataDiNascita, :fk_idRuolo);";
+//		
+//		entityManager.createNativeQuery(SQL)
+//			.setParameter("nome", utente.getNome())
+//			.setParameter("cognome", utente.getCognome())
+//			.setParameter("username", utente.getUsername())
+//			.setParameter("password", utente.getPassword())
+//			.setParameter("dataDiNascita", utente.getDataDiNascita())
+//			//.setParameter("fk_idRuolo", 2)
+//			.setParameter("fk_idRuolo", utente.getRuolo().getIdRuolo())
+//			.executeUpdate();
 		
 	}
 

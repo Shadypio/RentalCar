@@ -42,12 +42,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("Utente non trovato");
 		}
 		
+		
 		UserBuilder builder = null;
 		
 		builder = User.withUsername(utente.getUsername());
-		builder.disabled(utente.getRuolo().getIdRuolo() == 1 ? false : true);
+		builder.disabled(false);
 		builder.password(utente.getPassword());
 		builder.authorities("ROLE_" + utente.getRuolo().getNomeRuolo());
+		// builder.authorities(utente.getRuolo().getNomeRuolo());
 		
 		return builder.build();
 	

@@ -36,10 +36,12 @@
 			<table id="utenti" class="table table-striped table-bordered">
 				<thead>
 		            <tr>
+		            	<th>ID</th>
 		            	<th>Nome</th>
 		                <th>Cognome</th>
 		                <th>Username</th>
 		                <th>Data di nascita</th>
+		                <th>Ruolo</th>
 		            </tr>
 	        	</thead>
 	        	<tfoot>
@@ -47,10 +49,12 @@
 	        	<tbody>
 	        		<c:forEach items="${Utenti}" var="utente">
 						<tr>
+							<td>${utente.idUtente}</td>
 							<td>${utente.nome}</td>
 							<td>${utente.cognome}</td>
 							<td>${utente.username}</td>
 							<td>${utente.dataDiNascita}</td>
+							<td>${utente.ruolo.nomeRuolo}</td>
 							<td>
 								<a href=" <spring:url value="/utente/infoutente/${utente.idUtente}" /> " class="btn btn-primary">
 									<span class="oi oi-plus"/></span> Dettaglio 
