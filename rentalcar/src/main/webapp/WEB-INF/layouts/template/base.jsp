@@ -38,7 +38,7 @@
         				</a>
         	 <a class="nav-link" href="<spring:url value="/utente/"/>">
         					<span class="oi oi-bullhorn" title="bullhorn" aria-hidden="true"></span>
-        					Profilo Utente
+        					Gestione utenti
         					<span class="sr-only">(current)</span>
         				</a>		
         	 <a class="nav-link" href="<spring:url value="/prenotazione/"/>">
