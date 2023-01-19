@@ -9,8 +9,6 @@
                 <p>
                     ${saluti}
                 </p>
-                <a href="#" id="SignUp" class="btn btn btn-primary btn-lg">Accedi</a>
-                <a href="#" id="SignIn" class="btn btn-success btn-lg">Registrati</a>
             </div>
         </div>
     </div>

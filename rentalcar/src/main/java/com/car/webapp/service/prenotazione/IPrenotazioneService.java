@@ -15,6 +15,4 @@ public interface IPrenotazioneService {
 	void modificaPrenotazione(Prenotazione prenotazione);
 	
 	void delPrenotazione(Prenotazione prenotazione);
-	
-	void delPrenotazioneById(Long id);
 }

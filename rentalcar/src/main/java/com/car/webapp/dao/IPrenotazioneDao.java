@@ -15,6 +15,4 @@ public interface IPrenotazioneDao {
 	void aggiorna(Prenotazione prenotazione);
 	
 	void elimina(Prenotazione prenotazione);
-	
-	void eliminaById(Long id);
 }

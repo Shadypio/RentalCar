@@ -1,13 +1,9 @@
 package com.car.webapp.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -30,28 +26,21 @@ import com.car.webapp.service.utente.IUtenteService;
 @RequestMapping("/utente")
 public class UtenteController {
 
-	private static final Logger logger = LoggerFactory.getLogger(UtenteController.class);
-
 	@Autowired
 	private IUtenteService utenteService;
-	
+
 	@Autowired
 	private IRuoloService ruoloService;
-	
-	// Codifica password
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
 	List<Utente> recordset;
 
-	
-	// Equivalente a @GetMapping
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String getUtenti(Model model) {
 
-		
-
-		logger.info("Otteniamo tutti gli utenti");
 		recordset = utenteService.getAllUtenti();
 
 		model.addAttribute("Titolo", "Ricerca Utenti");
@@ -62,18 +51,17 @@ public class UtenteController {
 		return "utenti";
 	}
 
-	
+
 	@GetMapping(value = "/elimina/{idUtente}")
 	public String delUtente(@PathVariable("idUtente") Long idUtente, Model model)
 	{
-		
+
 		try
 		{
 			if (idUtente != null)
 			{
-				
+
 				utenteService.delUtente(utenteService.selUtenteById(idUtente));
-				//utenteService.delUtenteById(idUtente);
 			}
 		} 
 		catch (Exception ex)
@@ -83,11 +71,11 @@ public class UtenteController {
 
 		return "redirect:/utente/";
 	}
-	
+
 	@GetMapping(value = "/infoutente/{idUtente}")
 	public String viewInfoUtente(@PathVariable("idUtente") Long idUtente, Model model)
 	{
-		
+
 		try
 		{
 			if (idUtente != null)
@@ -97,7 +85,6 @@ public class UtenteController {
 				model.addAttribute("Titolo2", "Utente " + utente.getUsername());
 				model.addAttribute("utente", utente);
 				model.addAttribute("isUtente", true);
-				System.out.println("utente selezionato\n" + utente.toString());
 			}
 		} 
 		catch (Exception ex)
@@ -107,46 +94,39 @@ public class UtenteController {
 
 		return "infoUtente";
 	}
-	
+
 	@GetMapping(value = "/aggiungi")
 	public String insUtente(Model model) {
-		
+
 		Utente utente = new Utente();
 		List<Ruolo> ruoli = ruoloService.selTutti();
-		
+
 		model.addAttribute("Titolo", "Inserimento Nuovo Utente");
 		model.addAttribute("ruoli", ruoli);
 		model.addAttribute("utente", utente);
 		model.addAttribute("edit", false);
 		model.addAttribute("saved", false);
-		
-		
+
+
 		return "insUtente";
 	}
-	
+
 	@PostMapping(value = "/aggiungi")
 	public String gestInsUtente(@ModelAttribute("utente") Utente nuovoUtente,
 			BindingResult result,
 			Model model, 
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {
-		
+
 		if(result.hasErrors()) {
 			return "insUtente";
 		}
-		
-		System.out.println("non codificata: " + nuovoUtente.getPassword());
+
 		nuovoUtente.setPassword(passwordEncoder.encode(nuovoUtente.getPassword()));
-		System.out.println("codificata: " + nuovoUtente.getPassword());
-		
 		utenteService.insUtente(nuovoUtente);
 
-		System.out.println("utente nuovo creato");
-		System.out.println(nuovoUtente.toString());
-		
 		redirectAttributes.addFlashAttribute("saved", true);
-		
+
 		return "redirect:/utente/infoutente/" + nuovoUtente.getIdUtente();
-		// return "redirect:/utente/";
 	}
 
 }

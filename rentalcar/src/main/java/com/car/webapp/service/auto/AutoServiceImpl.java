@@ -45,13 +45,6 @@ public class AutoServiceImpl implements IAutoService {
 		
 	}
 
-	@Override
-	public void delAutoById(String targa) {
-		
-		autoRepository.eliminaById(targa);
-		
-	}
-
 
 	@Override
 	public void delAuto(Auto auto) {

@@ -3,7 +3,6 @@ package com.car.webapp.domain.utente;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,10 +53,6 @@ public class Utente implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataDiNascita;
 	
-	/*
-	 * con LAZY viene caricato solo all'occorrenza, con EAGER sempre: 
-	 * scelta di prestazioni
-	 */
 	@OneToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_idRuolo", referencedColumnName = "id")
 	@OnDelete(action = OnDeleteAction.NO_ACTION)

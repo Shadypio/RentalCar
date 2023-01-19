@@ -36,7 +36,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 		Long idUtente = Long.parseLong(idUtenteString);
 		
 		Utente utente = utenteService.selUtenteByUsernameId(usernameUtente, idUtente);
-		System.out.println("Utente trovato: " + utente.toString());
 		
 		if(utente == null) {
 			throw new UsernameNotFoundException("Utente non trovato");
@@ -49,7 +48,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 		builder.disabled(false);
 		builder.password(utente.getPassword());
 		builder.authorities("ROLE_" + utente.getRuolo().getNomeRuolo());
-		// builder.authorities(utente.getRuolo().getNomeRuolo());
 		
 		return builder.build();
 	

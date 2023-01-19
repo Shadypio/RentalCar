@@ -63,7 +63,7 @@
 							<form:input id="dataInizio" path="dataInizio" type="date" 
 							min='<%=""+currentDate.format(formatter)%>' 
 							max="2023-12-31"
-							class="form-control" placeholder="Data Inizio"/>  
+							class="form-control" placeholder="Data Inizio" required="required"/>  
 							<form:errors path="dataInizio" cssClass="text-danger"/>
 						</div>
 						
@@ -72,7 +72,7 @@
 							<form:input id="dataFine" path="dataFine" type="date" 
 							min='<%=""+currentDate.format(formatter)%>' 
 							max="2023-12-31"
-							class="form-control" placeholder="Data Fine"/>  
+							class="form-control" placeholder="Data Fine" required="required"/>  
 							<form:errors path="dataFine" cssClass="text-danger"/>
 						</div>
 						

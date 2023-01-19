@@ -12,11 +12,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -140,8 +137,6 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		.antMatchers("/resources/**").permitAll()
 		.antMatchers("/login/**").permitAll()
 		.antMatchers("/").hasAnyRole("ANONYMOUS", "USER", "ADMIN")
-		.antMatchers(ADMIN_AUTO_MATCHER).hasAuthority("ROLE_ADMIN")
-		.antMatchers(ADMIN_UTENTI_MATCHER).hasAuthority("ROLE_ADMIN")
 		.antMatchers(ADMIN_AUTO_MATCHER).access("hasRole('ADMIN')")
 		.antMatchers(ADMIN_UTENTI_MATCHER).access("hasRole('ADMIN')")
 		.antMatchers("/utente/**").hasAnyRole("USER", "ADMIN")
@@ -205,7 +200,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		rememberMeServices.setCookieName("ricordami");
       	rememberMeServices.setTokenValiditySeconds(60 * 60 * 4);
       	rememberMeServices.setParameter("ricordami");
-      	rememberMeServices.setUseSecureCookie(false); //todo Abilitare con l'SSL
+      	rememberMeServices.setUseSecureCookie(false); 
       	
       	return rememberMeServices;
 		

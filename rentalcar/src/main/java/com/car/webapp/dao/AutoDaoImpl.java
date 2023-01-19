@@ -10,12 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import com.car.webapp.domain.auto.Auto;
 
+@SuppressWarnings("deprecation")
 @Repository
 public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 
-
-
-	// HQL
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Auto> selTutti() {
@@ -25,7 +23,6 @@ public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 	}
 
 	// HQL
-	@SuppressWarnings("unchecked")
 	@Override
 	public Auto selByTarga(String targa) {
 
@@ -99,29 +96,6 @@ public class AutoDaoImpl extends AbstractDao<Auto, String> implements IAutoDao{
 
 		super.elimina(auto);
 		
-//		Query query = (Query) entityManager.createQuery("DELETE FROM auto a WHERE a.targa = :targa");
-//		query.setParameter("targa", auto.getTarga()).executeUpdate();
-
-	}
-
-	@Override
-	public void eliminaById(String targa) {
-
-		// super.eliminaById(targa);
-
-		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Auto> queryDefinition = queryBuilder.createQuery(Auto.class);
-
-		this.entityManager.createQuery(
-				queryDefinition.where(
-						builder.equal(
-								queryDefinition.from(this.entityClass)
-								.get("targa"), targa)
-						)).executeUpdate();
-
-		entityManager.flush();
-		entityManager.clear();
-	
 
 	}
 		

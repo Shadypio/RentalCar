@@ -57,7 +57,7 @@
 								<label for="nome"><spring:message
 										code="insutente.form.nome.label" /></label>
 								<form:input id="nome" path="nome" type="text"
-									class="form-control" placeholder="Nome" />
+									class="form-control" placeholder="Nome" required="required" />
 								<form:errors path="nome" cssClass="text-danger" />
 							</div>
 
@@ -65,7 +65,7 @@
 								<label for="cognome"><spring:message
 										code="insutente.form.cognome.label" /></label>
 								<form:input id="cognome" path="cognome" type="text"
-									class="form-control" placeholder="Cognome" />
+									class="form-control" placeholder="Cognome" required="required"/>
 								<form:errors path="cognome" cssClass="text-danger" />
 							</div>
 
@@ -74,7 +74,7 @@
 										code="insutente.form.datadinascita.label" /></label>
 								<form:input id="dataDiNascita" path="dataDiNascita" type="date"
 									min="1950-01-01" max="2004-12-31" class="form-control"
-									placeholder="Data di nascita" />
+									placeholder="Data di nascita" required="required"/>
 								<form:errors path="dataDiNascita" cssClass="text-danger" />
 							</div>
 
@@ -82,7 +82,7 @@
 								<label for="username"><spring:message
 										code="insutente.form.username.label" /></label>
 								<form:input id="username" path="username" type="text"
-									class="form-control" placeholder="Username" />
+									class="form-control" placeholder="Username" required="required"/>
 								<form:errors path="username" cssClass="text-danger" />
 							</div>
 
@@ -90,7 +90,7 @@
 								<label for="password"><spring:message
 										code="insutente.form.password.label" /></label>
 								<form:input id="password" path="password" type="password"
-									class="form-control" placeholder="Password" />
+									class="form-control" placeholder="Password" required="required"/>
 								<form:errors path="password" cssClass="text-danger" />
 							</div>
 
@@ -99,7 +99,7 @@
 								<label for="ruolo"><spring:message code="insutente.form.ruolo.label" /></label>
 								<div class="mt-radio-inline">
 									<form:select name="ruolo" id="ruolo" path="ruolo.idRuolo"> 
-								    		<form:options items="${ruoli}" itemValue="idRuolo" itemLabel="nomeRuolo"/><br>		
+								    		<form:options items="${ruoli}" itemValue="idRuolo" itemLabel="nomeRuolo" /><br>		
 									</form:select>
 
 

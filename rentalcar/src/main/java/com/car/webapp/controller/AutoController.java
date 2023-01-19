@@ -5,8 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.car.webapp.domain.auto.Auto;
-import com.car.webapp.domain.prenotazione.Prenotazione;
 import com.car.webapp.service.auto.IAutoService;
-import com.car.webapp.service.prenotazione.IPrenotazioneService;
 
 @Controller
 @RequestMapping("/auto")
@@ -31,12 +27,7 @@ public class AutoController {
 	@Autowired
 	private IAutoService autoService;
 	
-	@Autowired
-	private IPrenotazioneService prenotazioneService;
-	
 	private List<Auto> recordset;
-	
-	private static final Logger logger = LoggerFactory.getLogger(AutoController.class);
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAuto(Model model) {
@@ -60,10 +51,6 @@ public class AutoController {
 		{
 			if (targa.length() > 0)
 			{
-//				System.out.println("seleziono l'auto");
-//				Auto auto = autoService.getAutoFromTarga(targa);
-//				System.out.println("auto " + auto.toString());
-//				autoService.delAuto(auto);
 				autoService.delAuto(autoService.getAutoFromTarga(targa));
 			}
 		} 
@@ -114,8 +101,6 @@ public class AutoController {
 		if(result.hasErrors()) {
 			return "insAuto";
 		}
-		
-		System.out.println(nuovaAuto.toString());
 		
 		autoService.insAuto(nuovaAuto);
 		

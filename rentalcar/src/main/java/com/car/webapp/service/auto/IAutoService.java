@@ -14,7 +14,5 @@ public interface IAutoService {
 	
 	void modificaAuto(Auto auto);
 	
-	void delAutoById(String targa);
-	
 	void delAuto(Auto auto);
 }
