@@ -128,5 +128,44 @@ public class UtenteController {
 
 		return "redirect:/utente/infoutente/" + nuovoUtente.getIdUtente();
 	}
+	
+	@GetMapping(value = "/disabilita/{idUtente}")
+	public String disabilitaUtente(@PathVariable("idUtente") Long idUtente, Model model)
+	{
+
+		try
+		{
+			if (idUtente != null)
+			{
+
+				utenteService.disabilitaUtente(utenteService.selUtenteById(idUtente));
+			}
+		} 
+		catch (Exception ex)
+		{
+			throw new RuntimeException("Errore eliminazione utente", ex);
+		}
+
+		return "redirect:/utente/";
+	}
+	
+	@GetMapping(value = "/abilita/{idUtente}")
+	public String abilitaUtente(@PathVariable("idUtente") Long idUtente, Model model)
+	{
+
+		try
+		{
+			if (idUtente != null)
+			{
+				utenteService.abilitaUtente(utenteService.selUtenteById(idUtente));
+			}
+		} 
+		catch (Exception ex)
+		{
+			throw new RuntimeException("Errore eliminazione utente", ex);
+		}
+
+		return "redirect:/utente/";
+	}
 
 }

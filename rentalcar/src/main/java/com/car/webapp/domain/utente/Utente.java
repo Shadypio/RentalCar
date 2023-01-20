@@ -53,6 +53,9 @@ public class Utente implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataDiNascita;
 	
+	@Column(name = "abilitato")
+	private Boolean abilitato;
+	
 	@OneToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_idRuolo", referencedColumnName = "id")
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
@@ -149,6 +152,24 @@ public class Utente implements Serializable {
 	public void setDataDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
+	
+	
+
+	/**
+	 * @return the abilitato
+	 */
+	public Boolean getAbilitato() {
+		return abilitato;
+	}
+
+
+	/**
+	 * @param abilitato the abilitato to set
+	 */
+	public void setAbilitato(Boolean abilitato) {
+		this.abilitato = abilitato;
+	}
+
 
 	public Ruolo getRuolo() {
 		return ruolo;

@@ -20,5 +20,8 @@ public interface IUtenteService {
 
 	void delUtente(Utente Utente);
 	
-	void delUtenteById(Long id);
+	void disabilitaUtente(Utente utente);
+	
+	void abilitaUtente(Utente utente);
+
 }

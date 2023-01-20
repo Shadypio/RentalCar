@@ -125,12 +125,6 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 		
 	}
 	
-	@Override
-	public void eliminaById(Long id) {
-		
-		super.eliminaById(id);
-		
-	}
 
 	/*
 	INSERT INTO `cars_db`.`utente` (`nome`, `cognome`, `username`, `password`, `dataDiNascita`, `fk_idRuolo`) VALUES 
@@ -147,10 +141,27 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 				+ "`username`, "
 				+ "`password`, "
 				+ "`dataDiNascita`, "
+				+ "`abilitato`, "
 				+ "`fk_idRuolo`) VALUES \r\n"
-				+ "('Mario', 'Rossi', 'mariorossi', :password, '2000-06-12', 1);";
+				+ "('Mario', 'Rossi', 'mariorossi', :password, '2000-06-12', true, 1);";
 		
 		entityManager.createNativeQuery(SQL).setParameter("password", encodedPassword).executeUpdate();
+		
+	}
+
+	@Override
+	public void disabilitaUtente(Utente utente) {
+		
+		utente.setAbilitato(false);
+		super.aggiorna(utente);
+		
+	}
+	
+	@Override
+	public void abilitaUtente(Utente utente) {
+		
+		utente.setAbilitato(true);
+		super.aggiorna(utente);
 		
 	}
 

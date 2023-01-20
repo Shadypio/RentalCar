@@ -46,6 +46,7 @@
 					<th>Cognome</th>
 					<th>Username</th>
 					<th>Data di nascita</th>
+					<th>Abilitato</th>
 					<th>Ruolo</th>
 				</tr>
 			</thead>
@@ -59,6 +60,12 @@
 						<td>${utente.cognome}</td>
 						<td>${utente.username}</td>
 						<td>${utente.dataDiNascita}</td>
+						<c:if test="${utente.abilitato}">
+								<td>Sì</td>
+							</c:if>
+							<c:if test="${!utente.abilitato}">
+								<td>No</td>
+							</c:if>
 						<td>${utente.ruolo.nomeRuolo}</td>
 						<td><a
 							href=" <spring:url value="/utente/infoutente/${utente.idUtente}" /> "
@@ -75,6 +82,20 @@
 							class="btn btn-danger table-buttons"> <span
 								class="oi oi-trash" /></span> Elimina
 						</a></td>
+						<c:if test="${utente.abilitato}">			
+						<td><a
+							href="<spring:url value="/utente/disabilita/${utente.idUtente}" /> "
+							class="btn btn-danger table-buttons"> <span
+								class="oi oi-circle-x" /></span> Disabilita
+						</a></td>
+						</c:if>
+						<c:if test="${!utente.abilitato}">			
+						<td><a
+							href="<spring:url value="/utente/abilita/${utente.idUtente}" /> "
+							class="btn btn-success table-buttons"> <span
+								class="oi oi-circle-check" /></span> Abilita
+						</a></td>
+						</c:if>
 					</tr>
 				</c:forEach>
 			</tbody>

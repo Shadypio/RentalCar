@@ -20,5 +20,8 @@ public interface IUtenteDao {
 
 	void elimina(Utente utente);
 	
-	void eliminaById(Long id);
+	void disabilitaUtente(Utente utente);
+	
+	void abilitaUtente(Utente utente);
+	
 }

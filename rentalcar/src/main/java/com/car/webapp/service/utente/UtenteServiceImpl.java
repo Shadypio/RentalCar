@@ -33,6 +33,7 @@ public class UtenteServiceImpl implements IUtenteService {
 	@Override
 	public void insUtente(Utente utente) {
 		
+		utente.setAbilitato(true);
 		utenteRepository.salva(utente);
 		
 	}
@@ -51,12 +52,6 @@ public class UtenteServiceImpl implements IUtenteService {
 		
 	}
 
-	@Override
-	public void delUtenteById(Long id) {
-		
-		utenteRepository.eliminaById(id);
-		
-	}
 
 	@Override
 	public Utente selUtenteByUsernameId(String username, Long id) {
@@ -68,6 +63,20 @@ public class UtenteServiceImpl implements IUtenteService {
 	public void salvaAdminUser(String password) {
 		
 		utenteRepository.salvaAdminUser(password);
+		
+	}
+
+	@Override
+	public void disabilitaUtente(Utente utente) {
+		
+		utenteRepository.disabilitaUtente(utente);
+		
+	}
+	
+	@Override
+	public void abilitaUtente(Utente utente) {
+		
+		utenteRepository.abilitaUtente(utente);
 		
 	}
 	
