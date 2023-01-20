@@ -17,8 +17,6 @@ public interface IUtenteService {
 	void salvaAdminUser(String password);
 	
 	void modificaUtente(Utente utente);
-
-	void delUtente(Utente Utente);
 	
 	void disabilitaUtente(Utente utente);
 	

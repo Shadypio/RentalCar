@@ -117,20 +117,7 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 		super.aggiorna(utente);
 		
 	}
-
-	@Override
-	public void elimina(Utente utente) {
-		
-		super.elimina(utente);
-		
-	}
 	
-
-	/*
-	INSERT INTO `cars_db`.`utente` (`nome`, `cognome`, `username`, `password`, `dataDiNascita`, `fk_idRuolo`) VALUES 
-	('Mario', 'Rossi', 'mariorossi', 'PasswordRossi1.', '2000-06-12', 1);
-	*/
-
 	@Override
 	public void salvaAdminUser(String password) {
 		

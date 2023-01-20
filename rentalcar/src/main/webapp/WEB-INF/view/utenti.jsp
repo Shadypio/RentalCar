@@ -76,19 +76,25 @@
 							href="<spring:url value="/utente/modifica/${utente.idUtente}" /> "
 							class="btn btn-warning table-buttons"> <span
 								class="oi oi-pencil"></span> Modifica
-						</a></td>
-						<td><a
-							href="<spring:url value="/utente/elimina/${utente.idUtente}" /> "
-							class="btn btn-danger table-buttons"> <span
-								class="oi oi-trash" /></span> Elimina
-						</a></td>
-						<c:if test="${utente.abilitato}">			
-						<td><a
-							href="<spring:url value="/utente/disabilita/${utente.idUtente}" /> "
-							class="btn btn-danger table-buttons"> <span
-								class="oi oi-circle-x" /></span> Disabilita
-						</a></td>
-						</c:if>
+						</a></td>	
+							<c:if test="${utente.abilitato}">			
+								<td>
+								<c:if test="${utente.ruolo.idRuolo == 1}">
+									<a
+										href="<spring:url value="/utente/disabilita/${utente.idUtente}"/> "
+										class="btn btn-danger table-buttons disabled "> <span
+											class="oi oi-circle-x"  /></span> Disabilita
+									</a>
+								</c:if>
+								<c:if test="${utente.ruolo.idRuolo != 1}">
+									<a
+										href="<spring:url value="/utente/disabilita/${utente.idUtente}"/> "
+										class="btn btn-danger table-buttons "> <span
+											class="oi oi-circle-x"  /></span> Disabilita
+									</a>
+								</c:if>
+								</td>
+							</c:if>
 						<c:if test="${!utente.abilitato}">			
 						<td><a
 							href="<spring:url value="/utente/abilita/${utente.idUtente}" /> "

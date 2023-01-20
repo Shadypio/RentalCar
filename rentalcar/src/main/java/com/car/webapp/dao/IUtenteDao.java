@@ -17,8 +17,6 @@ public interface IUtenteDao {
 	void salvaAdminUser(String password);
 
 	void aggiorna(Utente utente);
-
-	void elimina(Utente utente);
 	
 	void disabilitaUtente(Utente utente);
 	

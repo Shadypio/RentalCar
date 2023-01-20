@@ -46,14 +46,6 @@ public class UtenteServiceImpl implements IUtenteService {
 	}
 
 	@Override
-	public void delUtente(Utente utente) {
-		
-		utenteRepository.elimina(utente);
-		
-	}
-
-
-	@Override
 	public Utente selUtenteByUsernameId(String username, Long id) {
 		
 		return utenteRepository.selByUserId(username, id);

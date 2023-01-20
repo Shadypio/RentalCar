@@ -51,27 +51,6 @@ public class UtenteController {
 		return "utenti";
 	}
 
-
-	@GetMapping(value = "/elimina/{idUtente}")
-	public String delUtente(@PathVariable("idUtente") Long idUtente, Model model)
-	{
-
-		try
-		{
-			if (idUtente != null)
-			{
-
-				utenteService.delUtente(utenteService.selUtenteById(idUtente));
-			}
-		} 
-		catch (Exception ex)
-		{
-			throw new RuntimeException("Errore eliminazione utente", ex);
-		}
-
-		return "redirect:/utente/";
-	}
-
 	@GetMapping(value = "/infoutente/{idUtente}")
 	public String viewInfoUtente(@PathVariable("idUtente") Long idUtente, Model model)
 	{
