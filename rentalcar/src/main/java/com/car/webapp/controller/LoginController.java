@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.car.webapp.config.security.SpringSecurityUserContext;
 import com.car.webapp.domain.utente.Utente;
 import com.car.webapp.service.utente.IUtenteService;
 
@@ -49,6 +50,7 @@ public class LoginController
 		if (utenti.isEmpty())
 			utenteService.salvaAdminUser(passwordAdmin);
 		
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser());
 		return "login";
 	}
 	
@@ -56,7 +58,6 @@ public class LoginController
 	public String getLoginPost(HttpServletRequest request, HttpServletResponse response)
 	{
 		String[] test = request.getParameterValues("logout");
-		
 		if (test != null)
 		{
 			Cookie cookieWithSlash = new Cookie("JSESSIONID", null);

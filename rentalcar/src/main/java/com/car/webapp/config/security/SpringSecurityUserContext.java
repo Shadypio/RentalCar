@@ -13,11 +13,11 @@ public class SpringSecurityUserContext
 	
 	public String getCurrentUser()
 	{
-		String CurrentUser = (authentication != null) ?  authentication.getName() : null;
+		String usernameCurrentUser = (authentication != null) ?  authentication.getName() : null;
 		
-		if (CurrentUser != null && CurrentUser.equals("anonymousUser"))
-			CurrentUser = null;
+		if (usernameCurrentUser != null && usernameCurrentUser.equals("anonymousUser"))
+			usernameCurrentUser = null;
 				
-		return CurrentUser;
+		return usernameCurrentUser;
 	}
 }

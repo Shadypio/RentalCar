@@ -10,15 +10,14 @@
                         <form action="${loginUrl}" method="post" class="form-horizontal">
                         
                             <c:if test="${param.error != null}">
-                                <div>
-   									 <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
-  								</div>
+                                <div class="alert alert-danger">
+                                    <p><spring:message code="login.form.errmsg"/></p>
+                                </div>
                             </c:if>
                             
                             <c:if test="${param.forbidden != null}">
                                 <div class="alert alert-danger">
                                     <p><spring:message code="login.form.forbiddenmsg"/></p>
-                                    <p>${param.forbidden}</p>
                                 </div>
                             </c:if>
                             

@@ -115,10 +115,11 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 	
 	private static final String[] ADMIN_UTENTI_MATCHER =
 	{
+			"/utente/**",
 			"/utente/aggiungi/**",
 			"/utente/modifica/**",
-			"/utente/elimina/**",
-			
+			"/utente/disabilita/**",
+			"/utente/abilita/**",
 	};
 	
 	private static final String[] ADMIN_AUTO_MATCHER =
@@ -139,7 +140,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		.antMatchers("/").hasAnyRole("ANONYMOUS", "USER", "ADMIN")
 		.antMatchers(ADMIN_AUTO_MATCHER).access("hasRole('ADMIN')")
 		.antMatchers(ADMIN_UTENTI_MATCHER).access("hasRole('ADMIN')")
-		.antMatchers("/utente/**").hasAnyRole("USER", "ADMIN")
+		.antMatchers("/utente/infoutente/**").hasAnyRole("USER", "ADMIN")
 		.antMatchers("/auto/**").hasAnyRole("USER", "ADMIN")
 		.antMatchers("/prenotazione/**").hasAnyRole("USER", "ADMIN")
 		.and()
@@ -184,7 +185,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 	public SavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler() 
 	{
         SavedRequestAwareAuthenticationSuccessHandler auth = new SavedRequestAwareAuthenticationSuccessHandler();
-		auth.setTargetUrlParameter("targetUrl");
+		auth.setTargetUrlParameter("/");
         
 		return auth;
 	}

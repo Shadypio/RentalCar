@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.car.webapp.config.security.SpringSecurityUserContext;
 import com.car.webapp.domain.auto.Auto;
 import com.car.webapp.domain.prenotazione.Prenotazione;
 import com.car.webapp.domain.utente.Utente;
@@ -40,7 +41,6 @@ public class PrenotazioneController {
 	
 	private Auto autoPrenotata = new Auto();
 	private Utente utenteRiferito = new Utente();
-	// private Utente utenteRiferito = new SpringSecurityUserContext().getCurrentUser()
 	
 	List<Prenotazione> recordset;
 	
@@ -104,8 +104,7 @@ public class PrenotazioneController {
 		model.addAttribute("auto", autoPrenotata);
 		model.addAttribute("utente", utenteRiferito);
 		model.addAttribute("edit", false);
-		model.addAttribute("saved", false);
-		//model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
+		model.addAttribute("saved", false); 
 				
 		return "insPrenotazione";
 	}
@@ -124,8 +123,8 @@ public class PrenotazioneController {
 		}
 		
 		autoPrenotata = autoService.getAutoFromTarga(targa);
-		// prendere utente loggato
-		utenteRiferito = utenteService.getAllUtenti().get(0);
+		utenteRiferito = utenteService.selUtenteByUsername(new SpringSecurityUserContext().getCurrentUser());
+		// utenteRiferito = utenteService.getAllUtenti().get(0);
 		
 		if(utenteRiferito.getPrenotazioneEffettuata() != null)
 			return "redirect:/auto/";
