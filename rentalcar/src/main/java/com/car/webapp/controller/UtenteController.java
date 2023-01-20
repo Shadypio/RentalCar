@@ -39,7 +39,7 @@ public class UtenteController {
 	List<Utente> recordset;
 
 
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping(value = "/")
 	public String getUtenti(Model model) {
 
 		recordset = utenteService.getAllUtenti();
@@ -76,6 +76,31 @@ public class UtenteController {
 
 		return "infoUtente";
 	}
+	
+	@GetMapping(value = "/infoutenteusername/{User}")
+	public String viewInfoUtente(@PathVariable("User") String username, Model model)
+	{
+
+		try
+		{
+			if (username != null)
+			{
+				Utente utente = utenteService.selUtenteByUsername(username);
+				model.addAttribute("Titolo", "Dettagli Utente");
+				model.addAttribute("Titolo2", "Utente " + utente.getUsername());
+				model.addAttribute("utente", utente);
+				model.addAttribute("isUtente", true);
+				model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
+			}
+		} 
+		catch (Exception ex)
+		{
+			throw new RuntimeException("Errore info utente", ex);
+		}
+
+		return "infoUtente";
+	}
+
 
 	@GetMapping(value = "/aggiungi")
 	public String insUtente(Model model) {

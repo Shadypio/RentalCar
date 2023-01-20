@@ -36,16 +36,16 @@
         					Parco Auto
         					<span class="sr-only">(current)</span>
         				</a>
-        	 <a class="nav-link" href="<spring:url value="/utente/"/>">
+        	 <a class="nav-link" href="<spring:url value="/utente/infoutenteusername/${User}"/>">
         					<span class="oi oi-bullhorn" title="bullhorn" aria-hidden="true"></span>
-        					Gestione utenti
+        					Profilo utente
         					<span class="sr-only">(current)</span>
         				</a>		
         	 <a class="nav-link" href="<spring:url value="/prenotazione/"/>">
         					<span class="oi oi-pencil" title="pencil" aria-hidden="true"></span>
         					Prenotazioni
         					<span class="sr-only">(current)</span>
-        				</a>					
+        	 </a>					
   		</div>
   		
   		<!-- dropdown user menu -->

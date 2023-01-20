@@ -115,7 +115,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 	
 	private static final String[] ADMIN_UTENTI_MATCHER =
 	{
-			"/utente/**",
+			"/utente/mostratutti/**",
 			"/utente/aggiungi/**",
 			"/utente/modifica/**",
 			"/utente/disabilita/**",
@@ -141,6 +141,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		.antMatchers(ADMIN_AUTO_MATCHER).access("hasRole('ADMIN')")
 		.antMatchers(ADMIN_UTENTI_MATCHER).access("hasRole('ADMIN')")
 		.antMatchers("/utente/infoutente/**").hasAnyRole("USER", "ADMIN")
+		.antMatchers("/utente/infoutenteusername/**").hasAnyRole("USER", "ADMIN")
 		.antMatchers("/auto/**").hasAnyRole("USER", "ADMIN")
 		.antMatchers("/prenotazione/**").hasAnyRole("USER", "ADMIN")
 		.and()
