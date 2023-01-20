@@ -32,8 +32,13 @@
          <section class = "locale-link-left"> 
             	<a href="?language=en"><img src="<c:url value="/img/US.png" />"></a> - 
             	<a href="?language=it"><img src="<c:url value="/img/IT.png" />"></a>                
-      		</section> 
-      		
+      		</section>
+			<c:if test="${errorDate != null}">
+				<div class="alert alert-danger">
+					${errorDate}
+				</div>
+			</c:if>
+
 		</div>
 		<div class="portlet-body form">
 			<div class="tab-content" id="myTabContent">

@@ -99,7 +99,7 @@ public class PrenotazioneController {
 		
 		Prenotazione prenotazione = new Prenotazione();
 		autoPrenotata = autoService.getAutoFromTarga(targa);
-		utenteRiferito = utenteService.getAllUtenti().get(0);
+		utenteRiferito = utenteService.selUtenteByUsername(new SpringSecurityUserContext().getCurrentUser());
 		
 		model.addAttribute("Titolo", "Inserimento Nuova Prenotazione");
 		model.addAttribute("prenotazione", prenotazione);
@@ -107,7 +107,6 @@ public class PrenotazioneController {
 		model.addAttribute("utente", utenteRiferito);
 		model.addAttribute("edit", false);
 		model.addAttribute("saved", false);
-		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 				
 		return "insPrenotazione";
 	}
@@ -125,12 +124,21 @@ public class PrenotazioneController {
 			return "insPrenotazione";
 		}
 		
+		if(nuovaPrenotazione.getDataFine().before(nuovaPrenotazione.getDataInizio())) {	
+			redirectAttributes.addFlashAttribute("errorDate", "Non puoi inserire una data di fine "
+					+ "antecedente alla data di inizio");
+			return "redirect:/prenotazione/aggiungi/" + autoPrenotata.getTarga();
+		}
+		
 		autoPrenotata = autoService.getAutoFromTarga(targa);
 		utenteRiferito = utenteService.selUtenteByUsername(new SpringSecurityUserContext().getCurrentUser());
 
 		
-		if(utenteRiferito.getPrenotazioneEffettuata() != null)
+		if(utenteRiferito.getPrenotazioneEffettuata() != null) {
+			redirectAttributes.addFlashAttribute("alreadyRented", "Hai già prenotato un'altra auto."
+					+ " Se vuoi sceglierne un'altra, cancella prima la tua prenotazione attuale");
 			return "redirect:/auto/";
+		}
 		
 		nuovaPrenotazione.setAutoPrenotata(autoPrenotata);
 		nuovaPrenotazione.setUtenteRiferito(utenteRiferito);

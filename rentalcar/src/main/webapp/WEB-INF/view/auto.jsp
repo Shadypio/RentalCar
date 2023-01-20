@@ -38,7 +38,11 @@
          
          
          <c:otherwise>
-           
+           <c:if test="${alreadyRented != null}">
+				<div class="alert alert-danger">
+					${alreadyRented}
+				</div>
+			</c:if>
 
 			<table id="auto" class="table table-striped table-bordered">
 				<thead>
