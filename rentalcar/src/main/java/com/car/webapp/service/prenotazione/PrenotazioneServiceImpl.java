@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.car.webapp.dao.IPrenotazioneDao;
 import com.car.webapp.domain.prenotazione.Prenotazione;
+import com.car.webapp.domain.utente.Utente;
 
 @Service("prenotazioneService")
 @Transactional
@@ -49,6 +50,12 @@ public class PrenotazioneServiceImpl implements IPrenotazioneService {
 		
 		prenotazioneRepository.elimina(prenotazione);
 		
+	}
+
+	@Override
+	public Prenotazione getPrenotazioneByUtente(Utente utente) {
+		
+		return prenotazioneRepository.selByUtente(utente);
 	}
 
 

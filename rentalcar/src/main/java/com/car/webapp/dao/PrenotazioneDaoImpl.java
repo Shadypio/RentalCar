@@ -9,6 +9,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 
 import com.car.webapp.domain.prenotazione.Prenotazione;
+import com.car.webapp.domain.utente.Utente;
 
 @Repository
 public class PrenotazioneDaoImpl extends AbstractDao<Prenotazione, Long> implements IPrenotazioneDao {
@@ -57,6 +58,25 @@ public class PrenotazioneDaoImpl extends AbstractDao<Prenotazione, Long> impleme
 		
 		super.elimina(prenotazione);
 
+	}
+
+	@Override
+	public Prenotazione selByUtente(Utente utente) {
+		
+		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Prenotazione> queryDefinition = queryBuilder.createQuery(Prenotazione.class);
+		
+		Root<Prenotazione> recordset = queryDefinition.from(Prenotazione.class);
+		
+		queryDefinition.select(recordset)
+			.where(queryBuilder.equal(recordset.get("utenteRiferito"), utente));
+		
+		Prenotazione prenotazione = entityManager.createQuery(queryDefinition).getSingleResult();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		return prenotazione;
 	}
 
 }

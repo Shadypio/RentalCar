@@ -151,5 +151,28 @@ public class PrenotazioneController {
 		
 		return "redirect:/prenotazione/infoprenotazione/" + nuovaPrenotazione.getIdPrenotazione();
 	}
+	
+	@GetMapping(value = "/getfromutente/{idUtente}")
+	public String getPrenotazioniFromUtente(@PathVariable("idUtente") Long idUtente, 
+			RedirectAttributes redirectAttributes, 
+			Model model)
+	{
+		try
+		{
+			if (idUtente != null)
+			{
+				Prenotazione prenotazioneTrovata =
+						prenotazioneService.getPrenotazioneByUtente(utenteService.selUtenteById(idUtente));
+				return "redirect:/prenotazione/infoprenotazione/" + prenotazioneTrovata.getIdPrenotazione();
+			}
+		} 
+		catch (Exception ex)
+		{
+			redirectAttributes.addFlashAttribute("noRentals", "Non hai effettuato alcuna prenotazione.");
+			return "redirect:/utente/infoutente/" + idUtente;
+		}
+
+		return "redirect:/utente/infoutente/" + idUtente;
+	}
 
 }

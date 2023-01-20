@@ -31,17 +31,36 @@
 			</ul>
 		</div>
 
-
+		
+		<ul class="list-group list-group-flush">
+		<c:if test="${noRentals != null}">
+			<div class="alert alert-danger">
+				<p>
+					${noRentals}
+				</p>
+			</div>
+		</c:if>
+			<li class="list-group-item"><a
+				href="<spring:url value="/prenotazione/getfromutente/${utente.idUtente}" /> "
+				class="btn btn-warning table-buttons"> <span
+					class="oi oi-list-rich"></span> Prenotazioni effettuate
+			</a></li>
 		<c:if test="${utente.ruolo.idRuolo == 1}">
-			<ul class="list-group list-group-flush">
 				<li class="list-group-item"><a
 					href="<spring:url value="/utente/" /> "
 					class="btn btn-warning table-buttons"> <span
 						class="oi oi-people"></span> Gestione utenti
 				</a></li>
+				
+				<li class="list-group-item"><a
+					href="<spring:url value="/prenotazione/" /> "
+					class="btn btn-warning table-buttons"> <span
+						class="oi oi-pencil"></span> Gestione Prenotazioni
+				</a></li>
 
-			</ul>
+			
 		</c:if>
+		</ul>
 
 	</div>
 </section>
