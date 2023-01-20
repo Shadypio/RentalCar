@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.car.webapp.config.security.SpringSecurityUserContext;
 import com.car.webapp.domain.auto.Auto;
 import com.car.webapp.service.auto.IAutoService;
 
@@ -40,6 +41,7 @@ public class AutoController {
 		model.addAttribute("isAuto", true);
 		if (recordset != null)
 			model.addAttribute("numAuto", recordset.size());
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 		
 		return "auto";
 	}
@@ -75,6 +77,7 @@ public class AutoController {
 		model.addAttribute("Titolo2", "Targa " + targa);
 		model.addAttribute("auto", auto);
 		model.addAttribute("isAuto", true);
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 		
 		return "infoAuto";
 	}
@@ -89,6 +92,7 @@ public class AutoController {
 		model.addAttribute("auto", auto);
 		model.addAttribute("edit", false);
 		model.addAttribute("saved", false);
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 		
 		
 		return "insAuto";

@@ -55,6 +55,7 @@ public class PrenotazioneController {
 		model.addAttribute("isPrenotazione", true);
 		if (recordset != null)
 			model.addAttribute("numPrenotazioni", recordset.size());
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 		
 		return "prenotazioni";
 	}
@@ -86,6 +87,7 @@ public class PrenotazioneController {
 		model.addAttribute("Titolo", "Dettagli Prenotazione");
 		model.addAttribute("prenotazione", prenotazione);
 		model.addAttribute("isPrenotazione", true);
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 		
 		return "infoPrenotazione";
 	}
@@ -104,7 +106,8 @@ public class PrenotazioneController {
 		model.addAttribute("auto", autoPrenotata);
 		model.addAttribute("utente", utenteRiferito);
 		model.addAttribute("edit", false);
-		model.addAttribute("saved", false); 
+		model.addAttribute("saved", false);
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 				
 		return "insPrenotazione";
 	}
@@ -124,7 +127,7 @@ public class PrenotazioneController {
 		
 		autoPrenotata = autoService.getAutoFromTarga(targa);
 		utenteRiferito = utenteService.selUtenteByUsername(new SpringSecurityUserContext().getCurrentUser());
-		// utenteRiferito = utenteService.getAllUtenti().get(0);
+
 		
 		if(utenteRiferito.getPrenotazioneEffettuata() != null)
 			return "redirect:/auto/";

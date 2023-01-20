@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.car.webapp.config.security.SpringSecurityUserContext;
 import com.car.webapp.domain.ruolo.Ruolo;
 import com.car.webapp.domain.utente.Utente;
 import com.car.webapp.service.ruolo.IRuoloService;
@@ -48,6 +49,7 @@ public class UtenteController {
 		model.addAttribute("Utenti", recordset);
 		model.addAttribute("numUtenti", recordset.size());
 		model.addAttribute("isUtente", true);
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 		return "utenti";
 	}
 
@@ -64,6 +66,7 @@ public class UtenteController {
 				model.addAttribute("Titolo2", "Utente " + utente.getUsername());
 				model.addAttribute("utente", utente);
 				model.addAttribute("isUtente", true);
+				model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 			}
 		} 
 		catch (Exception ex)
@@ -85,6 +88,7 @@ public class UtenteController {
 		model.addAttribute("utente", utente);
 		model.addAttribute("edit", false);
 		model.addAttribute("saved", false);
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 
 
 		return "insUtente";
