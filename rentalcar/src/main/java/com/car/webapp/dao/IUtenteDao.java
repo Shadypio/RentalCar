@@ -10,7 +10,7 @@ public interface IUtenteDao {
 	
 	Utente selById(Long id);
 	
-	Utente selByUserId(String username, Long id);
+	Utente selByUsername(String username);
 
 	void salva(Utente utente);
 	

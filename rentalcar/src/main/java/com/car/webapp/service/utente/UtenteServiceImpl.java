@@ -46,9 +46,9 @@ public class UtenteServiceImpl implements IUtenteService {
 	}
 
 	@Override
-	public Utente selUtenteByUsernameId(String username, Long id) {
+	public Utente selUtenteByUsername(String username) {
 		
-		return utenteRepository.selByUserId(username, id);
+		return utenteRepository.selByUsername(username);
 	}
 
 	@Override

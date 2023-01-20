@@ -11,8 +11,8 @@
                         
                             <c:if test="${param.error != null}">
                                 <div>
-   				 <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
-  </div>
+   									 <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+  								</div>
                             </c:if>
                             
                             <c:if test="${param.forbidden != null}">
@@ -27,11 +27,6 @@
                                     <p><spring:message code="login.form.logoutmsg"/></p>
                                 </div>
                             </c:if>
-                            
-                            <div class="input-group input-sm">
-                                <label class="input-group-addon" for="id"><i class="fa fa-check-square"></i></label>
-                                <input type="text" class="form-control" id="id" name="id" placeholder="Id" required>
-                            </div>
                             
                             <div class="input-group input-sm">
                                 <label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>

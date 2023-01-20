@@ -79,9 +79,21 @@ public class UtenteDaoImpl extends AbstractDao<Utente, Long> implements IUtenteD
 	*/
 	
 	@Override
-	public Utente selByUserId(String username, Long id) {
+	public Utente selByUsername(String username) {
 		
-		return this.selById(id);
+		CriteriaBuilder queryBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Utente> queryDefinition = queryBuilder.createQuery(Utente.class);
+		
+		Root<Utente> recordset = queryDefinition.from(Utente.class);
+		
+		queryDefinition.select(recordset)
+			.where(queryBuilder.equal(recordset.get("username"), username));
+		
+		Utente utente = entityManager.createQuery(queryDefinition).getSingleResult();
+		
+		entityManager.clear();
+		
+		return utente;
 		
 	}
 

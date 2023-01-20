@@ -10,7 +10,7 @@ public interface IUtenteService {
 	
 	Utente selUtenteById(Long id);
 	
-	Utente selUtenteByUsernameId(String username, Long id);
+	Utente selUtenteByUsername(String username);
 
 	void insUtente(Utente utente);
 	

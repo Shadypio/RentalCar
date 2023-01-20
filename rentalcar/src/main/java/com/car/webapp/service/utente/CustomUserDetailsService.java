@@ -2,7 +2,6 @@ package com.car.webapp.service.utente;
 
 
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
@@ -24,23 +23,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		String[] usernameAndId = StringUtils.split(username, "@"); //username@id
-		
-		
-		
-		if(usernameAndId == null || usernameAndId.length != 2)
-			throw new UsernameNotFoundException("Inserisci username e id");
-		
-		String usernameUtente = usernameAndId[0];
-		String idUtenteString = usernameAndId[1];
-		Long idUtente = Long.parseLong(idUtenteString);
-		
-		Utente utente = utenteService.selUtenteByUsernameId(usernameUtente, idUtente);
+		Utente utente = utenteService.selUtenteByUsername(username);
 		
 		if(utente == null) {
 			throw new UsernameNotFoundException("Utente non trovato");
 		}
-		
 		
 		UserBuilder builder = null;
 		

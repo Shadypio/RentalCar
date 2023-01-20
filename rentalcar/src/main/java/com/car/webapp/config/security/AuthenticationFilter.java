@@ -31,17 +31,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	{
 		 String username = request.getParameter("username");
 	     String password = obtainPassword(request);
-	     String id = request.getParameter("id");
 	     
 	     
 	     username = (username == null) ? "" : username;
 	     password = (password == null) ? "" : password;
-	     id = (id == null) ? "" : id;
-	     
-	     String UserWithId = username.trim() + "@" + id;
-	     
-	        
-	     return new UsernamePasswordAuthenticationToken(UserWithId, password);  
+	     return new UsernamePasswordAuthenticationToken(username, password);  
 	         
 	}
 }
