@@ -65,10 +65,10 @@
 							<td>${car.model}</td>
 							<td>${car.category}</td>
 							<td>${car.year}</td>
-							<c:if test="${auto.rental != null}">
+							<c:if test="${car.rental != null}">
 								<td>Sì</td>
 							</c:if>
-							<c:if test="${auto.rental == null}">
+							<c:if test="${car.rental == null}">
 								<td>No</td>
 							</c:if>
 

@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.car.webapp.config.security.SpringSecurityUserContext;
-import com.car.webapp.domain.customer.Customer;
-import com.car.webapp.domain.role.Role;
-import com.car.webapp.service.customer.ICustomerService;
-import com.car.webapp.service.role.IRoleServiec;
+import com.car.webapp.domain.ruolo.Role;
+import com.car.webapp.domain.utente.Customer;
+import com.car.webapp.service.ruolo.IRoleServiec;
+import com.car.webapp.service.utente.ICustomerService;
 
 @Controller
 @RequestMapping("/customer")

@@ -2,7 +2,7 @@ package com.car.webapp.dao;
 
 import java.util.List;
 
-import com.car.webapp.domain.car.Car;
+import com.car.webapp.domain.auto.Car;
 
 public interface ICarDao {
 

@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.car.webapp.config.security.SpringSecurityUserContext;
-import com.car.webapp.domain.car.Car;
-import com.car.webapp.domain.customer.Customer;
-import com.car.webapp.domain.rental.Rental;
-import com.car.webapp.service.car.ICarService;
-import com.car.webapp.service.customer.ICustomerService;
-import com.car.webapp.service.rental.IRentalService;
+import com.car.webapp.domain.auto.Car;
+import com.car.webapp.domain.prenotazione.Rental;
+import com.car.webapp.domain.utente.Customer;
+import com.car.webapp.service.auto.ICarService;
+import com.car.webapp.service.prenotazione.IRentalService;
+import com.car.webapp.service.utente.ICustomerService;
 
 
 @Controller
@@ -57,7 +57,7 @@ public class RentalController {
 			model.addAttribute("rentalsAmount", recordset.size());
 		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 		
-		return "rental";
+		return "rentals";
 	}
 	
 	@GetMapping(value = "/delete/{idRental}")

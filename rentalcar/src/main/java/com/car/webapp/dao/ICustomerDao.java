@@ -2,7 +2,7 @@ package com.car.webapp.dao;
 
 import java.util.List;
 
-import com.car.webapp.domain.customer.Customer;
+import com.car.webapp.domain.utente.Customer;
 
 public interface ICustomerDao {
 	

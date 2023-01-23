@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.car.webapp.config.security.SpringSecurityUserContext;
-import com.car.webapp.domain.car.Car;
-import com.car.webapp.service.car.ICarService;
+import com.car.webapp.domain.auto.Car;
+import com.car.webapp.service.auto.ICarService;
 
 @Controller
 @RequestMapping("/car")

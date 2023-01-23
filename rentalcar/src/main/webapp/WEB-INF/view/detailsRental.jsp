@@ -21,7 +21,7 @@
  		 		<li class="list-group-item">Id: <span class="info-art">${rental.id}</span></li>
  		 		<li class="list-group-item">Data Inizio: <span class="info-art">${rental.startDate}</span></li>
  		 		<li class="list-group-item">Data fine: <span class="info-art">${rental.endDate}</span></li>
- 		 		<li class="list-group-item">Prenotato da: <span class="info-art">${rental.referredUser.username}</span></li>
+ 		 		<li class="list-group-item">Prenotato da: <span class="info-art">${rental.referredCustomer.username}</span></li>
  		 		<li class="list-group-item">Targa Auto: <span class="info-art">${rental.rentedCar.licensePlate}</span></li>
   			</ul>
 		</div>

@@ -31,12 +31,12 @@
   		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
   		
   			 <a class="navbar-brand" href="<spring:url value="/"/>">RentalCar</a>
-  			 <a class="nav-link" href="<spring:url value="/auto"/>">
+  			 <a class="nav-link" href="<spring:url value="/car"/>">
         					<span class="oi oi-box" title="box" aria-hidden="true"></span>
         					Parco Auto
         					<span class="sr-only">(current)</span>
         				</a>
-        	 <a class="nav-link" href="<spring:url value="/utente/infoutenteusername/${User}"/>">
+        	 <a class="nav-link" href="<spring:url value="/customer/detailscustomerusername/${User}"/>">
         					<span class="oi oi-bullhorn" title="bullhorn" aria-hidden="true"></span>
         					Profilo utente
         					<span class="sr-only">(current)</span>
