@@ -8,8 +8,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2>${Titolo}</h2>
-				<p>${Titolo2}</p>
+				<h2>${head}</h2>
+				<p>${subheading}</p>
 			</div>
 		</div>
 	</div>
@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-md-6 col-sm-6">
 			<h3 class="page-title">
-				Risultati Ricerca: <small>Trovate ${numPrenotazioni}
+				Risultati Ricerca: <small>Trovate ${rentalsAmount}
 					Prenotazioni</small>
 			</h3>
 		</div>
@@ -29,7 +29,7 @@
 
 		<c:choose>
 
-			<c:when test="${numPrenotazioni == 0}">
+			<c:when test="${rentalsAmount == 0}">
 				<h3 class="page-title">Non è stata effettuata alcuna
 					prenotazione</h3>
 			</c:when>
@@ -38,7 +38,7 @@
 
 			<c:otherwise>
 
-				<table id="auto" class="table table-striped table-bordered">
+				<table id="car" class="table table-striped table-bordered">
 					<thead>
 						<tr>
 							<th>ID Prenotazione</th>
@@ -50,19 +50,19 @@
 					<tfoot>
 					</tfoot>
 					<tbody>
-						<c:forEach items="${Prenotazioni}" var="prenotazione">
+						<c:forEach items="${rentals}" var="rental">
 							<tr>
-								<td>${prenotazione.idPrenotazione}</td>
-								<td>${prenotazione.utenteRiferito.username}</td>
-								<td>${prenotazione.dataInizio}</td>
-								<td>${prenotazione.dataFine}</td>
+								<td>${rental.id}</td>
+								<td>${rental.referredCustomer.username}</td>
+								<td>${rental.startDate}</td>
+								<td>${rental.endDate}</td>
 								<td><a
-									href=" <spring:url value="/prenotazione/infoprenotazione/${prenotazione.idPrenotazione}" /> "
+									href=" <spring:url value="/rental/detailsrental/${rental.id}" /> "
 									class="btn btn-primary"> <span class="oi oi-plus" /></span>
 										Dettaglio
 								</a></td>
 								<td><a
-									href="<spring:url value="/prenotazione/elimina/${prenotazione.idPrenotazione}" /> "
+									href="<spring:url value="/rental/delete/${rental.id}" /> "
 									class="btn btn-danger table-buttons"> <span
 										class="oi oi-trash" /></span> Elimina
 								</a></td>

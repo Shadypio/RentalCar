@@ -14,9 +14,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2>${Titolo}</h2>
-				<h4> ${auto.targa} - ${auto.marca} ${auto.modello} (${auto.anno})</h4>
-				<h4> ${utente.nome} ${utente.cognome} - ${utente.username}</h4>
+				<h2>${head}</h2>
+				<h4> ${car.licensePlate} - ${car.brand} ${car.model} (${car.year})</h4>
+				<h4> ${customer.firstName} ${customer.lastName} - ${customer.username}</h4>
 			</div>
 		</div>
 	</div>
@@ -58,27 +58,27 @@
 				
 				<!-- Form Dati Prenotazione -->
 				<div class="tab-pane fade show active" id="dati" role="tabpanel" aria-labelledby="dati-tab">
-					<form:form  method="POST" modelAttribute="prenotazione">
+					<form:form  method="POST" modelAttribute="rental">
 					<form:errors path="*" cssClass="alert alert-danger" element="div"/> 
 					
 					<div class="form-body">
 					
 						<div class="form-group">
-							<label for="dataInizio"><spring:message code="insprenotazione.form.dataInizio.label"/></label>
-							<form:input id="dataInizio" path="dataInizio" type="date" 
+							<label for="startDate"><spring:message code="insprenotazione.form.dataInizio.label"/></label>
+							<form:input id="startDate" path="startDate" type="date" 
 							min='<%=""+currentDate.format(formatter)%>' 
 							max="2023-12-31"
 							class="form-control" placeholder="Data Inizio" required="required"/>  
-							<form:errors path="dataInizio" cssClass="text-danger"/>
+							<form:errors path="startDate" cssClass="text-danger"/>
 						</div>
 						
 						<div class="form-group">
-							<label for="dataFine"><spring:message code="insprenotazione.form.dataFine.label"/></label>
-							<form:input id="dataFine" path="dataFine" type="date" 
+							<label for="endDate"><spring:message code="insprenotazione.form.dataFine.label"/></label>
+							<form:input id="endDate" path="endDate" type="date" 
 							min='<%=""+currentDate.format(formatter)%>' 
 							max="2023-12-31"
 							class="form-control" placeholder="Data Fine" required="required"/>  
-							<form:errors path="dataFine" cssClass="text-danger"/>
+							<form:errors path="endDate" cssClass="text-danger"/>
 						</div>
 						
 						<hr class="line-form">

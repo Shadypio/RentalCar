@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2>${Titolo}</h2>
+				<h2>${head}</h2>
 			</div>
 		</div>
 	</div>
@@ -48,7 +48,7 @@
 				<!-- Form Dati Utente -->
 				<div class="tab-pane fade show active" id="dati" role="tabpanel"
 					aria-labelledby="dati-tab">
-					<form:form method="POST" modelAttribute="utente">
+					<form:form method="POST" modelAttribute="customer">
 						<form:errors path="*" cssClass="alert alert-danger" element="div" />
 
 						<div class="form-body">
@@ -56,26 +56,26 @@
 							<div class="form-group">
 								<label for="nome"><spring:message
 										code="insutente.form.nome.label" /></label>
-								<form:input id="nome" path="nome" type="text"
+								<form:input id="firstName" path="firstName" type="text"
 									class="form-control" placeholder="Nome" required="required" />
-								<form:errors path="nome" cssClass="text-danger" />
+								<form:errors path="firstName" cssClass="text-danger" />
 							</div>
 
 							<div class="form-group">
-								<label for="cognome"><spring:message
+								<label for="lastName"><spring:message
 										code="insutente.form.cognome.label" /></label>
-								<form:input id="cognome" path="cognome" type="text"
+								<form:input id="lastName" path="lastName" type="text"
 									class="form-control" placeholder="Cognome" required="required"/>
-								<form:errors path="cognome" cssClass="text-danger" />
+								<form:errors path="lastName" cssClass="text-danger" />
 							</div>
 
 							<div class="form-group">
-								<label for="dataDiNascita"><spring:message
+								<label for="dateOfBirth"><spring:message
 										code="insutente.form.datadinascita.label" /></label>
-								<form:input id="dataDiNascita" path="dataDiNascita" type="date"
+								<form:input id="dateOfBirth" path="dateOfBirth" type="date"
 									min="1950-01-01" max="2004-12-31" class="form-control"
 									placeholder="Data di nascita" required="required"/>
-								<form:errors path="dataDiNascita" cssClass="text-danger" />
+								<form:errors path="dateOfBirth" cssClass="text-danger" />
 							</div>
 
 							<div class="form-group">
@@ -95,15 +95,15 @@
 							</div>
 
 							<c:if test="${edit}">
-								<form:hidden id="ruolo" path="ruolo.idRuolo"/>
+								<form:hidden id="role" path="role.id"/>
 							</c:if>
 							
 							<c:if test="${!edit}">
 								<div class="form-group" >
-									<label for="ruolo"><spring:message code="insutente.form.ruolo.label" /></label>
+									<label for="role"><spring:message code="insutente.form.ruolo.label" /></label>
 									<div class="mt-radio-inline disabled">
-									<form:select name="ruolo" id="ruolo" path="ruolo.idRuolo"> 
-									    	<form:options items="${ruoli}" itemValue="idRuolo" itemLabel="nomeRuolo" /><br>		
+									<form:select name="role" id="role" path="role.id"> 
+									    	<form:options items="${roles}" itemValue="id" itemLabel="roleName" /><br>		
 									</form:select>
 									</div>
 								</div>

@@ -5,9 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-              <h2>${intestazione}</h2>
+              <h2>${head}</h2>
                 <p>
-                    ${saluti}
+                    ${greetings}
                 </p>
             </div>
         </div>

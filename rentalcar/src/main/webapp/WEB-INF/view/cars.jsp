@@ -8,8 +8,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2>${Titolo}</h2>
-				<p>${Titolo2}</p>
+				<h2>${head}</h2>
+				<p>${subheading}</p>
 			</div>
 		</div>
 	</div>
@@ -18,18 +18,18 @@
 	<div class="row">
 		<div class="col-md-6 col-sm-6">
 			<h3 class="page-title">
-				Risultati Ricerca: <small>Trovate ${numAuto} Auto</small>
+				Risultati Ricerca: <small>Trovate ${carsAmount} Auto</small>
 			</h3>
 		</div>
 		<div class="col-md-6 col-sm-6">
-			<a href="<spring:url value="/auto/aggiungi" /> "
+			<a href="<spring:url value="/car/add" /> "
 				style="margin-left: 20px;" class="btn btn-success float-right">Nuova
 				Auto</a>
 		</div>
 
 		<c:choose>
          
-         <c:when test = "${numAuto == 0}">
+         <c:when test = "${carsAmount == 0}">
             <h3 class="page-title">
 				Nel nostro catalogo non sono presenti auto
 			</h3>
@@ -58,34 +58,34 @@
 				<tfoot>
 				</tfoot>
 				<tbody>
-					<c:forEach items="${Auto}" var="auto">
+					<c:forEach items="${cars}" var="car">
 						<tr>
-							<td>${auto.targa}</td>
-							<td>${auto.marca}</td>
-							<td>${auto.modello}</td>
-							<td>${auto.categoria}</td>
-							<td>${auto.anno}</td>
-							<c:if test="${auto.prenotazione != null}">
+							<td>${car.licensePlate}</td>
+							<td>${car.brand}</td>
+							<td>${car.model}</td>
+							<td>${car.category}</td>
+							<td>${car.year}</td>
+							<c:if test="${auto.rental != null}">
 								<td>Sì</td>
 							</c:if>
-							<c:if test="${auto.prenotazione == null}">
+							<c:if test="${auto.rental == null}">
 								<td>No</td>
 							</c:if>
 
 							<td><a
-								href=" <spring:url value="/auto/infoauto/${auto.targa}" /> "
+								href=" <spring:url value="/car/detailscar/${car.licensePlate}" /> "
 								class="btn btn-primary"> <span class="oi oi-plus" /></span>
 									Dettaglio
 							</a></td>
-							<td><c:if test="${auto.prenotazione == null}">
+							<td><c:if test="${car.rental == null}">
 									<a
-										href="<spring:url value="/prenotazione/aggiungi/${auto.targa}" /> "
+										href="<spring:url value="/rental/add/${car.licensePlate}" /> "
 										class="btn btn-warning table-buttons"> <span
 										class="oi oi-pencil"></span> Prenota Ora
 									</a>
 								</c:if></td>
 							<td><a
-								href="<spring:url value="/auto/elimina/${auto.targa}" /> "
+								href="<spring:url value="/car/delete/${car.licensePlate}" /> "
 								class="btn btn-danger table-buttons"> <span
 									class="oi oi-trash" /></span> Elimina
 							</a></td>

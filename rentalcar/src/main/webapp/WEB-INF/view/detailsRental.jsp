@@ -6,8 +6,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-              <h2>${Titolo}</h2>
-              <p>${prenotazione.autoPrenotata.marca} ${prenotazione.autoPrenotata.modello} - ${prenotazione.autoPrenotata.categoria} (${prenotazione.autoPrenotata.anno})</p>
+              <h2>${head}</h2>
+              <p>${rental.rentedCar.brand} ${rental.rentedCar.model} - ${rental.rentedCar.category} (${rental.rentedCar.year})</p>
             </div>
         </div>
     </div>
@@ -18,11 +18,11 @@
 		<div class="card">
 			<img class="card-img-top card-image" src="<c:url value="/static/images/prenotazione_img.png" />" alt="Card image cap" style="max-width: 50%;">
  		 	<ul class="list-group list-group-flush">
- 		 		<li class="list-group-item">Id: <span class="info-art">${prenotazione.idPrenotazione}</span></li>
- 		 		<li class="list-group-item">Data Inizio: <span class="info-art">${prenotazione.dataInizio}</span></li>
- 		 		<li class="list-group-item">Data fine: <span class="info-art">${prenotazione.dataFine}</span></li>
- 		 		<li class="list-group-item">Prenotato da: <span class="info-art">${prenotazione.utenteRiferito.username}</span></li>
- 		 		<li class="list-group-item">Targa Auto: <span class="info-art">${prenotazione.autoPrenotata.targa}</span></li>
+ 		 		<li class="list-group-item">Id: <span class="info-art">${rental.id}</span></li>
+ 		 		<li class="list-group-item">Data Inizio: <span class="info-art">${rental.startDate}</span></li>
+ 		 		<li class="list-group-item">Data fine: <span class="info-art">${rental.endDate}</span></li>
+ 		 		<li class="list-group-item">Prenotato da: <span class="info-art">${rental.referredUser.username}</span></li>
+ 		 		<li class="list-group-item">Targa Auto: <span class="info-art">${rental.rentedCar.licensePlate}</span></li>
   			</ul>
 		</div>
 	</div>

@@ -18,8 +18,8 @@
   <body>
     
     <div class="jumbotron">
-		<h1>${intestazione}</h1>
-		<p>${saluti}</p>
+		<h1>${head}</h1>
+		<p>${greetings}</p>
 	</div>
 
       

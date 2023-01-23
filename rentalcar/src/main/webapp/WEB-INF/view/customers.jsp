@@ -8,8 +8,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2>${Titolo}</h2>
-				<p>${Titolo2}</p>
+				<h2>${head}</h2>
+				<p>${subheading}</p>
 			</div>
 		</div>
 	</div>
@@ -18,19 +18,19 @@
 	<div class="row">
 		<div class="col-md-6 col-sm-6">
 			<h3 class="page-title">
-				Risultati Ricerca: <small>Trovati ${numUtenti} Utenti</small>
+				Risultati Ricerca: <small>Trovati ${customersAmount} Utenti</small>
 			</h3>
 		</div>
 		<div class="col-md-6 col-sm-6">
-			<a href="<spring:url value="/utente/aggiungi" /> "
+			<a href="<spring:url value="/customer/add" /> "
 				style="margin-left: 20px;" class="btn btn-success float-right">Nuovo
 				Utente</a>
 		</div>
 
 			<c:choose>
 
-				<c:when test="${numUtenti == 0}">
-					<h3 class="page-title">Alla nostra piattaforma non è
+				<c:when test="${customersAmount == 0}">
+					<h3 class="page-title">Alla piattaforma non è
 						registrato alcun utente</h3>
 				</c:when>
 
@@ -53,37 +53,37 @@
 			<tfoot>
 			</tfoot>
 			<tbody>
-				<c:forEach items="${Utenti}" var="utente">
+				<c:forEach items="${customers}" var="customer">
 					<tr>
-						<td>${utente.idUtente}</td>
-						<td>${utente.nome}</td>
-						<td>${utente.cognome}</td>
-						<td>${utente.username}</td>
-						<td>${utente.dataDiNascita}</td>
-						<c:if test="${utente.abilitato}">
+						<td>${customer.id}</td>
+						<td>${customer.firstName}</td>
+						<td>${customer.lastName}</td>
+						<td>${customer.username}</td>
+						<td>${customer.dateOfBirth}</td>
+						<c:if test="${customer.enabled}">
 								<td>Sì</td>
 							</c:if>
-							<c:if test="${!utente.abilitato}">
+							<c:if test="${!customer.enabled}">
 								<td>No</td>
 							</c:if>
-						<td>${utente.ruolo.nomeRuolo}</td>
+						<td>${customer.role.roleName}</td>
 						<td><a
-							href=" <spring:url value="/utente/infoutente/${utente.idUtente}" /> "
+							href=" <spring:url value="/customer/detailscustomer/${customer.id}" /> "
 							class="btn btn-primary"> <span class="oi oi-plus" /></span>
 								Dettaglio
 						</a></td>
 
 						<td>
-						<c:if test="${utente.ruolo.idRuolo == 1}">
+						<c:if test="${customer.role.id == 1}">
 							<a
-								href="<spring:url value="/utente/modifica/${utente.idUtente}" /> "
+								href="<spring:url value="/customer/edit/${customer.id}" /> "
 								class="btn btn-warning table-buttons disabled"> <span
 								class="oi oi-pencil"></span> Modifica
 							</a>
 						</c:if>
-						<c:if test="${utente.ruolo.idRuolo != 1}">
+						<c:if test="${customer.role.id != 1}">
 							<a
-								href="<spring:url value="/utente/modifica/${utente.idUtente}" /> "
+								href="<spring:url value="/customer/edit/${customer.id}" /> "
 								class="btn btn-warning table-buttons"> <span
 								class="oi oi-pencil"></span> Modifica
 							</a>
@@ -91,27 +91,27 @@
 						</td>
 
 
-								<c:if test="${utente.abilitato}">			
+								<c:if test="${customer.enabled}">			
 								<td>
-								<c:if test="${utente.ruolo.idRuolo == 1}">
+								<c:if test="${customer.role.id == 1}">
 									<a
-										href="<spring:url value="/utente/disabilita/${utente.idUtente}"/> "
+										href="<spring:url value="/customer/disable/${customer.id}"/> "
 										class="btn btn-danger table-buttons disabled "> <span
 											class="oi oi-circle-x"  /></span> Disabilita
 									</a>
 								</c:if>
-								<c:if test="${utente.ruolo.idRuolo != 1}">
+								<c:if test="${customer.role.id != 1}">
 									<a
-										href="<spring:url value="/utente/disabilita/${utente.idUtente}"/> "
+										href="<spring:url value="/customer/disable/${customer.id}"/> "
 										class="btn btn-danger table-buttons "> <span
 											class="oi oi-circle-x"  /></span> Disabilita
 									</a>
 								</c:if>
 								</td>
 							</c:if>
-						<c:if test="${!utente.abilitato}">			
+						<c:if test="${!customer.enabled}">			
 						<td><a
-							href="<spring:url value="/utente/abilita/${utente.idUtente}" /> "
+							href="<spring:url value="/customer/enable/${customer.id}" /> "
 							class="btn btn-success table-buttons"> <span
 								class="oi oi-circle-check" /></span> Abilita
 						</a></td>
