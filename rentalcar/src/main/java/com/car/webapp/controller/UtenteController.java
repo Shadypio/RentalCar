@@ -137,6 +137,40 @@ public class UtenteController {
 		return "redirect:/utente/infoutente/" + nuovoUtente.getIdUtente();
 	}
 	
+	@GetMapping(value = "/modifica/{idUtente}")
+	public String updateUtente(Model model, @PathVariable("idUtente") Long idUtente) {
+
+		Utente utente = utenteService.selUtenteById(idUtente);
+		utente.setPassword("");
+
+		model.addAttribute("Titolo", "Modifica Utente " + utente.getUsername());
+		model.addAttribute("ruolo", utente.getRuolo());
+		model.addAttribute("utente", utente);
+		model.addAttribute("edit", true);
+		model.addAttribute("saved", false);
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
+
+		return "insUtente";
+	}
+
+	@PostMapping(value = "/modifica/{idUtente}")
+	public String gestUpdateUtente(@ModelAttribute("utente") Utente utenteModificato,
+			BindingResult result,
+			Model model, 
+			RedirectAttributes redirectAttributes, HttpServletRequest request) {
+
+		if(result.hasErrors()) {
+			return "insUtente";
+		}
+		
+		utenteModificato.setPassword(passwordEncoder.encode(utenteModificato.getPassword()));
+		utenteService.modificaUtente(utenteModificato);
+
+		redirectAttributes.addFlashAttribute("saved", true);
+
+		return "redirect:/utente/infoutente/" + utenteModificato.getIdUtente();
+	}
+	
 	@GetMapping(value = "/disabilita/{idUtente}")
 	public String disabilitaUtente(@PathVariable("idUtente") Long idUtente, Model model)
 	{

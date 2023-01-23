@@ -41,6 +41,7 @@ public class UtenteServiceImpl implements IUtenteService {
 	@Override
 	public void modificaUtente(Utente utente) {
 		
+		utente.setAbilitato(true);
 		utenteRepository.aggiorna(utente);
 		
 	}

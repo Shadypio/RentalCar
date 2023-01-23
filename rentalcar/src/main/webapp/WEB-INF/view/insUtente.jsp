@@ -94,18 +94,21 @@
 								<form:errors path="password" cssClass="text-danger" />
 							</div>
 
-
-							<div class="form-group">
-								<label for="ruolo"><spring:message code="insutente.form.ruolo.label" /></label>
-								<div class="mt-radio-inline">
+							<c:if test="${edit}">
+								<form:hidden id="ruolo" path="ruolo.idRuolo"/>
+							</c:if>
+							
+							<c:if test="${!edit}">
+								<div class="form-group" >
+									<label for="ruolo"><spring:message code="insutente.form.ruolo.label" /></label>
+									<div class="mt-radio-inline disabled">
 									<form:select name="ruolo" id="ruolo" path="ruolo.idRuolo"> 
-								    		<form:options items="${ruoli}" itemValue="idRuolo" itemLabel="nomeRuolo" /><br>		
+									    	<form:options items="${ruoli}" itemValue="idRuolo" itemLabel="nomeRuolo" /><br>		
 									</form:select>
-
-
+									</div>
 								</div>
-							</div>
-
+							</c:if>
+							
 							<hr class="line-form">
 
 							<div class="form-actions">

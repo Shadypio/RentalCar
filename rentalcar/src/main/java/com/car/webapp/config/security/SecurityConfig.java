@@ -117,7 +117,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 	{
 			"/utente/mostratutti/**",
 			"/utente/aggiungi/**",
-			"/utente/modifica/**",
+			//"/utente/modifica/**",
 			"/utente/disabilita/**",
 			"/utente/abilita/**",
 	};

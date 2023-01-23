@@ -45,7 +45,12 @@
 				class="btn btn-warning table-buttons"> <span
 					class="oi oi-list-rich"></span> Prenotazioni effettuate
 			</a></li>
-		<c:if test="${utente.ruolo.idRuolo == 1}">
+			<li class="list-group-item"><a
+				href="<spring:url value="/utente/modifica/${utente.idUtente}" /> "
+				class="btn btn-warning table-buttons"> <span
+					class="oi oi-pencil"></span> Modifica profilo
+			</a></li>
+			<c:if test="${utente.ruolo.idRuolo == 1}">
 				<li class="list-group-item"><a
 					href="<spring:url value="/utente/" /> "
 					class="btn btn-warning table-buttons"> <span
