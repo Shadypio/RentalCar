@@ -13,8 +13,8 @@ public class IndexController
 	@RequestMapping(value="/")
 	public String getWelcome(Model model)
 	{
-		model.addAttribute("intestazione", "Benvenuti nel sito RentalCar");
-		model.addAttribute("saluti", "Seleziona le auto da noleggiare");
+		model.addAttribute("head", "Benvenuti nel sito RentalCar");
+		model.addAttribute("greetings", "Seleziona le auto da noleggiare");
 		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
 		
 		return "index";

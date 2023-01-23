@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.car.webapp.domain.utente.Logins;
+import com.car.webapp.domain.customer.Logins;
 
 @Repository("persistentTokenRepository")
 @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)

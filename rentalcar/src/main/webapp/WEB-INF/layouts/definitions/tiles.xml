@@ -16,49 +16,49 @@
 		<put-attribute name="content" value="/WEB-INF/view/welcome.jsp" />  
 	</definition>
 	
-	<definition name="utenti" extends="baseLayout">
+	<definition name="customers" extends="baseLayout">
 		<put-attribute name="titolo"  value="Elenco Utenti" />
-		<put-attribute name="content" value="/WEB-INF/view/utenti.jsp" />  
+		<put-attribute name="content" value="/WEB-INF/view/customers.jsp" />  
 	</definition>
 	
-	<definition name="infoUtente" extends="baseLayout">
+	<definition name="detailsCustomer" extends="baseLayout">
 		<put-attribute name="titolo"  value="Dettagli Utente" />
-		<put-attribute name="content" value="/WEB-INF/view/infoUtente.jsp" />  
+		<put-attribute name="content" value="/WEB-INF/view/detailsCustomer.jsp" />  
 	</definition>
 	
-	<definition name="insUtente" extends="baseLayout">
+	<definition name="insertCustomer" extends="baseLayout">
 		<put-attribute name="titolo"  value="Inserimento nuovo utente" />
-		<put-attribute name="content" value="/WEB-INF/view/insUtente.jsp" />  
+		<put-attribute name="content" value="/WEB-INF/view/insertCustomer.jsp" />  
 	</definition>
 	
-	<definition name="auto" extends="baseLayout">
+	<definition name="cars" extends="baseLayout">
 		<put-attribute name="titolo"  value="Auto disponibili" />
-		<put-attribute name="content" value="/WEB-INF/view/auto.jsp" />  
+		<put-attribute name="content" value="/WEB-INF/view/cars.jsp" />  
 	</definition>
 	
-	<definition name="infoAuto" extends="baseLayout">
+	<definition name="detailsCar" extends="baseLayout">
 		<put-attribute name="titolo"  value="Dettagli Auto" />
-		<put-attribute name="content" value="/WEB-INF/view/infoAuto.jsp" />  
+		<put-attribute name="content" value="/WEB-INF/view/detailsCar.jsp" />  
 	</definition>
 	
-	<definition name="insAuto" extends="baseLayout">
+	<definition name="insertCar" extends="baseLayout">
 		<put-attribute name="titolo"  value="Inserimento nuova auto" />
-		<put-attribute name="content" value="/WEB-INF/view/insAuto.jsp" />  
+		<put-attribute name="content" value="/WEB-INF/view/insertCar.jsp" />  
 	</definition>
 	
-	<definition name="prenotazioni" extends="baseLayout">
+	<definition name="rentals" extends="baseLayout">
 		<put-attribute name="titolo"  value="Prenotazioni disponibili" />
-		<put-attribute name="content" value="/WEB-INF/view/prenotazioni.jsp" />  
+		<put-attribute name="content" value="/WEB-INF/view/rentals.jsp" />  
 	</definition>
 	
-	<definition name="infoPrenotazione" extends="baseLayout">
+	<definition name="detailsRental" extends="baseLayout">
 		<put-attribute name="titolo"  value="Dettagli Prenotazione" />
-		<put-attribute name="content" value="/WEB-INF/view/infoPrenotazione.jsp" />  
+		<put-attribute name="content" value="/WEB-INF/view/detailsRental.jsp" />  
 	</definition>
 	
-	<definition name="insPrenotazione" extends="baseLayout">
+	<definition name="insertRental" extends="baseLayout">
 		<put-attribute name="titolo"  value="Inserimento nuova prenotazione" />
-		<put-attribute name="content" value="/WEB-INF/view/insPrenotazione.jsp" />  
+		<put-attribute name="content" value="/WEB-INF/view/insertRental.jsp" />  
 	</definition>
 	
 	<definition name="baseLogIn" template="/WEB-INF/layouts/template/baseLogin.jsp">

@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.car.webapp.config.security.SpringSecurityUserContext;
-import com.car.webapp.domain.utente.Utente;
-import com.car.webapp.service.utente.IUtenteService;
+import com.car.webapp.domain.customer.Customer;
+import com.car.webapp.service.customer.ICustomerService;
 
 
 @Controller
@@ -30,10 +30,10 @@ public class LoginController
 {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
-	private List<Utente> utenti;
+	private List<Customer> customers;
 	
 	@Autowired
-	private IUtenteService utenteService;
+	private ICustomerService customerService;
 	
 	@Value("${app.admin.password}")
 	private String passwordAdmin;
@@ -46,9 +46,9 @@ public class LoginController
 	public String getLogin(Model model)
 	{
 		
-		utenti = utenteService.getAllUtenti();
-		if (utenti.isEmpty())
-			utenteService.salvaAdminUser(passwordAdmin);
+		customers = customerService.getAllCustomers();
+		if (customers.isEmpty())
+			customerService.insertAdminUser(passwordAdmin);
 		
 		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser());
 		return "login";

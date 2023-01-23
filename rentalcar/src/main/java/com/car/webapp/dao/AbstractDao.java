@@ -19,6 +19,7 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 
 	CriteriaBuilder builder;
 
+	
 	@SuppressWarnings("unchecked")
 	public AbstractDao()
 	{
@@ -33,7 +34,7 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 	}
 
 	@Override
-	public List<I> selTutti() {
+	public List<I> doRetrieveAll() {
 		
 		
 		CriteriaQuery<I> query = this.InitCriteria();
@@ -44,8 +45,9 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 		
 	}
 
+	
 	@Override
-	public I selById(Id id) {
+	public I doRetrieveById(Id id) {
 		CriteriaQuery<I> query = this.InitCriteria();
 			return this.entityManager.createQuery(
 				query.where(
@@ -54,9 +56,10 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 								get("id"), id))).
 				getSingleResult();
 	}
-
+	
+	
 	@Override
-	public void inserisci(I entity)
+	public void doSave(I entity)
 	{
 		this.entityManager.persist(entity);
 		flushAndClear();
@@ -64,7 +67,7 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 
 	
 	@Override
-	public void aggiorna(I entity)
+	public void doUpdate(I entity)
 	{
 		this.entityManager.merge(entity); 
 		flushAndClear();
@@ -72,7 +75,7 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 
 	
 	@Override
-	public void elimina(I entity)
+	public void doDelete(I entity)
 	{
 		
 		this.entityManager.remove(this.entityManager.contains(entity) ? entity : this.entityManager.merge(entity));
@@ -81,7 +84,7 @@ public abstract class AbstractDao<I extends Serializable, Id extends Serializabl
 	}
 
 	@Override
-	public void eliminaById(Id id)
+	public void doDeleteById(Id id)
 	{
 		CriteriaQuery<I> query = this.InitCriteria();
 

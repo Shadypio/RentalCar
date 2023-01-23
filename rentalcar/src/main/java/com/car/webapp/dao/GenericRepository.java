@@ -17,12 +17,12 @@ import javax.validation.constraints.NotNull;
 public interface GenericRepository<I extends Serializable, E extends Serializable> {
 
 	@NotNull
-	List<I> selTutti();
+	List<I> doRetrieveAll();
 	
-	void inserisci(@NotNull I entity);
-	void aggiorna(@NotNull I entity);
-	void elimina(@NotNull I entity);
-	void eliminaById(@NotNull E id);
-	I selById(@NotNull E id);
+	void doSave(@NotNull I entity);
+	void doUpdate(@NotNull I entity);
+	void doDelete(@NotNull I entity);
+	void doDeleteById(@NotNull E id);
+	I doRetrieveById(@NotNull E id);
 
 }
