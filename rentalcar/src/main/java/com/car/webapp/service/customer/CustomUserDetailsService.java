@@ -17,13 +17,13 @@ import com.car.webapp.domain.customer.Customer;
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private ICustomerService utenteService;
+	private ICustomerService customerService;
 	
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		Customer customer = utenteService.getCustomerByUsername(username);
+		Customer customer = customerService.getCustomerByUsername(username);
 		
 		if(customer == null) {
 			throw new UsernameNotFoundException("Utente non trovato");

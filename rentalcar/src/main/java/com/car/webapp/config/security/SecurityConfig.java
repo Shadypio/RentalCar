@@ -113,20 +113,20 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		return authenticationProvider;
 	}
 	
-	private static final String[] ADMIN_UTENTI_MATCHER =
+	private static final String[] ADMIN_CUSTOMER_MATCHER =
 	{
-			"/utente/mostratutti/**",
-			"/utente/aggiungi/**",
-			//"/utente/modifica/**",
-			"/utente/disabilita/**",
-			"/utente/abilita/**",
+			"/customer/**",
+			"/customer/add/**",
+			//"/customer/edit/**",
+			"/customer/disable/**",
+			"/customer/enable/**",
 	};
 	
-	private static final String[] ADMIN_AUTO_MATCHER =
+	private static final String[] ADMIN_CAR_MATCHER =
 		{
-			"/auto/aggiungi/**",
-			"/auto/modifica/**",
-			"/auto/elimina/**",
+			"/car/add/**",
+			"/car/edit/**",
+			"/car/delete/**",
 		};
 	
 	
@@ -138,12 +138,12 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		.antMatchers("/resources/**").permitAll()
 		.antMatchers("/login/**").permitAll()
 		.antMatchers("/").hasAnyRole("ANONYMOUS", "USER", "ADMIN")
-		.antMatchers(ADMIN_AUTO_MATCHER).access("hasRole('ADMIN')")
-		.antMatchers(ADMIN_UTENTI_MATCHER).access("hasRole('ADMIN')")
-		.antMatchers("/utente/infoutente/**").hasAnyRole("USER", "ADMIN")
-		.antMatchers("/utente/infoutenteusername/**").hasAnyRole("USER", "ADMIN")
-		.antMatchers("/auto/**").hasAnyRole("USER", "ADMIN")
-		.antMatchers("/prenotazione/**").hasAnyRole("USER", "ADMIN")
+		.antMatchers(ADMIN_CAR_MATCHER).access("hasRole('ADMIN')")
+		.antMatchers(ADMIN_CUSTOMER_MATCHER).access("hasRole('ADMIN')")
+		.antMatchers("/customer/detailscustomer/**").hasAnyRole("USER", "ADMIN")
+		.antMatchers("/customer/detailscustomerusername/**").hasAnyRole("USER", "ADMIN")
+		.antMatchers("/car/**").hasAnyRole("USER", "ADMIN")
+		.antMatchers("/rental/**").hasAnyRole("USER", "ADMIN")
 		.and()
 		.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 			.formLogin()
