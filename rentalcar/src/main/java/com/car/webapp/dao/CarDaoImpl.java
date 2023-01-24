@@ -8,7 +8,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
-import com.car.webapp.domain.auto.Car;
+import com.car.webapp.domain.car.Car;
 
 @Repository
 public class CarDaoImpl extends AbstractDao<Car, String> implements ICarDao{

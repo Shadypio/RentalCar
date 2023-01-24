@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.car.webapp.domain.utente.Logins;
+import com.car.webapp.domain.customer.Logins;
 
 @Repository("persistentTokenRepository")
 @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
@@ -32,10 +32,10 @@ public class PersistentTokenDao implements PersistentTokenRepository{
 	{
 		Logins logins = new Logins();
 		
-		logins.setNomeutente(token.getUsername());
-		logins.setSerie(token.getSeries());
+		logins.setUsername(token.getUsername());
+		logins.setSeries(token.getSeries());
 		logins.setToken(token.getTokenValue());
-		logins.setUsato(token.getDate());
+		logins.setUsed(token.getDate());
 		
 		this.entityManager.persist(logins);
 		flushAndClear();
@@ -44,14 +44,14 @@ public class PersistentTokenDao implements PersistentTokenRepository{
 	@Override
 	public void updateToken(String series, String tokenValue, Date lastUsed) 
 	{
-		String JPQL = "SELECT a FROM Logins a WHERE a.serie = :series ";
+		String JPQL = "SELECT a FROM Logins a WHERE a.series = :series ";
 
 		Logins logins = (Logins) entityManager.createQuery(JPQL)
 				   .setParameter("series", series)
 				   .getSingleResult();
 		
 		logins.setToken(tokenValue);
-		logins.setUsato(lastUsed);
+		logins.setUsed(lastUsed);
 		
 		this.entityManager.merge(logins); 
 		flushAndClear();
@@ -61,7 +61,7 @@ public class PersistentTokenDao implements PersistentTokenRepository{
 	@Override
 	public PersistentRememberMeToken getTokenForSeries(String seriesId) 
 	{
-		String JPQL = "SELECT a FROM Logins a WHERE a.serie = :series ";
+		String JPQL = "SELECT a FROM Logins a WHERE a.series = :series ";
 		 
 		
 		Logins logins = (Logins) entityManager.createQuery(JPQL)
@@ -71,10 +71,10 @@ public class PersistentTokenDao implements PersistentTokenRepository{
 		if (logins != null) 
 		{
 		      return new PersistentRememberMeToken(
-		    		  logins.getNomeutente(), 
-		    		  logins.getSerie(), 
+		    		  logins.getUsername(), 
+		    		  logins.getSeries(), 
 		    		  logins.getToken(),
-		    		  logins.getUsato());
+		    		  logins.getUsed());
 		}
 		
 		return null;
@@ -83,12 +83,12 @@ public class PersistentTokenDao implements PersistentTokenRepository{
 	@Override
 	public void removeUserTokens(String username) 
 	{
-		String JPQL = "delete from Logins where nomeutente = :userId";
+		String JPQL = "delete from Logins where username = :username";
 		
-		// UTILIZZIAMO IL JPQL
+		
 		entityManager
 			.createQuery(JPQL)
-			.setParameter("userId", username)
+			.setParameter("username", username)
 			.executeUpdate();
 				
 		flushAndClear(); 

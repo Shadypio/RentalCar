@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.car.webapp.config.security.SpringSecurityUserContext;
-import com.car.webapp.domain.utente.Customer;
-import com.car.webapp.service.utente.ICustomerService;
+import com.car.webapp.domain.customer.Customer;
+import com.car.webapp.service.customer.ICustomerService;
 
 
 @Controller

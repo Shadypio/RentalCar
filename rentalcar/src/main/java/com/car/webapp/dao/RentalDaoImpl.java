@@ -8,8 +8,8 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
-import com.car.webapp.domain.prenotazione.Rental;
-import com.car.webapp.domain.utente.Customer;
+import com.car.webapp.domain.customer.Customer;
+import com.car.webapp.domain.rental.Rental;
 
 @Repository
 public class RentalDaoImpl extends AbstractDao<Rental, Long> implements IRentalDao {

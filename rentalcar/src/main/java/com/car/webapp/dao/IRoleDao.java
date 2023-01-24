@@ -2,7 +2,7 @@ package com.car.webapp.dao;
 
 import java.util.List;
 
-import com.car.webapp.domain.ruolo.Role;
+import com.car.webapp.domain.role.Role;
 
 public interface IRoleDao {
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.car.webapp.domain.ruolo.Role;
+import com.car.webapp.domain.role.Role;
 
 @Repository
 public class RoleDaoImpl extends AbstractDao<Role, Long> implements IRoleDao {
