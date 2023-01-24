@@ -55,4 +55,11 @@ public class CarServiceImpl implements ICarService {
 		
 	}
 
+
+	@Override
+	public List<Car> getCarsByFilter(String filter) {
+		
+		return carRepository.doRetrieveByFilter(filter);
+	}
+
 }

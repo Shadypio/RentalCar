@@ -8,6 +8,8 @@ public interface ICarDao {
 
 	List<Car> doRetrieveAll();
 	
+	List<Car> doRetrieveByFilter(String filter);
+	
 	Car doRetrieveByLicensePlate(String licensePlate);
 
 	void doSave(Car car);
@@ -15,5 +17,7 @@ public interface ICarDao {
 	void doUpdate(Car car);
 
 	void doDelete(Car car);
+
+	
 	
 }

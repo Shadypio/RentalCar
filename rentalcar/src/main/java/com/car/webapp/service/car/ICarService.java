@@ -8,6 +8,8 @@ public interface ICarService {
 
 	List<Car> getAllCars();
 	
+	List<Car> getCarsByFilter(String filter);
+	
 	Car getCarByLicensePlate(String licensePlate);
 	
 	void insertCar(Car car);
@@ -15,4 +17,5 @@ public interface ICarService {
 	void updateCar(Car car);
 	
 	void deleteCar(Car car);
+
 }

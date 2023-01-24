@@ -44,6 +44,11 @@
 			
   		</div>
   		
+  		<!-- Search Box -->
+    				<form:form class="form-inline my-2 my-lg-0" id="search" role="search" method="GET" action="/rentalcar/car/search/">
+		      			<input type="text" onClick="this.select();"  class="form-control mr-sm-2" name="filter" placeholder="Cerca Auto">
+		      			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerca</button>
+		    		</form:form>
   		<!-- dropdown user menu -->
     			<div class="dropdown">
     			

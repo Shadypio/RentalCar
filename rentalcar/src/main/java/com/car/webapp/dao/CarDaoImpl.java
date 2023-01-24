@@ -19,6 +19,22 @@ public class CarDaoImpl extends AbstractDao<Car, String> implements ICarDao{
 		return super.doRetrieveAll();
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Car> doRetrieveByFilter(String filter) {
+		
+		String JPQL = "select c from Car c WHERE c.model LIKE :filter OR c.brand LIKE :filter OR c.category LIKE :filter" ;
+	
+		List<Car> foundCars = null;
+		
+		foundCars = entityManager.createQuery(JPQL)
+			 .setParameter("filter", "%"+filter+"%")
+			 .getResultList();
+		
+		return foundCars;
+		
+	}
 
 	@Override
 	public Car doRetrieveByLicensePlate(String licensePlate) {
@@ -61,6 +77,8 @@ public class CarDaoImpl extends AbstractDao<Car, String> implements ICarDao{
 		
 
 	}
+
+	
 
 		
 

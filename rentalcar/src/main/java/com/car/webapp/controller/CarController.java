@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.car.webapp.config.security.SpringSecurityUserContext;
@@ -153,6 +154,26 @@ public class CarController {
 		redirectAttributes.addFlashAttribute("saved", true);
 		
 		return "redirect:/car/detailscar/" + editedCar.getLicensePlate();
+	}
+	
+	@GetMapping(value = "/search/")
+	public String searchCars(@RequestParam("filter") String filter, Model model) {
+		
+		System.out.println("filtro " + filter);
+		
+		recordset = carService.getCarsByFilter(filter);
+		customer = customerService.getCustomerByUsername(new SpringSecurityUserContext().getCurrentUser());
+		
+		model.addAttribute("head", "Ricerca Auto");
+		model.addAttribute("subheading", "Ricerca tutte le auto");
+		model.addAttribute("cars", recordset);
+		model.addAttribute("customer", customer);
+		model.addAttribute("isCar", true);
+		if (recordset != null)
+			model.addAttribute("carsAmount", recordset.size());
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
+		
+		return "cars";
 	}
 	
 
