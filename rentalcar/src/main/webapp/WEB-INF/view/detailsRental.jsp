@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <div class="jumbotron jumbotron-billboard">
   <div class="img"></div>
@@ -23,6 +24,11 @@
  		 		<li class="list-group-item">Data fine: <span class="info-art">${rental.endDate}</span></li>
  		 		<li class="list-group-item">Prenotato da: <span class="info-art">${rental.referredCustomer.username}</span></li>
  		 		<li class="list-group-item">Targa Auto: <span class="info-art">${rental.rentedCar.licensePlate}</span></li>
+ 		 		<li class="list-group-item"><a
+								href="<spring:url value="/rental/delete/${rental.id}" /> "
+								class="btn btn-danger table-buttons"> <span
+									class="oi oi-trash" /></span> Elimina
+							</a></li>
   			</ul>
 		</div>
 	</div>
