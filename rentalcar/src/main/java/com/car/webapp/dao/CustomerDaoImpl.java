@@ -30,26 +30,6 @@ public class CustomerDaoImpl extends AbstractDao<Customer, Long> implements ICus
 		return super.doRetrieveById(id);
 	}
 	
-	/**
-	 * Metodo con JPQL - La sintassi si riferisce alla classe Java
-	 * @param 
-	 * @return
-	 
-	@Override
-	@SuppressWarnings("unchecked")
-	public Utente selbyId(Long id)
-	{
-		String JPQL = "SELECT a FROM Utente a WHERE a.idUtente = :idUtente";
-		
-		
-		Utente utente =  entityManager.createQuery(JPQL)
-								 .setParameter("idUtente", id)
-								 .getSingleResult();
-		
-		return utente;
-	}
-	*/
-	
 	@Override
 	public Customer doRetrieveByUsername(String username) {
 		

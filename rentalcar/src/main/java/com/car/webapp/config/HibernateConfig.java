@@ -24,16 +24,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-
-
-
-/**
- * @EnableTransactionManagement indica che tutte le attività svolte sul db saranno
- * svolge in un regime di gestione delle transazioni: dopo aver scritto i dati, se una delle
- * operazioni dovesse fallire, viene annullato tutto (rollback delle transazioni)
- * 
- *
- */
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({ "com.car.webapp.config" })
