@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.car.webapp.domain.rental.Rental;
@@ -26,6 +27,7 @@ public class Car implements Serializable{
 	@Column(name = "license_plate")
 	@NotNull(message = "{NotNull.Auto.targa.validation}")
 	@Size(min=7, max=7, message = "{Size.Auto.targa.validation}")
+	@Pattern(regexp = "^[ABCDEFGHJKLMNPRSTVWXYZ]{2}[0-9]{3}[ABCDEFGHJKLMNPRSTVWXYZ]{2}$", message = "{Pattern.Auto.targa.validation}")
 	private String licensePlate;
 	
 	@Column(name = "brand")

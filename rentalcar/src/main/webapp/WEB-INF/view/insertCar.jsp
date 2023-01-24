@@ -49,12 +49,21 @@
 					<form:errors path="*" cssClass="alert alert-danger" element="div"/> 
 					
 					<div class="form-body">
-					
+
+						<c:if test="${edit}">
 						<div class="form-group">
-							<label for="licensePlate"><spring:message code="insauto.form.targa.label"/></label>
-							<form:input id="licensePlate" path="licensePlate" type="text" class="form-control" placeholder="Targa"/>  
-							<form:errors path="licensePlate" cssClass="text-danger"/>
-						</div>
+								<form:hidden id="licensePlate" path="licensePlate"
+									class="form-control" placeholder="licensePlate"/>
+							</div>
+						</c:if>
+
+						<c:if test="${!edit}">
+							<div class="form-group">
+								<label for="licensePlate"><spring:message code="insauto.form.targa.label"/></label>
+								<form:input id="licensePlate" path="licensePlate" type="text" class="form-control" placeholder="Targa"/>  
+								<form:errors path="licensePlate" cssClass="text-danger"/>
+							</div>
+						</c:if>
 						
 						<div class="form-group">
 							<label for="brand"><spring:message code="insauto.form.marca.label"/></label>

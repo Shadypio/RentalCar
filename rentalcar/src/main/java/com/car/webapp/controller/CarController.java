@@ -19,7 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.car.webapp.config.security.SpringSecurityUserContext;
 import com.car.webapp.domain.car.Car;
+import com.car.webapp.domain.customer.Customer;
+import com.car.webapp.domain.rental.Rental;
 import com.car.webapp.service.car.ICarService;
+import com.car.webapp.service.customer.ICustomerService;
 
 @Controller
 @RequestMapping("/car")
@@ -28,16 +31,22 @@ public class CarController {
 	@Autowired
 	private ICarService carService;
 	
+	@Autowired
+	private ICustomerService customerService;
+	
 	private List<Car> recordset;
+	private Customer customer;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getCars(Model model) {
 		
 		recordset = carService.getAllCars();
+		customer = customerService.getCustomerByUsername(new SpringSecurityUserContext().getCurrentUser());
 		
 		model.addAttribute("head", "Ricerca Auto");
 		model.addAttribute("subheading", "Ricerca tutte le auto");
 		model.addAttribute("cars", recordset);
+		model.addAttribute("customer", customer);
 		model.addAttribute("isCar", true);
 		if (recordset != null)
 			model.addAttribute("carsAmount", recordset.size());
@@ -83,6 +92,8 @@ public class CarController {
 	}
 	
 	
+	
+	
 	@GetMapping(value = "/add")
 	public String addCar(Model model) {
 		
@@ -111,6 +122,37 @@ public class CarController {
 		redirectAttributes.addFlashAttribute("saved", true);
 		
 		return "redirect:/car/detailscar/" + newCar.getLicensePlate();
+	}
+	
+	@GetMapping(value = "/edit/{licensePlate}")
+	public String editCar(@PathVariable("licensePlate") String licensePlate, Model model) {
+		
+		Car car = carService.getCarByLicensePlate(licensePlate);
+		
+		model.addAttribute("head", "Modifica Auto " + licensePlate);
+		model.addAttribute("car", car);
+		model.addAttribute("edit", true);
+		model.addAttribute("saved", false);
+		model.addAttribute("User", new SpringSecurityUserContext().getCurrentUser()); 
+		
+		
+		return "insertCar";
+	}
+	
+	@PostMapping(value = "/edit/{licensePlate}")
+	public String manageEditCar(@Valid @ModelAttribute("car") Car editedCar, BindingResult result, 
+			@ModelAttribute("rental") Rental rental, Model model, 
+			RedirectAttributes redirectAttributes, HttpServletRequest request) {
+		
+		if(result.hasErrors()) {
+			return "insertCar";
+		}
+		
+		carService.updateCar(editedCar);
+		
+		redirectAttributes.addFlashAttribute("saved", true);
+		
+		return "redirect:/car/detailscar/" + editedCar.getLicensePlate();
 	}
 	
 

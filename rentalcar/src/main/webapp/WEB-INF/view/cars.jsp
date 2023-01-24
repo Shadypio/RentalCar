@@ -21,11 +21,13 @@
 				Risultati Ricerca: <small>Trovate ${carsAmount} Auto</small>
 			</h3>
 		</div>
-		<div class="col-md-6 col-sm-6">
-			<a href="<spring:url value="/car/add" /> "
-				style="margin-left: 20px;" class="btn btn-success float-right">Nuova
-				Auto</a>
-		</div>
+		
+			<div class="col-md-6 col-sm-6">
+				<a href="<spring:url value="/car/add" /> "
+					style="margin-left: 20px;" class="btn btn-success float-right">Nuova
+					Auto</a>
+			</div>
+
 
 		<c:choose>
          
@@ -77,18 +79,32 @@
 								class="btn btn-primary"> <span class="oi oi-plus" /></span>
 									Dettaglio
 							</a></td>
-							<td><c:if test="${car.rental == null}">
-									<a
-										href="<spring:url value="/rental/add/${car.licensePlate}" /> "
-										class="btn btn-warning table-buttons"> <span
-										class="oi oi-pencil"></span> Prenota Ora
-									</a>
-								</c:if></td>
+							<td>
+							<c:if test="${customer.role.id == 2}">
+										<c:if test="${car.rental == null}">
+											<a
+												href="<spring:url value="/rental/add/${car.licensePlate}" /> "
+												class="btn btn-warning table-buttons"> <span
+												class="oi oi-pencil"></span> Prenota Ora
+											</a>
+										</c:if>
+									</c:if>
+							<c:if test="${customer.role.id == 1}">
+										<a
+											href="<spring:url value="/car/edit/${car.licensePlate}" /> "
+											class="btn btn-warning table-buttons"> <span
+											class="oi oi-pencil"></span> Modifica
+										</a>
+									</c:if>
+								</td>
+							
+							<c:if test="${customer.role.id == 1}">
 							<td><a
 								href="<spring:url value="/car/delete/${car.licensePlate}" /> "
 								class="btn btn-danger table-buttons"> <span
 									class="oi oi-trash" /></span> Elimina
 							</a></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
