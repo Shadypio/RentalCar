@@ -12,14 +12,14 @@ public interface ICustomerService {
 	
 	Customer getCustomerByUsername(String username);
 
-	void insertCustomer(Customer utente);
+	void insertCustomer(Customer customer);
 	
 	void insertAdminUser(String password);
 	
-	void updateCustomer(Customer utente);
+	void updateCustomer(Customer customer);
 	
-	void disableCustomer(Customer utente);
+	void disableCustomer(Customer customer);
 	
-	void enableCustomer(Customer utente);
+	void enableCustomer(Customer customer);
 
 }

@@ -153,7 +153,7 @@ public class CustomerController {
 	}
 
 	@PostMapping(value = "/edit/{idCustomer}")
-	public String manageUpdateCustomer(@ModelAttribute("customer") Customer editedUser,
+	public String manageUpdateCustomer(@ModelAttribute("customer") Customer editedCustomer,
 			BindingResult result,
 			Model model, 
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {
@@ -162,12 +162,12 @@ public class CustomerController {
 			return "insertCustomer";
 		}
 		
-		editedUser.setPassword(passwordEncoder.encode(editedUser.getPassword()));
-		customerService.updateCustomer(editedUser);
+		editedCustomer.setPassword(passwordEncoder.encode(editedCustomer.getPassword()));
+		customerService.updateCustomer(editedCustomer);
 
 		redirectAttributes.addFlashAttribute("saved", true);
 
-		return "redirect:/customer/detailscustomer/" + editedUser.getId();
+		return "redirect:/customer/detailscustomerusername/" + editedCustomer.getUsername();
 	}
 	
 	@GetMapping(value = "/disable/{idCustomer}")

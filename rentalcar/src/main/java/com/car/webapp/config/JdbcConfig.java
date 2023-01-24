@@ -19,9 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource(value = {"classpath:application.properties" })
 public class JdbcConfig {
 	
-	/*
-	 * Serve per accedere ai valori inseriti in application.properties
-	 */
+
 	@Autowired
 	private Environment environment;
 	

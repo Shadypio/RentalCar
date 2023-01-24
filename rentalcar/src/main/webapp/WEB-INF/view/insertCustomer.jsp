@@ -52,7 +52,12 @@
 						<form:errors path="*" cssClass="alert alert-danger" element="div" />
 
 						<div class="form-body">
-
+							
+							<div class="form-group">
+								<form:hidden id="id" path="id"
+									class="form-control" placeholder="id"/>
+							</div>
+							
 							<div class="form-group">
 								<label for="nome"><spring:message
 										code="insutente.form.nome.label" /></label>

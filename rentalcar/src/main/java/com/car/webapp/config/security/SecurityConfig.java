@@ -115,9 +115,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 	
 	private static final String[] ADMIN_CUSTOMER_MATCHER =
 	{
-			"/customer/**",
+//			"/customer/**",
 			"/customer/add/**",
-			"/customer/edit/**",
+//			"/customer/edit/**",
 			"/customer/disable/**",
 			"/customer/enable/**",
 	};

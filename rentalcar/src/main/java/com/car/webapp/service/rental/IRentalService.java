@@ -11,11 +11,11 @@ public interface IRentalService {
 	
 	Rental getRentalById(Long id);
 	
-	Rental getRentalByCustomer(Customer utente);
+	Rental getRentalByCustomer(Customer customer);
 	
-	void insertRental(Rental prenotazione);
+	void insertRental(Rental rental);
 	
-	void updateRental(Rental prenotazione);
+	void updateRental(Rental rental);
 	
-	void deleteRental(Rental prenotazione);
+	void deleteRental(Rental rental);
 }
