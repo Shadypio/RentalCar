@@ -8,12 +8,12 @@ public interface ICarDao {
 
 	List<Car> doRetrieveAll();
 	
-	Car doRetrieveByLicensePlate(String targa);
+	Car doRetrieveByLicensePlate(String licensePlate);
 
-	void doSave(Car auto);
+	void doSave(Car car);
 
-	void doUpdate(Car auto);
+	void doUpdate(Car car);
 
-	void doDelete(Car auto);
+	void doDelete(Car car);
 	
 }
