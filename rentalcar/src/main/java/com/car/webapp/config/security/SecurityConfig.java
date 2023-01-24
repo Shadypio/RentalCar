@@ -96,9 +96,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 	@Override
 	public void configure(final AuthenticationManagerBuilder auth) throws Exception
 	{
-//		auth
-//			.userDetailsService(userDetailsService())
-//			.passwordEncoder(passwordEncoder());
+
 		auth.authenticationProvider(authenticationProvider());
 	}
 	
@@ -208,16 +206,6 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter
 		
 		
 	}
-	
-	
-//	@Bean
-//    public PersistentTokenRepository persistentTokenRepository() 
-//	{
-//        JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
-//        tokenRepositoryImpl.setDataSource(dataSource);
-//        
-//        return tokenRepositoryImpl;
-//    }
 
 
 }
