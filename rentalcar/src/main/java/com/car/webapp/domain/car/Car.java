@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -38,6 +40,8 @@ public class Car implements Serializable{
 	@Size(min=1, max=45, message = "{Size.Auto.modello.validation}")
 	private String model;
 	
+	@Min(2000)
+	@Max(2023)
 	@Column(name = "year")
 	@Digits(integer=4, message="{Digits.Auto.anno.validation}", fraction = 0)
 	private int year;
