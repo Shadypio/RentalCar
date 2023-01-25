@@ -170,35 +170,15 @@ public class CustomerController {
 		return "redirect:/customer/detailscustomerusername/" + editedCustomer.getUsername();
 	}
 	
-	@GetMapping(value = "/disable/{idCustomer}")
-	public String disableCustomer(@PathVariable("idCustomer") Long idCustomer, Model model)
+	@GetMapping(value = "/toggleabilitation/{idCustomer}")
+	public String toggleAbilitationCustomer(@PathVariable("idCustomer") Long idCustomer, Model model)
 	{
 
 		try
 		{
 			if (idCustomer != null)
 			{
-
-				customerService.disableCustomer(customerService.getCustomerById(idCustomer));
-			}
-		} 
-		catch (Exception ex)
-		{
-			throw new RuntimeException("Errore modifica utente", ex);
-		}
-
-		return "redirect:/customer/";
-	}
-	
-	@GetMapping(value = "/enable/{idCustomer}")
-	public String enableCustomer(@PathVariable("idCustomer") Long idCustomer, Model model)
-	{
-
-		try
-		{
-			if (idCustomer != null)
-			{
-				customerService.enableCustomer(customerService.getCustomerById(idCustomer));
+				customerService.toggleAbilitation(customerService.getCustomerById(idCustomer));
 			}
 		} 
 		catch (Exception ex)

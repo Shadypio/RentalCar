@@ -17,9 +17,7 @@ public interface ICustomerService {
 	void insertAdminUser(String password);
 	
 	void updateCustomer(Customer customer);
-	
-	void disableCustomer(Customer customer);
-	
-	void enableCustomer(Customer customer);
+
+	void toggleAbilitation(Customer customer);
 
 }

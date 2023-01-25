@@ -95,14 +95,14 @@
 								<td>
 								<c:if test="${customer.role.id == 1}">
 									<a
-										href="<spring:url value="/customer/disable/${customer.id}"/> "
+										href="<spring:url value="/customer/toggleabilitation/${customer.id}"/> "
 										class="btn btn-danger table-buttons disabled "> <span
 											class="oi oi-circle-x"  /></span> Disabilita
 									</a>
 								</c:if>
 								<c:if test="${customer.role.id != 1}">
 									<a
-										href="<spring:url value="/customer/disable/${customer.id}"/> "
+										href="<spring:url value="/customer/toggleabilitation/${customer.id}"/> "
 										class="btn btn-danger table-buttons "> <span
 											class="oi oi-circle-x"  /></span> Disabilita
 									</a>
@@ -111,7 +111,7 @@
 							</c:if>
 						<c:if test="${!customer.enabled}">			
 						<td><a
-							href="<spring:url value="/customer/enable/${customer.id}" /> "
+							href="<spring:url value="/customer/toggleabilitation/${customer.id}" /> "
 							class="btn btn-success table-buttons"> <span
 								class="oi oi-circle-check" /></span> Abilita
 						</a></td>

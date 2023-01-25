@@ -60,18 +60,16 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 
 	@Override
-	public void disableCustomer(Customer customer) {
+	public void toggleAbilitation(Customer customer) {
 		
-		customerRepository.doDisableCustomer(customer);
+		if(customer.getEnabled())
+			customerRepository.doDisableCustomer(customer);
+		else
+			customerRepository.doEnableCustomer(customer);
 		
 	}
 	
-	@Override
-	public void enableCustomer(Customer customer) {
-		
-		customerRepository.doEnableCustomer(customer);
-		
-	}
+	
 	
 	
 	
